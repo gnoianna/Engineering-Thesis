@@ -1,0 +1,75 @@
+\chapter{Wstęp}
+\label{cha:wstep}
+Poniższy rozdział zawiera krótkie wprowadzenie mające na celu zapoznananie czytającego z tematyką tejże pracy dyplomowej. Przedstawino w nim również cel projektu oraz założenia, które powinien on spełniać. Na końcu została również opisana struktura niniejszej pracy.
+
+\section{Wprowadzenie}
+Dzisiejszy świat niezwykle szybko się rozwija. Ciężko wyobrazić sobie wykonywanie codziennych czynności bez udogodnień technicznych, które otaczają nas co dnia. Jeszcze kilkanaście lat temu codzienność przeciętnej 
+osoby wyglądała zupełnie inaczej. Okres ostatnich 30 lat przyniósł wiele zmian, bez których teraz nie wyobrażamy sobie normalnego funkcjonowania.
+
+W obecnym czasie z dnia na dzień na rynek wprowadzane są nowe urządzenia i oprogramowania mające na celu polepszenie komfortu naszego życia. Ludziom zależy na ciągłym usprawnianiu technologii, aby zautomatyzować pewne czynności i móc zaoszczędzić swój cenny czas. Wielu naukowców poświęca się pracy w celu odkrycia przełomowych rozwiązań.
+
+Nie da się ukryć, że w ostatnich latach coraz więcej mówi się o ogromnym potencjale sztucznej inteligencji (ang. Artificial Intelligence), która zaczyna odgrywać znaczącą rolę w światowym rozwoju technicznym. Według źródeł wiele gałęzi przemysłu decyduje się na wprowadzanie systemów tzw. wąskiej sztucznej inteligencji. W tym momencie mamy z nimi styczność na każdym kroku.\cite{ai}   
+
+Systemy te charakteryzują się wyuczoną umiejętnością wykonywania określonego zadania. Rodzaj inteligencji, który reprezentują, najczęściej stosuje się w rozpoznawaniu mowy, rekomendowaniu produktów, czy też wykrywaniu elementów na obrazie. Ostatnie z wymienionych zastosowań jest bezpośrednio związane z tematyką poruszaną w owej pracy dyplomowej.
+
+Wykrywanie, rozpoznawanie i przetwarzanie obrazów (ang. Computer Vision) to dziedziny sztucznej inteligencji, które wykorzystują uczenie maszynowowe i głębokie, aby umożliwić komputerom poprawną interpretację i zrozumienie otaczająego nas świata - tak jak robią to ludzie. Poprzez wykorzystanie obrazów cyfrowych i odpowiednich modeli tworzone oprogramowania potrafią dokładnie identyfikować, klasyfikować obiekty, a następnie na podstawie otrzymanych rezultatów wykonywać zdefiniowane akcje. \cite{computervision}
+
+Jednym z wielu istniejących systemów bazujących na przetwarzaniu obrazów jest oprogramowanie rozpoznawania twarzy. Wiele osób korzysta z niego każdego dnia chociażby w celu odblokowania telefonu, komputera lub autoryzacji transakcji w banku. Narzędzie to ma też wiele innych zastosowań, jest pewnego rodzaju bazą dla innych bardziej rozbudowanych programów. W niniejszej pracy dyplomowej wykrywanie twarzy, będące podstawą wspomnianego wyżej algorytmu rozpoznawania twarzy, odegra znaczącą rolę. Będzie to jeden z etapów algorytmu animacji awatara.
+
+Niewątpliwie szybki rozwój technologiczny, z którym aktualnie mamy do czynienia, oraz jego ukierunkowanie na jak najefektywniejsze wykorzystanie sztucznej inteligencji sprawiły, że temat pracy inżynierskiej, który zdecydowałam się realizować dotyczy właśnie tych zagadnień. W połączeniu z moim zainteresowaniem grafiką komputerową oraz przetwarzaniem obrazów powstała chęć zaimplementowania algorytmu animacji awatara.
+
+Na rynku dostępne są programy, które implementują takowe algorytmy. Powstaje coraz więcej aplikacji oferujących animacje zdjęcia na podstawie filmu wideo. Niektóre portale społecznośiowe udostępniają specjalne filtry, nakładki na zdjęcia, działające na podobnej zasadzie. Jednak większość z dostępnych oprogramowań nie oferuje wglądu w kod źródłowy, są to rozwiązania komerycjne, gdzie ta dostępność jest mocno ograniczona.
+
+Motywacją do stworzenia własnego programu jest chęć rozwoju i poszerzenia swojej wiedzy w tej tematyce oraz próba odwzorowania działania istniejących rozwiązań, które nie są dostępne w formie open source. 
+
+
+% %---------------------------------------------------------------------------
+
+\section{Cel pracy}
+
+Celem pracy dyplomowej jest opracowanie algorytmu animacji awatara. Metoda będzie opierać się na identyfikacji punktów charakterystycznych (ang. landmarks) oznaczających położenie łuków brwiowych, powiek, oczu, nosa i warg. Na podstawie wyznaczonych punktów i ich przemieszczeń będą obliczane przemieszczenia analogicznych punktów awatara, według których jego obraz zostanie poddany lokalnym transformacjom.
+
+Algorytm zostanie przedstawiony z wykorzystaniem nieskomplikowanej aplikacji webowej, która posłuży jako narzędzie walidacji.
+
+% %---------------------------------------------------------------------------
+
+\section{Założenia projektu}
+\label{sec:zalozeniaProjektu}
+Projekt stworzony na potrzeby tejże pracy powinien spełniać określone założenia, zgodne z poniższymi szczegółami:
+\begin{itemize}
+    \item działanie algorytmu powinno opierać się na analizie punktów charakterystycznych, na podstawie której nastąpią lokalne transformacje obrazu awatara
+    \item identyfikacja punktów charakterystycznych powinna zostać zrealizowana z użyciem biblioteki face\_recognition lub dlib
+    \item metodę należy przetestować na zarejestrowanych obrazach lub gotowych zbiorach danych
+    \item w celu walidacji algorytmu należy stworzyć prostą aplikację webową
+\end{itemize}
+
+% %---------------------------------------------------------------------------
+
+\section{Struktura pracy}
+\label{sec:strukturaPracy}
+Niniejsza praca została podzielona na sześć rozdziałów. W pierwszym z nich zawarte zostało wprowadzenie, cel pracy oraz krótkie przedstawienie założeń projektowych.
+
+Drugi rozdział ma na celu przedstawienie pojęć istotnych dla tematu pracy. Ponadto zostaną w nim omówione istniejące algorytmy ściśle powiązane z implementowanym rozwiązaniem. 
+
+W trzecim rozdziale znajduje się także przegląd współczesnych zastosowań i przykłady dziedzin wykorzystujących algorytmy zbliżone do zaimplementowanego w tejże pracy. 
+
+W czwartym rozdziale zostały wymienione i krótko opisane narzędzia oraz technologie wykorzystane w trakcie tworzenia pracy.
+
+Piąty rozdział dotyczy kwestii implementacji. Składa się on z trzech podrozdziałów. Pierwszy z nich przedstawia ogólny schemat działania algorytmu, aby pokrótce zaznajomić odbiorcę ze strukturą programu. Kolejna część zawiera szczegóły każdego z etapów animacji awatara. Ten rozdział opisuje także sposób wykorzystania aplikacji webowej jako technologii umożliwiającej efektywne przeprowadzenie testów.
+
+Szósty rozdział został poświęcony części ewaluacyjnej. Przedstawiono w nim testy algorytmu ze względu na dobór istotnych parametrów oraz walidację pod kątem użyteczności i osiąganych rezultatów. 
+
+W siódmym rozdziale zawarto podsumowanie ogólne pracy, wnioski wyciągnięte podczas tworzenia projektu. Dodatkowo zamieszczono rozdział przedstawiający możliwe ścieżki rozwoju stworzonego modelu.
+
+
+
+
+
+
+
+
+
+
+
+
+
