@@ -30,11 +30,11 @@ Zagadnienie poruszane w tym rozdziale jest bardzo rozległe, a rozwiązania i al
 \subsection{Schemat działania}
 % Algorytmy wykrywania twarzy często postępują w podobny sposób. Większość z nich rozpoczyna swoje działanie od zlokalizowania oczu na obrazie ze względu na ich charakterystyczność. Zdaje się to być najprostszym elementem do wykrycia. \cite{fDetection}
 
-Struktura algorytmu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech jak oczy, usta, nos czy brwi zawartych w wytrenowanym wcześniej modelu.
+Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech jak oczy, usta, nos czy brwi zawartych w wytrenowanym wcześniej modelu.
 
 Większość algorytmów uzależnia swoją efektywność od wielkości danych, na których został przeszkolony klasyfikator. Trenowanie na dużych zbiorach danych poprawia zdolność algorytmu w trakcie określenia czy na danym obrazie znajduje się twarz. \cite{fDetection}
 
-\subsection{Haar Cascades}
+\subsection{Klasyfikator kaskadowy z użyciem cech Haara}
 Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (Haar Feature-based Cascade Classifier). Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. \cite{haarCascade}Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
 % Wykrywanie obiektów za pomocą algorytmu opartego o klasyfikator kaskadowy (ang. Haar Feature-based Cascade Classifier) zostało pierwszy raz zaproponowane w 2001 roku przez Paula Violę i Michaela Jonesa.
 
@@ -61,8 +61,6 @@ Są to kombinacje prostokątów  o takich samych wymiarach (ciemnych i jasnych),
 
 Każda funkcja Haara przemierza piksel po pikselu danego obrazu. Dla każdego regionu (ciemnego jak i jasnego), który obejmuje owa cecha, sumowana jest wartość pikseli znajdujących się w tych obszarach. Następnie obliczana zostaje różnica między tymi sumami. Na podstawie owej różnicy, która powinna być jak największa, wyszukuje się lokalizację na obrazie, dla której dana cecha jest najbardziej odpowiednia. 
 
-
- 
 Przykładowo, na Rys. \ref{fig:haarNose} użyto funkcji złożonej z trzech prostokątów, o rozmiarze mającym na celu wykrycie oczu. Możliwe jest to poprzez fakt, iż obszar oczu jest ciemniejszy niż obszar nosa znajdujacy się pomiędzy nimi. Cechy Haara są pewnego rodzaju wzorcem, dla którego należy znaleźć najlepsze dopasowanie na obrazie.
  
 \begin{figure}[h]
@@ -71,8 +69,8 @@ Przykładowo, na Rys. \ref{fig:haarNose} użyto funkcji złożonej z trzech pros
 	\caption{Zastosowanie funkcji Haara do wykrycia oczu i obszaru nosa.} 
 	\label{fig:haarNose}
 \end{figure}
- 
-Próba dopasowania cech Haar'a przechodząc każdy piksel zawarty na obrazie jednocześnie dobierając różne rozmiary danej cechy, wymaga ogromnej liczby działań. Rozwiązaniem jest stworzenie zintegrowanego obrazu. Tym pojęciem nazywamy reprezentację obrazu, w którym dana wartość $(x, y)$ równa jest sumie pikseli znajdujących się powyżej i na lewo od analizowanej lokalizacji (Rys. \ref{fig:integralImage}). Owa reprezentacja pozwala na przyspieszenie obliczeń. Jest to skuteczny sposób obliczenia sumy wartości pikseli dla prostokątnego podzbioru rozważanego obrazu.
+
+Próba dopasowania cech Haara przechodząc każdy piksel zawarty na obrazie jednocześnie dobierając różne rozmiary danej cechy, wymaga ogromnej liczby działań. Rozwiązaniem jest stworzenie zintegrowanego obrazu. Tym pojęciem nazywamy reprezentację obrazu, w którym dana wartość $(x, y)$ równa jest sumie pikseli znajdujących się powyżej i na lewo od analizowanej lokalizacji (Rys. \ref{fig:integralImage}). Owa reprezentacja pozwala na przyspieszenie obliczeń. Jest to skuteczny sposób obliczenia sumy wartości pikseli dla prostokątnego podzbioru rozważanego obrazu.
  
  \begin{figure}[h]
 	\centering
@@ -81,44 +79,86 @@ Próba dopasowania cech Haar'a przechodząc każdy piksel zawarty na obrazie jed
 	\label{fig:integralImage}
 \end{figure}
  
+Kolejnym krokiem jest wybór cech, które są istotne dla konkretnych obszarów. Ten efekt można osiągnąć z pomocą algorytmu Adaboost (Adaptive Boosting), będącego algorytmem uczenia maszynowego służącego do wyboru najlepszych funkcji. Owa technika wzmacniająca, poprzez zastosowanie wszystkich możliwych cech na każdym obrazie treningowym osobno, wybiera te o najniższym błędzie dla danej iteracji. Owy algorytm trenuje silny klasyfikator na podstawie liniowej kombinacji słabych klasyfikatorów.% Słabymi klasyfikatorami nazywa się najlepsze cechy o najniższym poziomie błędu dla danej iteracji. 
  
- Kolejnym krokiem jest wybór cech, które są istotne dla konkretnych obszarów. Ten efekt można osiągnąć z pomocą algorytmu Adaboost (Adaptive Boosting), będącego algorytmem uczenia maszynowego służącego do wyboru najlepszych funkcji. Owa technika wzmacniająca, poprzez zastosowanie wszystkich możliwych cech na każdym obrazie treningowym osobno, wybiera te o najniższym błędzie dla danej iteracji. Owy algorytm trenuje silny klasyfikator na podstawie liniowej kombinacji słabych klasyfikatorów.% Słabymi klasyfikatorami nazywa się najlepsze cechy o najniższym poziomie błędu dla danej iteracji. 
- 
- Po wyborze najlepszych cech spośród wszystkich możliwości pozostaje etap zastosowania klasyfikatora kaskadowego. Z definicji, działa on wielostopniowo. Cechy wybrane jako kluczowe zostają podzielone na grupy, gdzie każda z nich odpowiada jednemu etapowi działania klasyfikatora. Pierwsze etapy zawierają niewiele funkcji, ale wybrane zostają te najbardziej pewne i charakterystyczne. 
+Po wyborze najlepszych cech spośród wszystkich możliwości pozostaje etap zastosowania klasyfikatora kaskadowego. Z definicji, działa on wielostopniowo. Cechy wybrane jako kluczowe zostają podzielone na grupy, gdzie każda z nich odpowiada jednemu etapowi działania klasyfikatora. Pierwsze etapy zawierają niewiele funkcji, ale wybrane zostają te najbardziej pewne i charakterystyczne. 
  
 Funkcje są nakładane na każde okno o zadanych wymiarach wyodrębniane na obrazie. W przypadku negatywnego rezultatu, tzn niedopasowania jednej z cech sprawdzanych w konkretnym etapie, analizowane okno jest od razu odrzucane. Nie rozważa się dla niego funkcji zawartych w dalszych etapach. Jeśli natomiast okno przejdzie pomyślnie wszystkie etapy działania klasyfikatora kaskadowego zostaje zaklasyfikowane jako obszar twarzy (Rys. \ref{fig:cascadeClasificator}).  
  
-   \begin{figure}[h]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=10cm]{haar_train.png}
 	\caption{Klasyfikator kaskadowy. \cite{haarCascade}} 
 	\label{fig:cascadeClasificator}
 \end{figure}
 
-W badniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które podzielono na 38 etapów klasyfikacji. Liczba cech w każdym z nich nie jest proporcjonalna, wynosi ona kolejno 1, 10, 25, 25, 50 funkcji dla pięciu pierwszych etapów. W początkowych etapach eliminujemy okna, w których nie ma elementówch charakterystycznych twarzy. Oszczędza to zbędnych obliczeń i analiz.
+W badaniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które podzielono na 38 etapów klasyfikacji. Liczba cech w każdym z nich nie jest proporcjonalna, wynosi ona kolejno 1, 10, 25, 25, 50 funkcji dla pięciu pierwszych etapów. W początkowych etapach eliminujemy okna, w których nie ma elementówch charakterystycznych twarzy. Oszczędza to zbędnych obliczeń i analiz.
 
 Opisany w tym rozdziale algorytm jest wykorzystywany nie tylko do wykrywania twarzy na obrazach, ale także innego rodzaju obiektów, takich jak zwierzęta, tablice rejestracyjne czy całe ludzkie sylwetki. Jego popularność zdaje się dalej trwać, pomimo odkrycia wielu innych algorytmów działających na podobnej zasadzie. %Cechuje go.. 
 
 % W internecie jest wiele źródeł udostępniających darmowe biblioteki, które zawierają gotowe modele wyrenowanych klasyfikatorów kaskadowych. 
 
+\subsection{Klasyfikator SVM z użyciem deskryptora HOG}
+Coś o historii...
 
- 
- 
- 
- 
- 
+Deskryptory wyodrębniają z obrazu przydatne informacje pomijając zbędne dane, pomagają zlokalizować konkretny, interesujący nas obiekt. 
 
- 
- 
- 
+W przypadku deskryptorów HOG (ang. Histograms of Oriented Gradients) ekstrakcja cech odbywa się za pomocą histogramu gradientów, używanych jako cechy analizowanych obrazów. Jako gradienty określamy pola wektorowe wskazujące kierunek, w którym można obserwować 
+znaczącą zmianę w intensywności koloru.
+%największy wzrost wartości danego pola w poszczególnych punktach.
 
+% Technika ta zlicza występowanie danych gradientów dla określonych fragmentów obrazu. Jej działanie można przedstawić w następujący sposób:
+% \begin{enumerate}
+%     \item Obraz zostaje podzielony na małe fragmenty
+%     \item Dla każdej z komórek oblicza się histogram występowania różnych orientacji krawędzi
+%     \item Ostatnim krokiem jest połączenie owych histogramów, przez co otrzymujemy deskryptor HOG dla danego zdjęcia
+% \end{enumerate}
+W kolejnych akapitach zostanie zgłębione działanie deskryptora, który odgrywa kluczową rolę w działaniu opisywanego algorytmu.
 
+W celu stworzenia deskryptora HOG dla obrazu należy wykonać kilka istotnych kroków. Pierwszym z nim jest przygotowanie obrazu w odcieniach szarości, dla którego chcemy obliczyć histogram gradientów. Według autorów algorytmu rozmiar zdjęcia powinno się zmniejszyć do $128x64$ pikseli. Takie wymiary zostały wybrane ze względu na początkowe założenie wykrywania obiektów z tymże algorytmem. Miał on służyć do detekcji pieszych. Po sukcesie i dobrych wynikach, skupiono się na detekcji twarzy, w tym przypadku również zdecydowano się na wybór zdjęć o owych wymiarach.
 
- 
- 
+Dla każdego piksela znajdującego się na obrazie należy obliczyć gradient pionowy i poziomy. Najprostszym sposobem jest filtracja obrazu przez poniższe jądra.
 
-\subsection{HOG + SVM}
-ten implementuje HOG i SVM
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=5cm]{hog-kernels.jpg}
+	\caption{Jądra służące do filtracji obrazu w celu obliczenia gradientów.} 
+	\label{fig:hogKernels}
+\end{figure}
+
+Aby znaleźć wielkość i kierunek każdego gradientu w danym bloku używa się określonych wzorów:
+\begin{center}
+    $g=\sqrt{g_{x}^{2}+g_{y}^{2}}$ ,
+    $\theta=\arctan \frac{g_{y}}{g_{x}}$
+\end{center}
+
+Kolejnym krokiem jest podział obrazu na jednakowe siatki o wymiarach $8x8$. Każdą komórkę da się przedstawić za pomocą 128 liczb. Pojedynczy fragment składa się z 64 pikseli, z każdym związane są ważne wartości dotyczące jego gradientu - wielkość i kierunek ($8x8x2 = 128$). 
+
+Aby skompresować dane dla każdej siatki, należy stworzyć histogram z podziałem na dziewięć oddzielnych pojemników. Każdy z nich odpowiada kątom z zakresu 0-160 z 20-stopniowym przyrostem.
+
+Przyporządkowując każdy piksel do jednego z pojemników należy kierować się wielkością i kątem gradientu, który go charakteryzuje. Pojemnik jest wybierany ze względu na pierwszy z tych parametrów, natomiast wartość w nim umieszczona zależy od wielkośći. Jeżeli piksel leży w połowie odległości między dwoma pojemnikami, jego wartość dzieli się miedzy oba pola. Omawiana sytuacja dotyczy piksela oznaczonego na czerwono na Rys. \ref{fig:gradientHistogram}. 
+
+Ważną kwestią jest też rozważenie przypadku, gdy analizowany kąt posiada miarę większą niż 160 stopni (maksymalna wartość kąta w pojemniku). W takim przypadku taki piksel dzieli swoją wartość proporcjonalnie z pojemnikiem oznaczonym jako pierwszy.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=7cm]{gradients-histogram.png}
+	\caption{Schemat tworzenia histogramu dla komórki o wymiarach $8x8$.} 
+	\label{fig:gradientHistogram}
+\end{figure}
+
+Po wykonaniu procesu dla wszystkich pikseli można zobaczyć w jaki sposób rozkładają się wartości w zależności od kąta. Taka reprezentacja zapewnia odporność na szum, którą na początku można zauważyć między gradientami.
+
+Gradienty obrazu są wrażliwe na oświetlenie
+Bloki przekształca się w wektory elementów, a następnie stosuje normalizację. Blok o wymiarach $16x16$ posiada 4 histogramy, gdzie każdy da się przedstawić jako wektor $9x1$ co w sumie daje wektor $36x1$. Normalizacja odbywa się w następujący sposób. Normalizacja następuje dla pierwszego okna, po czym jest ono przesuwane o 8 pikseli gdzie znormalizowany wektor jest obliczany ponownie. Wszystko powtarza się do momentu przebycia wszystkich pozycji.
+
+Każdy z omawianych bloków reprezentowany jest przez wektor $36x1$ co jest równoznaczne z 36 wyodrębnionymi cechami. Istnieje 105 pozycji takich bloków (7 poziomych, 15 pionowych). Sumarycznie dla naszego zdjęcia otrzymujemy aż 3780 cech.
+
+Powyżej zostało opisane działanie deskryptora HOG na jednym zdjęciu. Jednak celem rozpatrywanego algorytmu, łączącego owe działanie z działaniem klasyfikatorem SVM, jest stworzenie programu wykrywającego twarze.
+
+Klasyfikator SVM (ang. Support Vector Machine) pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację.
+
+Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego. Z każdego zdjęcia, za pomocą deskryptora należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, owy klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
 
 
 \section{Wykrywanie punktów charakterystycznych}
