@@ -5,11 +5,11 @@ Algorytm, którego implementacja jest celem tejże pracy inżynierskiej można p
 \section{Wykrywanie twarzy}
 Poprzez pojęcie wykrywania twarzy (ang. face detection) \cite{fDetection} rozumie się opartą o sztuczną inteligencję technologie identyfikującą ludzkie twarze na obrazie cyfrowym. 
 
-Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu różnych dziedzinach. W celu zapewnienia bezpieczeństwa osobistego jak i narodowego, w egzekwowaniu prawa lub biometrii. Wykrywanie twarzy jest też bazą dla wielu programów, stało się podstawowym narzędziem wielu algorytmów i oprogramowań.
+Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu różnych dziedzinach. W celu zapewnienia bezpieczeństwa osobistego jak i narodowego, w egzekwowaniu prawa lub biometrii. Wykrywanie twarzy jest też bazą dla wielu programów, stało się podstawowym narzędziem dla niejednego algorytmu i oprogramowania.
 
-Na przestrzeni lat metody służące wykrywaniu twarzy bardzo się rozwinęły. Na początku używano podstawowych technik przetwarzania obrazów, następnie oparto je na uczeniu maszynowym. Aktualnie ważną rolę w efektywności tejże techniki odgrywają sieci neuronowe, których zastosowanie zdecydowanie przyspiesza działanie algorytmu.
+Na przestrzeni lat metody służące wykrywaniu twarzy bardzo się rozwinęły. Na początku używano podstawowych technik przetwarzania obrazów, następnie oparto je na uczeniu maszynowym. Aktualnie ważną rolę w efektywności tejże techniki odgrywają sieci neuronowe, których zastosowanie zdecydowanie przyspiesza działanie programów implementujących ową metodę.
 
-W celu uporządkowania i pogrupowania metod stosuje się klasyfikację zawierającą cztery podstawowe techniki wykrywania twarzy na obrazie. Owy podział został zaproponowany w 2002 roku przez Ming-Hsuan Yanga (Rys. \ref{fig:detectionMethods}) i obowiązuje do dziś.
+Istnieje wiele różnych propozycji algorytmów służących wykrywaniu twarzy. W celu uporządkowania i pogrupowania metod stosuje się klasyfikację zawierającą cztery podstawowe techniki wykrywania twarzy na obrazie. Owy podział został zaproponowany w 2002 roku przez Ming-Hsuan Yanga (Rys. \ref{fig:detectionMethods}) i obowiązuje do dziś.
 
 \begin{figure}[h]
 	\centering
@@ -25,7 +25,11 @@ Charakteryzację każdej z grup \cite{Yang} można przedstawić w następujący 
     \item metody bazujące na przeszukiwaniu wzorcem - dzięki wielu zgromadzonym wzorcom odnośnie wyglądu twarzy lub jej konkretnych elementów poszukuje się korelacji między owym schematem a obrazem wejściowym
     \item metody bazujące na obrazie - model trenowany jest zestawem obrazów, które zawierają różnorodne ludzkie twarze, przedstawiane w zmiennych warunkach
 \end{itemize}
-Zagadnienie poruszane w tym rozdziale jest bardzo rozległe, a rozwiązania i algorytmy istniejące na rynku bardzo różnorodne. Większość powstałych implementacji łączy najlepsze cechy z kilku metod, przez co nie ma możliwości przypisania ich do konkretnej klasyfikacji. Ze względu na szeroki zakres tej technologii w dalszej części zostaną opisane dwa wybrane algorytmy, których implementacje zawarte są w bibliotekach umożliwiających wykorzystanie gotowego programu.
+
+(Dopisać coś o zastosowaniu, coś szerzej!)
+
+Zagadnienie poruszane w tym rozdziale jest bardzo rozległe, a rozwiązania i algorytmy istniejące na rynku bardzo różnorodne. Większość powstałych implementacji łączy najlepsze cechy z kilku metod, przez co nie ma możliwości przypisania ich do konkretnej klasyfikacji. Ze względu na szeroki zakres tej 
+tematyki oraz dużą ilość istniejących rozwiązań w dalszej części zostaną opisane dwa najpopularniejsze algorytmy, których implementacje są udostępniane przez biblioteki programistyczne.
 
 \subsection{Schemat działania}
 % Algorytmy wykrywania twarzy często postępują w podobny sposób. Większość z nich rozpoczyna swoje działanie od zlokalizowania oczu na obrazie ze względu na ich charakterystyczność. Zdaje się to być najprostszym elementem do wykrycia. \cite{fDetection}
@@ -35,6 +39,8 @@ Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa 
 Większość algorytmów uzależnia swoją efektywność od wielkości danych, na których został przeszkolony klasyfikator. Trenowanie na dużych zbiorach danych poprawia zdolność algorytmu w trakcie określenia czy na danym obrazie znajduje się twarz. \cite{fDetection}
 
 \subsection{Klasyfikator kaskadowy z użyciem cech Haara}
+(Wstęp!!!)
+
 Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (Haar Feature-based Cascade Classifier). Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. \cite{haarCascade}Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
 % Wykrywanie obiektów za pomocą algorytmu opartego o klasyfikator kaskadowy (ang. Haar Feature-based Cascade Classifier) zostało pierwszy raz zaproponowane w 2001 roku przez Paula Violę i Michaela Jonesa.
 
@@ -150,15 +156,15 @@ Ważną kwestią jest też rozważenie przypadku, gdy analizowany kąt posiada m
 Po wykonaniu procesu dla wszystkich pikseli można zobaczyć w jaki sposób rozkładają się wartości w zależności od kąta. Taka reprezentacja zapewnia odporność na szum, którą na początku można zauważyć między gradientami.
 
 Gradienty obrazu są wrażliwe na oświetlenie
-Bloki przekształca się w wektory elementów, a następnie stosuje normalizację. Blok o wymiarach $16x16$ posiada 4 histogramy, gdzie każdy da się przedstawić jako wektor $9x1$ co w sumie daje wektor $36x1$. Normalizacja odbywa się w następujący sposób. Normalizacja następuje dla pierwszego okna, po czym jest ono przesuwane o 8 pikseli gdzie znormalizowany wektor jest obliczany ponownie. Wszystko powtarza się do momentu przebycia wszystkich pozycji.
+Bloki przekształca się w wektory elementów, a następnie stosuje normalizację. Blok o wymiarach $16x16$ posiada 4 histogramy, gdzie każdy da się przedstawić jako wektor $9x1$ co w sumie daje wektor $36x1$. Normalizacja następuje dla pierwszego okna, po czym jest ono przesuwane o 8 pikseli gdzie znormalizowany wektor jest obliczany ponownie. Wszystko powtarza się do momentu przebycia wszystkich pozycji.
 
 Każdy z omawianych bloków reprezentowany jest przez wektor $36x1$ co jest równoznaczne z 36 wyodrębnionymi cechami. Istnieje 105 pozycji takich bloków (7 poziomych, 15 pionowych). Sumarycznie dla naszego zdjęcia otrzymujemy aż 3780 cech.
 
 Powyżej zostało opisane działanie deskryptora HOG na jednym zdjęciu. Jednak celem rozpatrywanego algorytmu, łączącego owe działanie z działaniem klasyfikatorem SVM, jest stworzenie programu wykrywającego twarze.
 
-Klasyfikator SVM (ang. Support Vector Machine) pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację.
+Klasyfikator SVM (ang. Support Vector Machine) pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację. Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego.
 
-Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego. Z każdego zdjęcia, za pomocą deskryptora należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, owy klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
+Z każdego zdjęcia, za pomocą deskryptora należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, owy klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
 
 
 \section{Wykrywanie punktów charakterystycznych}
