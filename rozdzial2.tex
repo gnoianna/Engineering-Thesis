@@ -5,11 +5,17 @@ Algorytm, którego implementacja jest celem tejże pracy inżynierskiej można p
 \section{Wykrywanie twarzy}
 Poprzez pojęcie wykrywania twarzy (ang. face detection) \cite{fDetection} rozumie się opartą o sztuczną inteligencję technologie identyfikującą ludzkie twarze na obrazie cyfrowym. 
 
-Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu różnych dziedzinach. W celu zapewnienia bezpieczeństwa osobistego jak i narodowego, w egzekwowaniu prawa lub biometrii. Wykrywanie twarzy jest też bazą dla wielu programów, stało się podstawowym narzędziem dla niejednego algorytmu i oprogramowania.
+Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu rozbieżnych dziedzinach. Nie zawsze spotykamy się z nią świadomie w celu łatwego dostępu do różnego rodzaju sprzętu elektronicznego. Przedstawiana technologia otacza nas wszędzie.
+
+Często wykorzystuje się ją w monitoringu wideo, w celu zapewnienia bezpieczeństwa osobistego jak i narodowego. Co za tym idzie, odpowiednie służby polegają na niej w momencie egzekwowania prawa lub identyfikacji osób w grupie. 
+
+W dziedzinie marketingu zaczęto korzystać z personalizacji reklam dla danego użytkownika. Poprzez integrację kamery internetowej z telewizorem, można gromadzić informacje o osobie, lokalizując ją za pomocą detekcji twarzy. Zbiera się dane dotyczące rasy, płci oraz przedziału wiekowego, aby następnie na tej podstawie dostosować wyświetlane reklamy.
+
+W nowo powstających aparatach fotograficznych wykrywania twarzy używa się podczas automatycznego ustawiania ostrości. Nowoczesne urządzenia przez namierzenie uśmiechu, dobierają odpowiedni moment zrobienia zdjęcia. \cite{fDetection2}
 
 Na przestrzeni lat metody służące wykrywaniu twarzy bardzo się rozwinęły. Na początku używano podstawowych technik przetwarzania obrazów, następnie oparto je na uczeniu maszynowym. Aktualnie ważną rolę w efektywności tejże techniki odgrywają sieci neuronowe, których zastosowanie zdecydowanie przyspiesza działanie programów implementujących ową metodę.
 
-Istnieje wiele różnych propozycji algorytmów służących wykrywaniu twarzy. W celu uporządkowania i pogrupowania metod stosuje się klasyfikację zawierającą cztery podstawowe techniki wykrywania twarzy na obrazie. Owy podział został zaproponowany w 2002 roku przez Ming-Hsuan Yanga (Rys. \ref{fig:detectionMethods}) i obowiązuje do dziś.
+Istnieje wiele różnych propozycji algorytmów służących wykrywaniu twarzy. W celu uporządkowania i pogrupowania metod stosuje się klasyfikację zawierającą cztery podstawowe techniki wykrywania twarzy na obrazie. Dany podział został zaproponowany w 2002 roku przez Ming-Hsuan Yanga (Rys. \ref{fig:detectionMethods}) i obowiązuje do dziś.
 
 \begin{figure}[h]
 	\centering
@@ -20,13 +26,11 @@ Istnieje wiele różnych propozycji algorytmów służących wykrywaniu twarzy. 
 
 Charakteryzację każdej z grup \cite{Yang} można przedstawić w następujący sposób:
 \begin{itemize}
-    \item metody bazujące na wiedzy - wykorzustujące ludzką wiedzę na temat elementów jakie zawiera przeciętna twarz
+    \item metody bazujące na wiedzy - wykorzustujące ludzkie obeznanie na temat elementów jakie zawiera przeciętna twarz
     \item techniki używające niezmienników - algorytmy skupiają się na zlokalizowaniu cech strukturalnych twarzy, które są niezmienne ze względu na kąt, oświetlenie, pozycję twarzy
-    \item metody bazujące na przeszukiwaniu wzorcem - dzięki wielu zgromadzonym wzorcom odnośnie wyglądu twarzy lub jej konkretnych elementów poszukuje się korelacji między owym schematem a obrazem wejściowym
+    \item metody bazujące na przeszukiwaniu wzorcem - dzięki wielu zgromadzonym wzorcom odnośnie wyglądu twarzy lub jej konkretnych elementów poszukuje się korelacji między schematem a obrazem wejściowym
     \item metody bazujące na obrazie - model trenowany jest zestawem obrazów, które zawierają różnorodne ludzkie twarze, przedstawiane w zmiennych warunkach
 \end{itemize}
-
-(Dopisać coś o zastosowaniu, coś szerzej!)
 
 Zagadnienie poruszane w tym rozdziale jest bardzo rozległe, a rozwiązania i algorytmy istniejące na rynku bardzo różnorodne. Większość powstałych implementacji łączy najlepsze cechy z kilku metod, przez co nie ma możliwości przypisania ich do konkretnej klasyfikacji. Ze względu na szeroki zakres tej 
 tematyki oraz dużą ilość istniejących rozwiązań w dalszej części zostaną opisane dwa najpopularniejsze algorytmy, których implementacje są udostępniane przez biblioteki programistyczne.
@@ -34,27 +38,26 @@ tematyki oraz dużą ilość istniejących rozwiązań w dalszej części zostan
 \subsection{Schemat działania}
 % Algorytmy wykrywania twarzy często postępują w podobny sposób. Większość z nich rozpoczyna swoje działanie od zlokalizowania oczu na obrazie ze względu na ich charakterystyczność. Zdaje się to być najprostszym elementem do wykrycia. \cite{fDetection}
 
-Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech jak oczy, usta, nos czy brwi zawartych w wytrenowanym wcześniej modelu.
+Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. 
+
+Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech takich jak oczy, usta, nos czy brwi. Ich rozpoznanie możliwe jest przez zgromadzone informacje znajdujące się w wytrenowanym wcześniej modelu.
 
 Większość algorytmów uzależnia swoją efektywność od wielkości danych, na których został przeszkolony klasyfikator. Trenowanie na dużych zbiorach danych poprawia zdolność algorytmu w trakcie określenia czy na danym obrazie znajduje się twarz. \cite{fDetection}
 
 \subsection{Klasyfikator kaskadowy z użyciem cech Haara}
-(Wstęp!!!)
-
-Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (Haar Feature-based Cascade Classifier). Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. \cite{haarCascade}Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
-% Wykrywanie obiektów za pomocą algorytmu opartego o klasyfikator kaskadowy (ang. Haar Feature-based Cascade Classifier) zostało pierwszy raz zaproponowane w 2001 roku przez Paula Violę i Michaela Jonesa.
+Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (ang. Haar Feature-based Cascade Classifier). Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. \cite{haarCascade}Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
 
 Działanie tej techniki \cite{haar} łączy ze sobą poniższe koncepcje:
 \begin{itemize}
     \item poszukiwanie i wybór najdokładniejszych cech Haara
     \item utworzenie zintegrowanych obrazów w celu szybkiego znalezienia danej cechy
     \item użycie metody sprawnego uczenia Adaboost
-    \item zastosowanie klasyfikatora kaskadowego% (nakładanie się, zawieranie w sobie, części wspólne)
+    \item zastosowanie klasyfikatora kaskadowego
 \end{itemize}
 
-Jest to podejście oparte o wytrenowanie klasyfikatora kaskadowego na wielu pozytywnych i negatywnych obrazach przedstawionych w skali szarości. Przez pierwszy rodzaj rozumie się zdjęcia zawierające twarze, natomiast jako próbki negatywne określa się zdjęcia, na których nie znajduje się twarz ludzka. Według zaleceń autorów algorytmu obrazy powinny mieć wymiary $24x24$ pikseli.
+Podejście to jest oparte o wytrenowanie klasyfikatora kaskadowego na wielu pozytywnych i negatywnych obrazach w skali szarości. Przez pierwszy rodzaj rozumie się zdjęcia zawierające twarze, natomiast jako próbki negatywne określa się zdjęcia, na których nie znajduje się twarz ludzka. Według zaleceń autorów algorytmu obrazy powinny mieć wymiary $24x24$ pikseli.
 
-Pierwszym krokiem działania tego algorytmu jest wydobycie ze wszystkich próbek odpowiednich cech Haara. Cechy te dotyczą zmian wartości kontrastu pomiędzy prostokątnymi grupami pikseli. W tym celu wykorzystuje się tak zwane funkcje Haara.
+Pierwszym krokiem działania opisywanego modelu jest wydobycie ze wszystkich próbek odpowiednich cech Haara. Cechy te dotyczą zmian wartości kontrastu pomiędzy prostokątnymi grupami pikseli. W tym celu wykorzystuje się tak zwane funkcje Haara.
 
 Są to kombinacje prostokątów  o takich samych wymiarach (ciemnych i jasnych), pozwalające na detekcję konkretnych elementów. Funkcje dzielimy na trzy grupy, ze względu na ilość prostokątów (2, 3, 4) tworzących daną cechę. Na Rys. \ref{fig:haarFeatures} przedstawiono funkcje używane w tym algorytmie, wykorzystywane do wykrywania krawędzii na obrazie (1, 2) oraz prostych (3) i skośnych linii (4).
 
@@ -65,7 +68,7 @@ Są to kombinacje prostokątów  o takich samych wymiarach (ciemnych i jasnych),
 	\label{fig:haarFeatures}
 \end{figure}
 
-Każda funkcja Haara przemierza piksel po pikselu danego obrazu. Dla każdego regionu (ciemnego jak i jasnego), który obejmuje owa cecha, sumowana jest wartość pikseli znajdujących się w tych obszarach. Następnie obliczana zostaje różnica między tymi sumami. Na podstawie owej różnicy, która powinna być jak największa, wyszukuje się lokalizację na obrazie, dla której dana cecha jest najbardziej odpowiednia. 
+Każda funkcja Haara przemierza piksel po pikselu dany obraz. Dla każdego regionu (ciemnego jak i jasnego), który obejmuje owa cecha, sumowana jest wartość pikseli znajdujących się w tych obszarach. Następnie obliczana zostaje różnica między tymi sumami. Na podstawie tej różnicy, wyszukuje się lokalizację na obrazie, dla której dana cecha jest najbardziej odpowiednia. 
 
 Przykładowo, na Rys. \ref{fig:haarNose} użyto funkcji złożonej z trzech prostokątów, o rozmiarze mającym na celu wykrycie oczu. Możliwe jest to poprzez fakt, iż obszar oczu jest ciemniejszy niż obszar nosa znajdujacy się pomiędzy nimi. Cechy Haara są pewnego rodzaju wzorcem, dla którego należy znaleźć najlepsze dopasowanie na obrazie.
  
@@ -76,7 +79,9 @@ Przykładowo, na Rys. \ref{fig:haarNose} użyto funkcji złożonej z trzech pros
 	\label{fig:haarNose}
 \end{figure}
 
-Próba dopasowania cech Haara przechodząc każdy piksel zawarty na obrazie jednocześnie dobierając różne rozmiary danej cechy, wymaga ogromnej liczby działań. Rozwiązaniem jest stworzenie zintegrowanego obrazu. Tym pojęciem nazywamy reprezentację obrazu, w którym dana wartość $(x, y)$ równa jest sumie pikseli znajdujących się powyżej i na lewo od analizowanej lokalizacji (Rys. \ref{fig:integralImage}). Owa reprezentacja pozwala na przyspieszenie obliczeń. Jest to skuteczny sposób obliczenia sumy wartości pikseli dla prostokątnego podzbioru rozważanego obrazu.
+Próba dopasowania cech Haara dla każdego piksela zawartego na obrazie, we wszystkich możliwych rozmiarach, wymaga niewyobrażalnej liczby działań. Rozwiązaniem jest stworzenie zintegrowanego obrazu, dzięki czemu złożoność obliczeń staje się dużo korzystniejsza.
+
+Obrazem integralnym nazywamy reprezentację obrazu, w którym dana wartość $(x, y)$ równa jest sumie pikseli znajdujących się powyżej i na lewo od analizowanej lokalizacji (Rys. \ref{fig:integralImage}). Dana reprezentacja pozwala na przyspieszenie działań, jest to skuteczny sposób obliczenia sumy wartości pikseli dla prostokątnego podzbioru rozważanego obrazu.
  
  \begin{figure}[h]
 	\centering
@@ -85,7 +90,7 @@ Próba dopasowania cech Haara przechodząc każdy piksel zawarty na obrazie jedn
 	\label{fig:integralImage}
 \end{figure}
  
-Kolejnym krokiem jest wybór cech, które są istotne dla konkretnych obszarów. Ten efekt można osiągnąć z pomocą algorytmu Adaboost (Adaptive Boosting), będącego algorytmem uczenia maszynowego służącego do wyboru najlepszych funkcji. Owa technika wzmacniająca, poprzez zastosowanie wszystkich możliwych cech na każdym obrazie treningowym osobno, wybiera te o najniższym błędzie dla danej iteracji. Owy algorytm trenuje silny klasyfikator na podstawie liniowej kombinacji słabych klasyfikatorów.% Słabymi klasyfikatorami nazywa się najlepsze cechy o najniższym poziomie błędu dla danej iteracji. 
+Kolejnym krokiem jest wybór cech, które są istotne dla konkretnych obszarów. Ten efekt można osiągnąć z pomocą algorytmu Adaboost (ang. Adaptive Boosting). Jest to  algorytm uczenia maszynowego służący do wyboru najlepszych funkcji z całego ich zbioru. Owa technika wzmacniająca, poprzez zastosowanie wszystkich możliwych cech na każdym obrazie treningowym osobno, wybiera te o najniższym błędzie dla danej iteracji. Algorytm trenuje silny klasyfikator na podstawie liniowej kombinacji słabych klasyfikatorów.
  
 Po wyborze najlepszych cech spośród wszystkich możliwości pozostaje etap zastosowania klasyfikatora kaskadowego. Z definicji, działa on wielostopniowo. Cechy wybrane jako kluczowe zostają podzielone na grupy, gdzie każda z nich odpowiada jednemu etapowi działania klasyfikatora. Pierwsze etapy zawierają niewiele funkcji, ale wybrane zostają te najbardziej pewne i charakterystyczne. 
  
@@ -100,17 +105,14 @@ Funkcje są nakładane na każde okno o zadanych wymiarach wyodrębniane na obra
 
 W badaniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które podzielono na 38 etapów klasyfikacji. Liczba cech w każdym z nich nie jest proporcjonalna, wynosi ona kolejno 1, 10, 25, 25, 50 funkcji dla pięciu pierwszych etapów. W początkowych etapach eliminujemy okna, w których nie ma elementówch charakterystycznych twarzy. Oszczędza to zbędnych obliczeń i analiz.
 
-Opisany w tym rozdziale algorytm jest wykorzystywany nie tylko do wykrywania twarzy na obrazach, ale także innego rodzaju obiektów, takich jak zwierzęta, tablice rejestracyjne czy całe ludzkie sylwetki. Jego popularność zdaje się dalej trwać, pomimo odkrycia wielu innych algorytmów działających na podobnej zasadzie. %Cechuje go.. 
+Opisany w tym rozdziale algorytm jest wykorzystywany nie tylko do wykrywania twarzy na obrazach, ale także innego rodzaju obiektów, takich jak zwierzęta, tablice rejestracyjne czy całe ludzkie sylwetki. 
 
-% W internecie jest wiele źródeł udostępniających darmowe biblioteki, które zawierają gotowe modele wyrenowanych klasyfikatorów kaskadowych. 
+Cechuje go szybki czas działania oraz dobra poprawność, którą stosunkowo łatwo można zwiększyć. Jest ona powiązana z wielkością zbioru treningowego, na którym został wyszkolony model. Popularność algorytmu, który został opisany w tym rozdziale, zdaje się dalej trwać, pomimo odkrycia wielu konkurencyjnych rozwiązań działających na podobnej zasadzie. 
 
 \subsection{Klasyfikator SVM z użyciem deskryptora HOG}
-Coś o historii...
+W 2005 roku pojawiła się kolejna przełomowa propozycja metody wykrywania obiektów, w tym twarzy. Jej autorami są Navneet Dalal i Bill Triggs, którzy wykazali, że do trenowania modelu można skorzystać z deskryptora HOG (ang. Histograms of Oriented Gradients) oraz klasyfikatora SVM (ang. Support Vector Machine). 
 
-Deskryptory wyodrębniają z obrazu przydatne informacje pomijając zbędne dane, pomagają zlokalizować konkretny, interesujący nas obiekt. 
-
-W przypadku deskryptorów HOG (ang. Histograms of Oriented Gradients) ekstrakcja cech odbywa się za pomocą histogramu gradientów, używanych jako cechy analizowanych obrazów. Jako gradienty określamy pola wektorowe wskazujące kierunek, w którym można obserwować 
-znaczącą zmianę w intensywności koloru.
+Deskryptory wyodrębniają z obrazu przydatne informacje pomijając zbędne dane, pomagają zlokalizować konkretny, interesujący nas obiekt. W przypadku deskryptorów HOG  ekstrakcja cech odbywa się za pomocą histogramu gradientów, używanych jako cechy analizowanych obrazów. Jako gradienty określamy pola wektorowe wskazujące kierunek, w którym można obserwować znaczącą zmianę w intensywności koloru.
 %największy wzrost wartości danego pola w poszczególnych punktach.
 
 % Technika ta zlicza występowanie danych gradientów dla określonych fragmentów obrazu. Jej działanie można przedstawić w następujący sposób:
@@ -119,9 +121,9 @@ znaczącą zmianę w intensywności koloru.
 %     \item Dla każdej z komórek oblicza się histogram występowania różnych orientacji krawędzi
 %     \item Ostatnim krokiem jest połączenie owych histogramów, przez co otrzymujemy deskryptor HOG dla danego zdjęcia
 % \end{enumerate}
-W kolejnych akapitach zostanie zgłębione działanie deskryptora, który odgrywa kluczową rolę w działaniu opisywanego algorytmu.
+% W kolejnych akapitach zostanie zgłębione działanie deskryptora, który odgrywa kluczową rolę w działaniu opisywanego algorytmu.
 
-W celu stworzenia deskryptora HOG dla obrazu należy wykonać kilka istotnych kroków. Pierwszym z nim jest przygotowanie obrazu w odcieniach szarości, dla którego chcemy obliczyć histogram gradientów. Według autorów algorytmu rozmiar zdjęcia powinno się zmniejszyć do $128x64$ pikseli. Takie wymiary zostały wybrane ze względu na początkowe założenie wykrywania obiektów z tymże algorytmem. Miał on służyć do detekcji pieszych. Po sukcesie i dobrych wynikach, skupiono się na detekcji twarzy, w tym przypadku również zdecydowano się na wybór zdjęć o owych wymiarach.
+W celu stworzenia deskryptora HOG dla obrazu należy wykonać kilka istotnych kroków. Pierwszym z nich jest przygotowanie obrazu w odcieniach szarości, dla którego chcemy obliczyć histogram gradientów. Według autorów algorytmu rozmiar zdjęcia powinno się zmniejszyć do $128x64$ pikseli. Takie wymiary zostały wybrane ze względu na początkowe założenie wykrywania obiektów z tymże algorytmem. Miał on służyć do detekcji pieszych. Po sukcesie i dobrych wynikach, skupiono się na detekcji twarzy, w tym przypadku również zdecydowano się na wybór zdjęć o owych wymiarach.
 
 Dla każdego piksela znajdującego się na obrazie należy obliczyć gradient pionowy i poziomy. Najprostszym sposobem jest filtracja obrazu przez poniższe jądra.
 
@@ -162,7 +164,7 @@ Każdy z omawianych bloków reprezentowany jest przez wektor $36x1$ co jest rów
 
 Powyżej zostało opisane działanie deskryptora HOG na jednym zdjęciu. Jednak celem rozpatrywanego algorytmu, łączącego owe działanie z działaniem klasyfikatorem SVM, jest stworzenie programu wykrywającego twarze.
 
-Klasyfikator SVM (ang. Support Vector Machine) pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację. Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego.
+Klasyfikator SVM pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację. Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego.
 
 Z każdego zdjęcia, za pomocą deskryptora należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, owy klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
 

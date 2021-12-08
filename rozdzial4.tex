@@ -1,10 +1,10 @@
 \chapter{Wykorzystane narzędzia i technologie}
 \label{cha:wykorzystaneNarzedziaITechnologie}
-W niniejszym rozdziale zostaną zawarte krótkie opisy narzędzi oraz technologii wykorzystanych w trakcie implementacji algorytmu będącego tematem owej pracy inżynierskiej. Zostanie również przedstawiony język programowania, w którym stworzono projekt, oraz jego zalety, które przeważyły o jego wyborze. 
+W niniejszym rozdziale zostaną zawarte krótkie opisy narzędzi oraz technologii wykorzystanych w trakcie implementacji algorytmu będącego tematem owej pracy inżynierskiej. Zostanie również przedstawiony język programowania, w którym stworzono projekt, oraz charakteryzujące go zalety, które przeważyły o jego wyborze. 
 \section{Python}
 Język programowania Python \cite{PythonWiki} powstał we wczesnych latach dziewięćdziesiątych. Guido van Rossum jest uważany za głównego twórcę tego języka, jednak wkład w jego rozwój miały także inne osoby. 
 
-Popularność narzędzia wzrosła diametralnie w momencie wydania wersji $2.0$ w roku 2000 i rośnie aż do teraz. Aktualnie znajduje się on w czołówce najczęściej wykorzystywanych języków. (Rys. \ref{fig:programmingLang}Jego interpretery dostępne są na wiele systemów operacyjnych, obsługuje większość używanych w dzisiejszych czasach platform, takich jak Windows, Linux, AIX, iOS i inne.
+Popularność narzędzia wzrosła diametralnie w momencie wydania wersji $2.0$ w roku 2000 i rośnie aż do teraz. Aktualnie znajduje się on w czołówce najczęściej wykorzystywanych języków (Rys. \ref{fig:programmingLang}. Jego interpretery dostępne są na wiele systemów operacyjnych, obsługuje większość używanych w dzisiejszych czasach platform, takich jak Windows, Linux, AIX, iOS i inne.
 
 \begin{figure}[h]
 	\centering
@@ -13,15 +13,15 @@ Popularność narzędzia wzrosła diametralnie w momencie wydania wersji $2.0$ w
 	\label{fig:programmingLang}
 \end{figure}
 
-Projekt w ramach którego rozwijany jest owy język zarządzany jest przez organizację Python Software Foundation. Narzędzie uznawane jest jako Open Source, toteż celem organizacji nie jest przyniesienie zysków osobom zarządzającym. 
+Projekt, w ramach którego zostaje rozwijany owy język zarządzany jest przez Python Software Foundation, będącą organizacją non-profit. Narzędzie zostało udostępnione jako otwarte oprogramowanie, przez co użytkownicy posiadają możliwość ingerowania w wydawany kod źrodłowy.
 
-Python jest językiem wielopoziomowym, którego przeznaczenie nie jest ściśle określone. Jego możliwości są niezwykle rozległe i uzależnione od stosowanych bibliotek, platform oraz gotowych skryptów, których wybór jest wyjątkowo obszerny. 
+Python to język wielopoziomowy, którego przeznaczenie nie jest ściśle określone. Jego możliwości są niezwykle rozległe i uzależnione od stosowanych bibliotek, platform oraz gotowych skryptów, których wybór jest wyjątkowo obszerny. 
 
-Język nie wymusza od użytkownika jednego stylu, w którym tworzone są programy. Istnieje możliwość zastosowania różnych paradygmatów programowania (obiektowe, strukturalne oraz funkcyjne), co zdecydowanie wpływa na rozległość jego zastosowań. Ważną kwestią jest także jego dynamiczność, podczas tworzenia zmiennych nie wymaga się definiowania ich typu. Co więcej Python posiada automatyczne zarządzanie pamięcią, które zwalnia programistę z tego obowiązku. 
+Język nie wymusza od użytkownika jednego stylu, w którym tworzone są programy. Istnieje możliwość zastosowania różnych paradygmatów programowania (obiektowe, strukturalne oraz funkcyjne), co zdecydowanie wpływa na rozległość jego zastosowań. Ważną kwestią jest także dynamiczność, którą oferuje. Podczas tworzenia zmiennych nie wymaga się definiowania ich typu. Co więcej Python posiada automatyczne zarządzanie pamięcią, które zwalnia programistę z tego obowiązku. 
 
-Główna idea towarzysząca twórcy podczas opracowywania jego składni była wysoka czytelność kodu źródłowego, jego przejrzystość i zwięzłość. Okazało się to jednym z głównych czynników, które spowodowały, że stał się tak powszechnie stosowany.
+Główną ideą towarzyszącą twórcy podczas opracowywania składni języka była wysoka czytelność kodu źródłowego, jego przejrzystość i zwięzłość. Okazało się to jednym z głównych czynników, które spowodowały, że stał się tak powszechnie wykorzystywany.
 
-Dzięki swojej uniwersalności i wygodnym zastosowaniom Python zostaje używany w wielu różnych dziedzinach (Rys. \ref{fig:pythonUsage}). Popularność w środowisku matematycznym zawdzięcza środowisku SciPy stanowiącą darmową alternatywę do języka Matlab. 
+Dzięki swojej uniwersalności Python odnajduje zastosowanie w wielu różnych dziedzinach, które zostały przedstawione na Rys. \ref{fig:pythonUsage}. 
 
 \begin{figure}[h]
 	\centering
@@ -30,7 +30,11 @@ Dzięki swojej uniwersalności i wygodnym zastosowaniom Python zostaje używany 
 	\label{fig:pythonUsage}
 \end{figure}
 
-Biblioteka Tensor Flow wspiera tworzenie sieci neuronowych, co znajduje zastosowanie w tworzeniu algorytmów wykorzystywanych w popularnych aplikacjach. \cite{PythonApps} W przypadku dziedzin operujących na przetwarzaniu obrazów czy też analizowaniu danych Python dostarcza kilka bibliotek ułatwiających te operacje. W następnym podrozdziale zostaną przedstawione biblioteki użyte w implementacji animacji awatara.
+Popularność w środowisku matematycznym zawdzięcza bibliotece SciPy stanowiącą darmową alternatywę do języka Matlab. 
+
+Biblioteka Tensor Flow wspiera tworzenie sieci neuronowych, wykorzystywane w tworzeniu algorytmów w popularnych aplikacjach. \cite{PythonApps} W przypadku dziedzin operujących na przetwarzaniu obrazów czy też analizowaniu danych Python dostarcza kilka pakietów ułatwiających te operacje.
+
+Ze względu na powyższe fakty, to jest między innymi czytelność, uniwersalność oraz ogromne zasoby pakietów, algorytm będący tematem niniejszej pracy inżynierskiej został opracowany w języku Python. W następnej sekcji zostaną przedstawione biblioteki wykorzystane w jego implementacji.
 
 \section{Biblioteki}
 Biblioteki programistyczne dostarczają podprogramy, które użytkownik może wykorzystać w swoim kodzie źródłowym bez konieczności implementowania ich od podstaw. Jest to metoda na wielokrotne używanie identycznego kodu.
@@ -43,16 +47,16 @@ Zawiera około 2500 zoptymalizowanych algorytmów implementujących między inny
 Poza skomplikowanymi algorytmami OpenCV dostarcza wiele podstawowych operacji, które wykorzystuje się przy modyfikacji obrazów. Zaimplementowane funkcje zdają się wyróżniać wydajnością, co jest bardzo istotne w przypadku działania na dużych zbiorach danych.
 
 \subsection{imutils}
-Pakiet imutils \cite{imutils} to kolejne przydatne narzędzie w trakcie modyfikacji obrazów. Zawiera szereg funkcji ułatwiających ich przetwarzanie, takich jak obracanie, zmiana rozmiaru, przesunięcie, zastosowanie szkieletyzacji. Zaimplementowano także moduły ułatwiające poprawną prezentację zdjeć podczas ich wyświetlania.
+Pakiet imutils \cite{imutils} to kolejne przydatne narzędzie wykorzystywane w trakcie modyfikacji obrazów. Zawiera szereg funkcji ułatwiających ich przetwarzanie, takich jak obracanie, zmiana rozmiaru, przesunięcie, zastosowanie szkieletyzacji. Zaimplementowano także moduły ułatwiające poprawną prezentację zdjeć podczas ich wyświetlania.
 
 Funkcje zawarte w owym pakiecie pochodzą z biblioteki OpenCV, zostały one odpowiednio połączone i zmodyfikowane, aby można było w prostszy sposób dokonywać podstawowych operacji na zdjęciach. Biblioteka OpenCV zawiera ogromną ilość komponentów, co może być przytłaczające dla osoby rozpoczynającej swoją przygodę z przetwarzaniem obrazów.
 
 Ideą, dla której powstał tenże pakiet była chęć zebrania podstawowych modułów i odpowiednie ich dostosowanie w celu ograniczenia zbędnych operacji, które należy zastosować korzystając z biblioteki OpenCV.
 
 \subsection{dlib}
-Dlib to biblioteka udostępniona na zasadach otwartej licencji, napisana w języku C++. Dostarczająca algorytmy oparte o uczenie maszynowe oraz narzędzia do tworzenia oprogramowania we wspomnianym wyżej języku. 
+Dlib to biblioteka udostępniona na zasadach otwartej licencji, napisana w języku C++ \cite{dlib}. Dostarcza ona algorytmy oparte o uczenie maszynowe oraz narzędzia do tworzenia oprogramowania we wspomnianym wyżej języku. 
 
-Funkcje, z których można korzystać implementują algorytmy trenujące takie klasyfikatory jak SVM, SVR czy też klasyfikację bez nadzoru. Dodatkowo istnieje możliwość wytrenowania własnego modelu wykrywającego twarz lub jej punkty charakterystyczne.
+Funkcje, z których można korzystać, implementują algorytmy umożliwiające wytrenowanie klasyfikatorów SVM, SVR czy też klasyfikatory bez nadzoru. Dodatkowo istnieje możliwość wytrenowania własnego modelu wykrywającego twarz lub jej punkty charakterystyczne.
 
 Zastosowania tej biblioteki obejmują takie dziedziny jak przemysł, robotyka oraz wszelkie obszary wymagające skorzystania z programów o dobrej wydajności obliczeniowej.
 
@@ -61,6 +65,34 @@ Biblioteka scikit-image \cite{skimage}, podobnie jak opisane powyżej pakiety, z
 
 Obejmuje ona takie algorytmy jak transformacje, segmentację obrazów, ich morfologię oraz manipulację przestrzenią kolorów. Pakiet korzysta z tablic biblioteki NumPy, wykorzystanych do przechowywania obrazów.
 
-
 \section{Flask}
+Flask \cite{flask} to minimalistyczny szkielet wspierający tworzenie aplikacji webowych (ang. microframework). Zawiera wiele przydatnych bibliotek oraz modułów umożliwiających ich proste implementowanie.
+
+W odróżnieniu do pełnowymiarowej platformy programistycznej (ang. framework) nie posiada warstwy abstrakcji bazy danych, części walidacyjnej formularzy czy też innych elementów, które wymagałaby zapewnienia szczególnych bibliotek. Natomiast obsługuje rozszerzenia, ktore umożliwiają dodanie owych funkcji do aplikacji.
+
+Flask dostarcza programiście wiele przydatnych modułów, dzięki którym nie musi się on zajmować obsługą wątków i protokołów. Oparty jest na zestawie kilku narzędzi, na które składa się:
+\begin{itemize}
+\item Werkzeug - biblioteka udostępniająca zestaw narzędzi WSGI (ang. Web Server Gateway Interface) rozumianych jako interfejs bramy serwera WWW. Implementuje on żądania między serwerem a aplikacją
+\item jinja2 - biblioteka programistyczna umożliwiająca osadzanie danych na stronie w odpowiednich szablonach prezentacyjnych, której rezultat jest widoczny w przeglądarce
+\item MarkupSafe - biblioteka rozszerzająca typ tekstowy, zapewniająca bezpieczne używanie znaków w HTML oraz XML. Zabezpieczna przed atakami poprzez wprowadzanie niezauwanych danych.
+\item ItsDangerous - pakiet odpowiadający za odpowiednią serializację danych. Służy do przechowywania sesji za pomocą plików cookies.
+\end{itemize}
+
+Głównymi zaletami opisywanego szkieletu jest jego prostota i brak ograniczeń związanych ze ściśle ustalonymi regułami, którymi należy się kierować budując program. Jest niezwykle elastyczny, nadaje się do tworzenia małych, wewnętrznych aplikacji, ale jednocześnie daje możliwość rozbudowania ich do pełnowymiarowej struktury. 
+
+W związku z wymienionymi zaletami, Flask zdaje się być idealnym narzędziem do stworzenia prostej aplikacji mającej na celu walidację algorytmu tworzonego w owym projekcie.
+
 \section{Pycharm}
+Pycharm \cite{pycharm} jest zintegrowanym środowiskiem wspierającym dla języka programowania Python. Oprogramowanie jest dostępne na wielu platformach systemowych takich jak Windows, Linux i macOS. Oferuje inteligentny edytor kodu źródłowego z możliwością formatowania i autouzupełniania, który posiada funkcję weryfikacji błędów oraz ich kontrolowanie.
+
+Zapewnia refaktoryzację języka, przez co utrzymana jest wysoka jakość systemowa. Elementy są wpasowywane w dane wzorce, dopasowywane do obowiązujących standardów.
+
+Ważną kwestią jest udostępniane wsparcie dla różnych bibliotek i narzędzie. Pycharm wspiera tworzenie stron internetowych z wykorzystaniem biblioteki Django, czy też Flaska i Pyramid. Wspomaga tworzenie plików w językach powiązanych z technologią webową (HTML, CSS, JavaScript).
+
+Ułatwia pracę z projektem dostarczając prosty interfejs konfiguracyjny. W przypadku tworzenia aplikacji webowej opartej na platformie Flask w nieskomplikowany sposób można wprowadzić wszystkie istotne ustawienia.
+
+
+
+
+
+
