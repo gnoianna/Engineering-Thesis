@@ -19,7 +19,7 @@ Istnieje wiele różnych propozycji algorytmów służących wykrywaniu twarzy. 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{techniki-detekcji.png}
+	\includegraphics[width=7cm]{zdjęcia/techniki-detekcji.png}
 	\caption{Techniki detekcji twarzy według Younga.} 
 	\label{fig:detectionMethods}
 \end{figure}
@@ -36,8 +36,6 @@ Zagadnienie poruszane w tym rozdziale jest bardzo rozległe, a rozwiązania i al
 tematyki oraz dużą ilość istniejących rozwiązań w dalszej części zostaną opisane dwa najpopularniejsze algorytmy, których implementacje są udostępniane przez biblioteki programistyczne.
 
 \subsection{Schemat działania}
-% Algorytmy wykrywania twarzy często postępują w podobny sposób. Większość z nich rozpoczyna swoje działanie od zlokalizowania oczu na obrazie ze względu na ich charakterystyczność. Zdaje się to być najprostszym elementem do wykrycia. \cite{fDetection}
-
 Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. 
 
 Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech takich jak oczy, usta, nos czy brwi. Ich rozpoznanie możliwe jest przez zgromadzone informacje znajdujące się w wytrenowanym wcześniej modelu.
@@ -45,9 +43,10 @@ Następnie potrzebne jest działanie detektora skanującego cały obraz w celu l
 Większość algorytmów uzależnia swoją efektywność od wielkości danych, na których został przeszkolony klasyfikator. Trenowanie na dużych zbiorach danych poprawia zdolność algorytmu w trakcie określenia czy na danym obrazie znajduje się twarz. \cite{fDetection}
 
 \subsection{Klasyfikator kaskadowy z użyciem cech Haara}
-Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (ang. Haar Feature-based Cascade Classifier). Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. \cite{haarCascade}Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
+\label{sub:Haar}
+Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (ang. Haar Feature-based Cascade Classifier) \cite{haar}. Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
 
-Działanie tej techniki \cite{haar} łączy ze sobą poniższe koncepcje:
+Działanie tej techniki łączy ze sobą poniższe koncepcje:
 \begin{itemize}
     \item poszukiwanie i wybór najdokładniejszych cech Haara
     \item utworzenie zintegrowanych obrazów w celu szybkiego znalezienia danej cechy
@@ -63,7 +62,7 @@ Są to kombinacje prostokątów  o takich samych wymiarach (ciemnych i jasnych),
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=6cm]{haar_features.png}
+	\includegraphics[width=6cm]{zdjęcia/haar_features.png}
 	\caption{Przykładowe funkcje Haara. \cite{haarCascade}} 
 	\label{fig:haarFeatures}
 \end{figure}
@@ -74,7 +73,7 @@ Przykładowo, na Rys. \ref{fig:haarNose} użyto funkcji złożonej z trzech pros
  
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5cm]{haar_nose_feature.png}
+	\includegraphics[width=5cm]{zdjęcia/haar_nose_feature.png}
 	\caption{Zastosowanie funkcji Haara do wykrycia oczu i obszaru nosa.} 
 	\label{fig:haarNose}
 \end{figure}
@@ -85,7 +84,7 @@ Obrazem integralnym nazywamy reprezentację obrazu, w którym dana wartość $(x
  
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{integral.png}
+	\includegraphics[width=14cm]{zdjęcia/integral.png}
 	\caption{Konwersja na obraz zintegrowany. \cite{haarCascade}} 
 	\label{fig:integralImage}
 \end{figure}
@@ -98,7 +97,7 @@ Funkcje są nakładane na każde okno o zadanych wymiarach wyodrębniane na obra
  
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{haar_train.png}
+	\includegraphics[width=14cm]{zdjęcia/haar_train.png}
 	\caption{Klasyfikator kaskadowy. \cite{haarCascade}} 
 	\label{fig:cascadeClasificator}
 \end{figure}
@@ -107,30 +106,22 @@ W badaniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które 
 
 Opisany w tym rozdziale algorytm jest wykorzystywany nie tylko do wykrywania twarzy na obrazach, ale także innego rodzaju obiektów, takich jak zwierzęta, tablice rejestracyjne czy całe ludzkie sylwetki. 
 
-Cechuje go szybki czas działania oraz dobra poprawność, którą stosunkowo łatwo można zwiększyć. Jest ona powiązana z wielkością zbioru treningowego, na którym został wyszkolony model. Popularność algorytmu, który został opisany w tym rozdziale, zdaje się dalej trwać, pomimo odkrycia wielu konkurencyjnych rozwiązań działających na podobnej zasadzie. 
+Cechuje go bardzo szybki czas działania. Jego dokładność nie jest aż tak wysoka, ze względu na podatność na fałszywe wykrycia.  Popularność algorytmu, który został opisany w tym rozdziale, zdaje się dalej trwać, pomimo odkrycia wielu konkurencyjnych rozwiązań działających na podobnej zasadzie. 
 
 \subsection{Klasyfikator SVM z użyciem deskryptora HOG}
-W 2005 roku pojawiła się kolejna przełomowa propozycja metody wykrywania obiektów, w tym twarzy. Jej autorami są Navneet Dalal i Bill Triggs, którzy wykazali, że do trenowania modelu można skorzystać z deskryptora HOG (ang. Histograms of Oriented Gradients) oraz klasyfikatora SVM (ang. Support Vector Machine). 
+\label{sec:svmhog}
+W 2005 roku pojawiła się kolejna przełomowa propozycja metody wykrywania obiektów, w tym twarzy. Jej autorami są Navneet Dalal i Bill Triggs, którzy wykazali, że do trenowania modelu można skorzystać z deskryptora HOG (ang. Histograms of Oriented Gradients) oraz klasyfikatora SVM (ang. Support Vector Machine) \cite{hog}. 
 
 Deskryptory wyodrębniają z obrazu przydatne informacje pomijając zbędne dane, pomagają zlokalizować konkretny, interesujący nas obiekt. W przypadku deskryptorów HOG  ekstrakcja cech odbywa się za pomocą histogramu gradientów, używanych jako cechy analizowanych obrazów. Jako gradienty określamy pola wektorowe wskazujące kierunek, w którym można obserwować znaczącą zmianę w intensywności koloru.
-%największy wzrost wartości danego pola w poszczególnych punktach.
 
-% Technika ta zlicza występowanie danych gradientów dla określonych fragmentów obrazu. Jej działanie można przedstawić w następujący sposób:
-% \begin{enumerate}
-%     \item Obraz zostaje podzielony na małe fragmenty
-%     \item Dla każdej z komórek oblicza się histogram występowania różnych orientacji krawędzi
-%     \item Ostatnim krokiem jest połączenie owych histogramów, przez co otrzymujemy deskryptor HOG dla danego zdjęcia
-% \end{enumerate}
-% W kolejnych akapitach zostanie zgłębione działanie deskryptora, który odgrywa kluczową rolę w działaniu opisywanego algorytmu.
-
-W celu stworzenia deskryptora HOG dla obrazu należy wykonać kilka istotnych kroków. Pierwszym z nich jest przygotowanie obrazu w odcieniach szarości, dla którego chcemy obliczyć histogram gradientów. Według autorów algorytmu rozmiar zdjęcia powinno się zmniejszyć do $128x64$ pikseli. Takie wymiary zostały wybrane ze względu na początkowe założenie wykrywania obiektów z tymże algorytmem. Miał on służyć do detekcji pieszych. Po sukcesie i dobrych wynikach, skupiono się na detekcji twarzy, w tym przypadku również zdecydowano się na wybór zdjęć o owych wymiarach.
+W celu stworzenia deskryptora HOG dla obrazu należy wykonać kilka istotnych kroków. \cite{hog2} Pierwszym z nich jest przygotowanie obrazu w odcieniach szarości, dla którego chcemy obliczyć histogram gradientów. Według autorów algorytmu rozmiar zdjęcia powinno się zmniejszyć do $128x64$ pikseli. Takie wymiary zostały wybrane ze względu na początkowe założenie wykrywania obiektów z tymże algorytmem. Miał on służyć do detekcji pieszych. Po sukcesie i dobrych wynikach, skupiono się na detekcji twarzy, w tym przypadku również zdecydowano się na wybór zdjęć o owych wymiarach.
 
 Dla każdego piksela znajdującego się na obrazie należy obliczyć gradient pionowy i poziomy. Najprostszym sposobem jest filtracja obrazu przez poniższe jądra.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=5cm]{hog-kernels.jpg}
-	\caption{Jądra służące do filtracji obrazu w celu obliczenia gradientów.} 
+	\includegraphics[width=5cm]{zdjęcia/hog-kernels.jpg}
+	\caption{Jądra służące do filtracji obrazu w celu obliczenia gradientów. \cite{hog2}} 
 	\label{fig:hogKernels}
 \end{figure}
 
@@ -144,42 +135,70 @@ Kolejnym krokiem jest podział obrazu na jednakowe siatki o wymiarach $8x8$. Ka�
 
 Aby skompresować dane dla każdej siatki, należy stworzyć histogram z podziałem na dziewięć oddzielnych pojemników. Każdy z nich odpowiada kątom z zakresu 0-160 z 20-stopniowym przyrostem.
 
-Przyporządkowując każdy piksel do jednego z pojemników należy kierować się wielkością i kątem gradientu, który go charakteryzuje. Pojemnik jest wybierany ze względu na pierwszy z tych parametrów, natomiast wartość w nim umieszczona zależy od wielkośći. Jeżeli piksel leży w połowie odległości między dwoma pojemnikami, jego wartość dzieli się miedzy oba pola. Omawiana sytuacja dotyczy piksela oznaczonego na czerwono na Rys. \ref{fig:gradientHistogram}. 
+Przyporządkowując każdy piksel do jednego z pojemników uwzględnia się kierunek gradientu (jego kąt) oraz wielkość, która go charakteryzuje. Pojemnik jest wybierany ze względu na kąt, natomiast wpisywana do niego wartość to wielkość przypisana do danego gradientu. Jeżeli piksel leży w połowie odległości między dwoma pojemnikami, jego wartość dzieli się miedzy oba pola. Omawiana sytuacja dotyczy piksela oznaczonego na czerwono na Rys. \ref{fig:gradientHistogram}. 
 
-Ważną kwestią jest też rozważenie przypadku, gdy analizowany kąt posiada miarę większą niż 160 stopni (maksymalna wartość kąta w pojemniku). W takim przypadku taki piksel dzieli swoją wartość proporcjonalnie z pojemnikiem oznaczonym jako pierwszy.
+Ważną kwestią jest rozważenie przypadku, gdy analizowany kąt posiada miarę większą niż 160 stopni (maksymalna wartość kąta w pojemniku). W takim przypadku wartość gradientu takiego piksela jest dzielona proporcjonalnie między dwa pojemniki, pierwszy i ostatni.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{gradients-histogram.png}
-	\caption{Schemat tworzenia histogramu dla komórki o wymiarach $8x8$.} 
+	\includegraphics[width=10cm]{zdjęcia/gradients-histogram.png}
+	\caption{Schemat tworzenia histogramu dla komórki o wymiarach $8x8$. \cite{hog2}} 
 	\label{fig:gradientHistogram}
 \end{figure}
 
-Po wykonaniu procesu dla wszystkich pikseli można zobaczyć w jaki sposób rozkładają się wartości w zależności od kąta. Taka reprezentacja zapewnia odporność na szum, którą na początku można zauważyć między gradientami.
+Po wykonaniu procesu dla wszystkich pikseli można zobaczyć w jaki sposób rozkładają się wartości w zależności od kierunku gradientu charakteryzującego każdy z nich. Taka reprezentacja zapewnia odporność na szum, który istnieje między gradientami na samym początku. 
 
-Gradienty obrazu są wrażliwe na oświetlenie
-Bloki przekształca się w wektory elementów, a następnie stosuje normalizację. Blok o wymiarach $16x16$ posiada 4 histogramy, gdzie każdy da się przedstawić jako wektor $9x1$ co w sumie daje wektor $36x1$. Normalizacja następuje dla pierwszego okna, po czym jest ono przesuwane o 8 pikseli gdzie znormalizowany wektor jest obliczany ponownie. Wszystko powtarza się do momentu przebycia wszystkich pozycji.
+Gradienty obrazu są wrażliwe na oświetlenie. W przypadku zmiany jego natężenia, wielkość gradientów diametralnie się zmienia. Aby uodpornić deskryptor na jego wpływ stosuję się normalizację histogramu. 
+
+Bloki przekształca się w wektory elementów, a następnie dla każdego stosuje się normalizację. Blok o wymiarach $16x16$ posiada 4 histogramy, gdzie każdy da się przedstawić jako wektor $9x1$ co w sumie daje wektor $36x1$. Normalizacja następuje dla pierwszego okna, po czym jest ono przesuwane o 8 pikseli gdzie znormalizowany wektor jest obliczany ponownie. Wszystko powtarza się do momentu przebycia wszystkich pozycji.
 
 Każdy z omawianych bloków reprezentowany jest przez wektor $36x1$ co jest równoznaczne z 36 wyodrębnionymi cechami. Istnieje 105 pozycji takich bloków (7 poziomych, 15 pionowych). Sumarycznie dla naszego zdjęcia otrzymujemy aż 3780 cech.
 
-Powyżej zostało opisane działanie deskryptora HOG na jednym zdjęciu. Jednak celem rozpatrywanego algorytmu, łączącego owe działanie z działaniem klasyfikatorem SVM, jest stworzenie programu wykrywającego twarze.
+Powyżej zostało opisane działanie deskryptora HOG na pojedynczym obrazie. Jest on podstawą rozpatrywanego algorytmu, którego celem jest stworzenie programu wykrywającego twarze. Aby osiągnąć takową użyteczność, należy połączyć działanie deskryptora z klasyfikatorem SVM.
 
-Klasyfikator SVM pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację. Do wytrenowania klasyfikatora SVM używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego.
+Klasyfikator SVM pozwala na analizę danych, rozpoznanie wzorców i ich klasyfikację. Do jego wytrenowania używa się próbek pozytywnych i negatywnych, tak jak w przypadku przygotowywania klasyfikatora kaskadowego.
 
-Z każdego zdjęcia, za pomocą deskryptora należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, owy klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
+Z każdego zdjęcia, za pomocą deskryptora, należy wyciągnąć cechy HOG. Na ich podstawie trenuje się klasyfikator SVM. Uczy on się różnych możliwych cech twarzy, które potem próbuje zlokalizować na nowym zdjęciu. Po fazie uczenia, klasyfikator pozwala określić do jakiej klasy należą przetwarzane dane. W naszym przypadku rozróżni on fragment zawierający twarz i ten na którym się ona nie znajduje. 
 
+Analizowana w tej sekcji metoda stała się konkurecją dla algorytmu opisywanego we wcześniejszym podrozdziale. Dokładność jego działania jest dużo lepsza niż algorytmu opartego na klasyfikatorze kaskadowym. Minusem jest wykrywanie twarzy tylko w przypadku widoku z przodu, program nie działa poprawnie w momencie jej rotacji i zmian kąta.
 
-\section{Wykrywanie punktów charakterystycznych}
-w sumie no to jesli chodzi o pythona, tooo np te modele od razu tez wykrywaja landmarki jak juz twarz xd too moze ze wzgledu na ich ilosc? jakos porownac czy co, bo iksde w sumie eh joj
+Podobnie jak poprzedniczka, pomimo wielu innych propozycji algorytmów, które pojawiły się od roku 2005, ten algorytm wciąż cieszy się wielką popularnością. Zdaje się być prosty i efektywny, pomimo wolniejszego działania.
+
+\section{Identyfikacja punktów charakterystycznych}
+\label{sec:landmarks}
+Opisana wcześniej technika wykrywania twarzy jest początkowym etapem algorytmu, który zostanie przedstawiony w niniejszej sekcji. Mowa tutaj o algorytmie detekcji punktów charakterystycznych twarzy (ang. facial landmarks), poprzez których pojęcie rozumie się elementy, pomagające zidentyfikować jej najistotniejsze cechy. Zazwyczaj są to punkty utożsamiane z linią szczęki, ust, nosa, oczu i brwi. 
+
+Schemat wykrywania owych elementów działa dwuetapowo. Pierwszym krokiem jest lokalizacja twarzy. Metoda, która zostanie do tego wykorzystana nie jest istotna. Ważne jest uzyskanie ograniczonego obszaru, aby następnie można było rozpocząć wykrywanie kluczowych struktur. 
+
+Tak jak w innych przypadkach, istnieje wiele różnych propozycji rozwiązania tego problemu. Algorytm, który aktualnie cieszy się dużą popularnością został zaproponowany w 2014 roku, a jego działanie opiera się na wykorzystaniu drzew regresji. Jego autorami są Vahid Kazemi oraz Josephine Sullivan. 
+
+Działanie tej techniki można opisać w następujący sposób:
+\begin{itemize}
+    \item Jako zbiór testowy wybiera się taki zestaw danych, który składa się z obrazów z oznaczonymi ręcznie punktami charakterystycznymi twarzy.
+    \item Następnie model zostaje szkolony za pomocą drzew regresji na podstawie samej intensywności pikseli i próby dopasowania punktów w odpowiednie miejsca.
+    \item  Korzysta się z obliczania prawdopodobieństwa odległości między parami pikseli.
+    \item Celem treningu jest optymalizacja funkcji błędu i dokonanie selekcji odpowiednich cech w oparciu o dane zawarte w zbiorach.
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{zdjęcia/landmarks_points.JPG}
+	\caption{Wizualizacja 68 punktów charakterystycznych twarzy.} 
+	\label{fig:landmarks}
+\end{figure}
+
+Rezultatem powyższych działań jest model zdolny do zlokalizowania charakterystycznych obszarów twarzy. W artykule, w którym pierwszy raz zaproponowano rozważane rozwiązanie, autorzy testowali algorytm na zbiorze danych umożliwiającym wykrycie aż 192 istotnych punktów. Popularne biblioteki, w tym dlib często udostępniają model wytrenowany ową techniką na innym zbiorze danych. Zazwyczaj są to obrazy, na którym oznaczono 68 pozycji (Rys. \ref{fig:landmarks}).
+
+Zaletą przedstawionego algorytmu jest niezwykle szybki czas działania oraz dobra dokładność wykrywania elementów, nawet w przypadku twarzy ukazanych z profilu. Plusem jest także możliwość użycia dowolonych danych treninogowych, czego efektem jest wyszkolenie własnego detektora punktów nie tylko twarzy, ale też własnych niestandardowych elementów.
+
+Technika, która została omówiona w tym rozdziale znajduje swoje zastosowania w wielu dziedzinach życia. Często jest on uzupełnieniem wykrywania twarzy, w celu upewnienia się co do tożsamości danych osób. Jest to przydatny system w analizowaniu emocji ludzi, pozwala osobom z autyzmem bądź innymi chorobami lepiej zrozumieć otaczający ich świat. W przypadku oprogramowania czytającego z ruchu warg również analizuje się zmiany lokalizacji ważnych punktów charakterystycznych.
 
 \section{Triangulacja Delaunaya}
 Poprzez pojęcie triangulacji, w kontekście matematycznym, można rozumieć podział figury geometrycznej na trójkąty, bądź też czworościany (określane jako sympleksy) w taki sposób, aby część wspólna dwóch sąsiadujących trójkątów (czworościanów) była ich wspólną ścianą, wierzchołkiem, bokiem, trójkątem lub zbiorem pustym. \cite{triangulation}
 
 Istnieje wiele różnych rodzajów triangulacji. W przypadku rozważanego w tej pracy algorytmu wykorzystano triangulacje zbioru punktów, do której należy między innymi triangulacja Delaunaya (lub Delone), której nazwa pochodzi od nazwiska autora tejże koncepcji Borysa Delaunaya. 
 
-Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrzeni $R^{n+1}$, którą definiuję się w poniższy sposób.
-
-Jako $T$ określa się podział przestrzeni $R^{n+1}$ na $(n+1)$ sympleksów, z punktami jako wierzchołki, spełniających okreśone warunki:
+Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrzeni $R^{n+1}$, którą definiuję się w poniższy sposób. Jako $T$ określa się podział przestrzeni $R^{n+1}$ na $(n+1)$ sympleksów, z punktami jako wierzchołki, spełniających okreśone warunki:
 
 \begin{enumerate}
     \item każde dwa sympleksy należące do zbioru $T$ posiadają wspólną ściane albo nie są ze sobą połączone w żaden sposób
@@ -189,7 +208,7 @@ Jako $T$ określa się podział przestrzeni $R^{n+1}$ na $(n+1)$ sympleksów, z 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{triangulation.png}
+	\includegraphics[width=6cm]{zdjęcia/triangulation.png}
 	\caption{Przykładowa triangulacja Delone dla zbioru punktów. \cite{tDelone}}
 	\label{fig:delone}
 \end{figure}
@@ -202,7 +221,7 @@ Centra okręgów wyznaczonych przez owe trójkąty po połączeniu tworzą daną
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7cm]{voronoi.png}
+	\includegraphics[width=6cm]{zdjęcia/voronoi.png}
 	\caption{Graf przedstawiający komórki Vornoi oraz krawędzie triangulacji. \cite{tDelone}} 
 	\label{fig:voronoi}
 \end{figure}

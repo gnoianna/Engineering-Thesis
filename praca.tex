@@ -20,6 +20,7 @@
 \usepackage{minted}
 \usepackage{hyperref} % pakiet linkujacy powiazania
 
+
 % --- < bibliografia > ---
 
 \usepackage[
@@ -147,6 +148,8 @@ backend=biber
 
 \begin{document}
 
+\usemintedstyle{pastie}
+
 \titlepages
 
 % Ponowne zdefiniowanie stylu `plain`, aby usunąć numer strony z pierwszej strony spisu treści i poszczególnych rozdziałów.
@@ -163,14 +166,14 @@ backend=biber
 \tableofcontents
 \clearpage
 
-\include{rozdzial1}
-\include{rozdzial2}
-\include{rozdzial3}
-\include{rozdzial4}
-\include{rozdzial5}
-\include{rozdzial6}
-\include{rozdzial7}
-\include{rozdzial8}
+\include{1_wstęp}
+\include{2_powiązane_algorytmy}
+\include{3_istniejące_zastosowania}
+\include{4_narzędzia_i_technologie}
+\include{5_algorytm_animacji}
+\include{6_ewaluacja}
+\include{7_podsumowanie}
+\include{8_słownik}
 
 
 

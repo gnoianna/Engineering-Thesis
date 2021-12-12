@@ -1,0 +1,24 @@
+\chapter{Ewaluacja i rezultaty}
+\label{cha:ewaluacjaIRezultaty}
+\section{Aplikacja webowa}
+Na potrzeby przeprowadzenia ewaluacji algorytmu zaimplementowanego w tej pracy inżynierskiej, stworzono prostą aplikację webową opartą na serwerze Flask. Skorzystano również z biblioteki Bootstrap, aby w prosty sposób dostosować wygląd strony do wymagań użytkownika.
+
+Aplikacja webowa składa się z trzech podstron, których interfejsy przedstawiono na Rys. Krótka instrukcja zamieszczona na stronie głównej ma na celu zapoznanie użytkownika z możliwościami działania programu. Korzystając z zakładki (a) osoba zainteresowana jest w stanie wgrać dwa dowolne zdjęcia, gdzie jedno odpowiada obrazowi źródłowemu, na podstawie którego nastąpi animacja drugiego obrazu. Obsłużono wszelkiego rodzaju błędy, takie jak próba wczytania złego rozszerzenia pliku bądź zdjęcia, na którym nie da się wykryć twarzy i punktów charakterystycznych.
+
+Kolejna strona (b) umożliwia użytkownikowi przetestowanie działania algorytmu w czasie rzeczywistym na wybranym, z czterech możliwych, awatarze. Po przyciśnięciu przycisku Animate następuje zastosowanie algorytmu na obrazie awatara dla aktualnego obrazu przechwyconego z kamery. W przypadku braku wykrycia twarzy, efekt nie zostanie osiągnięty.
+
+% Sposób walidacji z użyciem owej aplikacji ułatwi testowanie algorytmu. 
+\section{Walidacja działania aplikacji}
+No to tutaj może dla jakichś 15 osób czy coś, poprosić o testowanie i np. osobno te ze zdjęciami a osobno real-time
+szczęście,
+smutek,
+strach/zaskoczenie,
+gniew/obrzydzenie
+No i ocenić to może w skali, czy rezultaty są wystarczające
+\section{Ocena efektów działania algorytmu na gotowym zbiorze zdjęć}
+Noo i tutaj sprawdzić np czy działa dla tego szalonego modelu, jeśli tak to sprawdzić jak tam efekty działania aplikacji dla obydwu, można np zestawić z dwóch modeli i kazać ocenić ludziom. Plus jakaś tabelka przedstawiająca porównanie czasu przetwarzania dla kilkunastu obrazów.
+
+No i we wnioskach to na pewno:
+1. Jak te modele wypadają na swoim tle, tzn który lepszy i poprzeć wynikami z ankiety
+2. Przedstawić ocenę aplikacji tej strony real time vs tej z obrazami dwoma
+3. No i pewnie we wnioskach ze gorzej ta real time dziala, no i ze pewnie trzeba dopracowac i ze tez ma wplyw na to oswietlenie, jakies ustawianie zle twarzy bla bla
