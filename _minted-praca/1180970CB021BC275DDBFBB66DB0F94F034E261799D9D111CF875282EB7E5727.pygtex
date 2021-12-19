@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{animate\PYGZus{}avatar}\PYG{p}{(}\PYG{n}{avatar\PYGZus{}img}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}points}\PYG{p}{,} \PYG{n}{src\PYGZus{}img}\PYG{p}{,} \PYG{n}{src\PYGZus{}points}\PYG{p}{):}
+    \PYG{n}{new\PYGZus{}avatar\PYGZus{}face} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{src\PYGZus{}img}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}
+
+    \PYG{k}{for} \PYG{n}{src\PYGZus{}triangle\PYGZus{}points}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}triangle\PYGZus{}points} \PYG{o+ow}{in} \PYG{n}{delaunay\PYGZus{}triangulation}\PYG{p}{(}\PYG{n}{src\PYGZus{}points}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}points}\PYG{p}{):}
+        \PYG{n}{avatar\PYGZus{}img\PYGZus{}cropped}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{crop\PYGZus{}single\PYGZus{}triangle}\PYG{p}{(}\PYG{n}{avatar\PYGZus{}triangle\PYGZus{}points}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}img}\PYG{p}{)}
+        \PYG{n}{src\PYGZus{}img\PYGZus{}cropped}\PYG{p}{,} \PYG{n}{src\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{b\PYGZus{}rect} \PYG{o}{=} \PYG{n}{crop\PYGZus{}single\PYGZus{}triangle}\PYG{p}{(}\PYG{n}{src\PYGZus{}triangle\PYGZus{}points}\PYG{p}{,} \PYG{n}{src\PYGZus{}img}\PYG{p}{)}
+
+        \PYG{n}{warped\PYGZus{}triangle} \PYG{o}{=} \PYG{n}{transform\PYGZus{}triangle}\PYG{p}{(}\PYG{n}{avatar\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}img\PYGZus{}cropped}\PYG{p}{,} \PYG{n}{src\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{src\PYGZus{}img\PYGZus{}cropped}\PYG{p}{)}
+        \PYG{n}{add\PYGZus{}triangle\PYGZus{}to\PYGZus{}new\PYGZus{}face\PYGZus{}area}\PYG{p}{(}\PYG{n}{new\PYGZus{}avatar\PYGZus{}face}\PYG{p}{,} \PYG{n}{warped\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{b\PYGZus{}rect}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{generate\PYGZus{}new\PYGZus{}face}\PYG{p}{(}\PYG{n}{avatar\PYGZus{}img}\PYG{p}{,} \PYG{n}{avatar\PYGZus{}points}\PYG{p}{,} \PYG{n}{new\PYGZus{}avatar\PYGZus{}face}\PYG{p}{,} \PYG{n}{src\PYGZus{}points}\PYG{p}{)}
+\end{Verbatim}

@@ -188,7 +188,7 @@ def crop_single_triangle(single_triangle, img):
 Po pobraniu odpowiednich danych dla dwóch przetwarzanych figur, możliwe jest wywołanie kolejnej funkcji, której celem jest transformacja fragmentu obrazu awatara. Skorzystano tutaj z modułów udostępnianych przez bibliotekę OpenCV:
 
 \begin{itemize}
-    \item \textit{getAffineTransform()} - jako dane wejściowe należy podać dwa zbiory punktów, dla których obliczana jest macierz transformacji afimicznej
+    \item \textit{getAffineTransform()} - jako dane wejściowe należy podać dwa zbiory punktów, dla których obliczana jest macierz transformacji afinicznej
     \item \textit{warpAffine()} - funkcja dokonuje przekształcenia obrazu za pomocą macierzy rotacji będącej wynikiem wcześniejszej operacji
 \end{itemize}
 
@@ -239,7 +239,7 @@ def transform_triangle(avatar_triangle, avatar_img_cropped, src_triangle, src_im
 % 	\caption{\label{fig:triangles}Rezultaty transformacji dla przekształceń trójkąta \protect\subref{triangle_avatar} w figurę \protect\subref{triangle_src} oraz \protect\subref{triangle_avatar_2} w figurę \protect\subref{triangle_src_2}.}
 % \end{figure}
 
-Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizualizowano ten krok dla wybranej iteracji. Po otrzymaniu nowej figury, należy dodać ją do obszaru twarzy, który docelowo zastąpi aktualny rejon oblicza awatara. Funkcja \textit{add\_triangle\_to\_new\_rect\_area()} odpowiada za to zadanie. W celu usunięcia ewentualnych szumów etap ten uprzedzono zastosowaniem binaryzacji progowej.
+Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizualizowano ten krok dla wybranej iteracji. Po otrzymaniu nowej figury, należy dodać ją do obszaru twarzy, który docelowo zastąpi aktualny rejon oblicza awatara. Funkcja \textit{add\_triangle\_to\_new\_rect\_area()} odpowiada za to zadanie. W celu usunięcia ewentualnych szumów etap ten poprzedzono zastosowaniem binaryzacji progowej.
 
 \begin{figure}[h]
 	\centering
@@ -402,7 +402,7 @@ Aplikacja webowa składa się z trzech podstron. Dla dwóch z nich na Rys. \ref{
 \begin{enumerate}
     \item Krótka instrukcja zamieszczona na stronie głównej ma na celu zapoznanie użytkownika z możliwościami działania programu.
     \item Zakładka \textit{Select image} umożliwia osobie zainteresowanej wgranie dwóch dowolnych zdjęć, gdzie jedno odpowiada obrazowi źródłowemu, na podstawie którego nastąpi animacja drugiego obrazu. Obsłużono wszelkiego rodzaju błędy, takie jak próba wczytania złego rozszerzenia pliku bądź zdjęcia, na którym nie da się wykryć twarzy i punktów charakterystycznych.
-    \item Podstrona \textit{Animate using real-time} umożliwia użytkownikowi przetestowanie działania algorytmu w czasie rzeczywistym na wybranym, z czterech możliwych, awatarze. Po przyciśnięciu przycisku \textit{Animate} następuje zastosowanie algorytmu na zdjęciu awatara dla aktualnego obrazu przechwyconego z kamery. W przypadku braku wykrycia twarzy, efekt nie zostanie osiągnięty.
+    \item Podstrona \textit{Real-time animation} umożliwia użytkownikowi przetestowanie działania algorytmu w czasie rzeczywistym na wybranym, z czterech możliwych, awatarze. Po przyciśnięciu przycisku \textit{Animate} następuje zastosowanie algorytmu na zdjęciu awatara dla aktualnego obrazu przechwyconego z kamery. W przypadku braku wykrycia twarzy, efekt nie zostanie osiągnięty.
 \end{enumerate}
 
 \begin{figure}[h]

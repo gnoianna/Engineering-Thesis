@@ -1,11 +1,11 @@
 \chapter{Przedstawienie powiązanych algorytmów}
 \label{cha:analizaTeoretycznaProblemu}
-Algorytm, którego implementacja jest celem tejże pracy inżynierskiej można podzielić na kilka istotniejszych etapów. Kluczową kwestią jest moment wykrycia twarzy na obrazie, identyfikacja punktów charakterystycznych oraz zastosowanie triangulacji. Właśnie ze względu na  powyższe fakty, w kolejnych podrozdziałach zgłębione zostaną wymienione algorytmy, ich działanie oraz zastosowania. 
+Algorytm, którego implementacja jest celem tejże pracy inżynierskiej można podzielić na kilka istotniejszych etapów. Kluczową kwestią jest moment wykrycia twarzy na obrazie, identyfikacja punktów charakterystycznych oraz zastosowanie triangulacji. Właśnie ze względu na  powyższe fakty, w kolejnych podrozdziałach opisane zostaną wymienione algorytmy, ich działanie oraz zastosowania. 
 
 % %---------------------------------------------------------------------------
 
 \section{Wykrywanie twarzy}
-Poprzez pojęcie wykrywania twarzy (ang. face detection) \cite{fDetection} rozumie się opartą o sztuczną inteligencję technologie identyfikującą ludzkie twarze na obrazie cyfrowym. Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu rozbieżnych dziedzinach. Nie zawsze spotykamy się z nią świadomie, w celu łatwego dostępu do różnego rodzaju sprzętu elektronicznego. Przedstawiana technologia otacza nas wszędzie.
+Poprzez pojęcie wykrywania twarzy (ang. face detection) \cite{fDetection} rozumie się opartą na sztucznej inteligencji technologię identyfikującą ludzkie twarze na obrazie cyfrowym. Nawiązując do wspomnianych wyżej faktów, owa technika używana jest w wielu rozbieżnych dziedzinach. Nie zawsze posługujemy się z nią świadomie, w celu łatwego dostępu do różnego rodzaju sprzętu elektronicznego. Przedstawiana technologia otacza nas wszędzie.
 
 Często wykorzystuje się ją w monitoringu wideo, aby zapewnić bezpieczeństwo osobiste jak i narodowe. Co za tym idzie, odpowiednie służby polegają na niej w momencie egzekwowania prawa lub identyfikacji osób w grupie. W dziedzinie marketingu zaczęto korzystać z personalizacji reklam dla danego użytkownika. Poprzez integrację kamery internetowej z telewizorem, można gromadzić informacje o osobie, lokalizując ją za pomocą detekcji twarzy. Zbiera się dane dotyczące rasy, płci oraz przedziału wiekowego, aby następnie na tej podstawie dostosować wyświetlane reklamy. W nowo powstających aparatach fotograficznych wykrywania twarzy używa się podczas automatycznego ustawiania ostrości. Nowoczesne urządzenia przez namierzenie uśmiechu, dobierają odpowiedni moment zrobienia zdjęcia, przez co odbywa się to bez manualnego użycia przycisków. \cite{fDetection2}
 
@@ -24,7 +24,7 @@ Charakteryzację każdej z grup \cite{Yang} można przedstawić w następujący 
 \begin{itemize}
     \item metody bazujące na wiedzy - wykorzustujące ludzkie obeznanie na temat elementów jakie zawiera przeciętna twarz
     \item techniki używające niezmienników - algorytmy skupiają się na zlokalizowaniu cech strukturalnych twarzy, które są niezmienne ze względu na kąt, oświetlenie, pozycję twarzy
-    \item metody bazujące na przeszukiwaniu wzorcem - dzięki wielu zgromadzonym wzorcom odnośnie wyglądu twarzy lub jej konkretnych elementów poszukuje się korelacji między schematem a obrazem wejściowym
+    \item metody bazujące na poszukiwaniu wzorców - dzięki wielu zgromadzonym wzorcom odnośnie wyglądu twarzy lub jej konkretnych elementów poszukuje się korelacji między schematem a obrazem wejściowym
     \item metody bazujące na obrazie - model trenowany jest zestawem obrazów, które zawierają różnorodne ludzkie twarze, przedstawiane w zmiennych warunkach
 \end{itemize}
 
@@ -34,9 +34,9 @@ tematyki oraz dużą ilość istniejących rozwiązań w dalszej części zostan
 % %---------------------------------------------------------------------------
 
 \subsection{Schemat działania}
-Dla omawianych poniżej algorytmów struktura programu wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. 
+Dla omawianych poniżej algorytmów proces wykrywania twarzy odbywa się dwuetapowo. Początkowym etapem jest wyszkolenie klasyfikatora, którego zadaniem będzie wykrycie twarzy. 
 
-Następnie potrzebne jest działanie detektora skanującego cały obraz w celu lokalizacji istotnych cech takich jak oczy, usta, nos czy brwi. Ich rozpoznanie możliwe jest przez zgromadzone informacje znajdujące się w wytrenowanym wcześniej modelu.
+Następnym jest uruchomienie detektora skanującego cały obraz w celu lokalizacji istotnych cech takich jak oczy, usta, nos czy brwi. Ich rozpoznanie możliwe jest przez zgromadzone informacje znajdujące się w wytrenowanym wcześniej modelu.
 
 Większość algorytmów uzależnia swoją efektywność od wielkości danych, na których został przeszkolony klasyfikator. Trenowanie na dużych zbiorach danych poprawia zdolność algorytmu w trakcie określenia czy na danym obrazie znajduje się twarz. \cite{fDetection}
 
@@ -44,13 +44,13 @@ Większość algorytmów uzależnia swoją efektywność od wielkości danych, n
 
 \subsection{Klasyfikator kaskadowy z użyciem cech Haara}
 \label{sub:Haar}
-Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą o działanie klasyfikatora kaskad Haara (ang. Haar Feature-based Cascade Classifier) \cite{haar}. Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
+Paul Viola i Michael Jones w 2001 roku zaproponowali technikę wykrywania obiektów opartą na działaniu klasyfikatora kaskad Haara (ang. Haar Feature-based Cascade Classifier) \cite{haar}. Pomimo wysokiej konkurencji ze strony sieci neuronowych, algorytm cieszy się ogromną popularnością po dzień dzisiejszy. Jego zastosowanie okazało się być przełomem w dziedzinie wykrywania twarzy. 
 
 Działanie tej techniki łączy ze sobą poniższe koncepcje:
 \begin{itemize}
     \item poszukiwanie i wybór najdokładniejszych cech Haara
     \item utworzenie zintegrowanych obrazów w celu szybkiego znalezienia danej cechy
-    \item użycie metody sprawnego uczenia Adaboost
+    \item użycie metody klasyfikacji Adaboost
     \item zastosowanie klasyfikatora kaskadowego
 \end{itemize}
 

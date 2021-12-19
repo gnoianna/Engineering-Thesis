@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{add\PYGZus{}triangle\PYGZus{}to\PYGZus{}new\PYGZus{}face\PYGZus{}area}\PYG{p}{(}\PYG{n}{new\PYGZus{}face}\PYG{p}{,} \PYG{n}{warped\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{b\PYGZus{}rect}\PYG{p}{):}
+    \PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{h}\PYG{p}{)} \PYG{o}{=} \PYG{n}{b\PYGZus{}rect}
+    \PYG{n}{new\PYGZus{}face\PYGZus{}gray} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{cvtColor}\PYG{p}{(}\PYG{n}{new\PYGZus{}face}\PYG{p}{[}\PYG{n}{y}\PYG{p}{:} \PYG{n}{y} \PYG{o}{+} \PYG{n}{h}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x} \PYG{o}{+} \PYG{n}{w}\PYG{p}{],} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{COLOR\PYGZus{}BGR2GRAY}\PYG{p}{)}
+    \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{mask} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{threshold}\PYG{p}{(}\PYG{n}{new\PYGZus{}face\PYGZus{}gray}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{,} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{THRESH\PYGZus{}BINARY\PYGZus{}INV}\PYG{p}{)}
+    \PYG{n}{warped\PYGZus{}triangle} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{bitwise\PYGZus{}and}\PYG{p}{(}\PYG{n}{warped\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{warped\PYGZus{}triangle}\PYG{p}{,} \PYG{n}{mask}\PYG{o}{=}\PYG{n}{mask}\PYG{p}{)}
+
+    \PYG{n}{new\PYGZus{}face}\PYG{p}{[}\PYG{n}{y}\PYG{p}{:} \PYG{n}{y} \PYG{o}{+} \PYG{n}{h}\PYG{p}{,} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x} \PYG{o}{+} \PYG{n}{w}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{warped\PYGZus{}triangle}
+\end{Verbatim}

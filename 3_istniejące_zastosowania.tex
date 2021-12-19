@@ -2,9 +2,9 @@
 
 Niemal każdy z nas na co dzień używa smartfona i korzysta z różnego rodzaju aplikacji, których celem jest komunikacja z ludźmi, zarządzanie finansami, tworzenie notatek, dokumentów bądź też zapewnienie rozrywki użytkownikowi. W czasach, w których media społecznośiowe odgrywają znaczącą rolę popularne stało się stosowanie filtrów modyfikujących twarz, sylwetkę lub dodających do zdjęć efekty specjalne. 
 
-Zgłebiając zasoby internetowe łatwo natrafić na narzędzia, które stosują rozwiązania zbliżone do implementowanego w niniejszej pracy algorytmu.
+Zgłębiając zasoby internetowe łatwo natrafić na narzędzia, które stosują rozwiązania zbliżone do implementowanego w niniejszej pracy algorytmu.
 
-W tym rozdziale zostanie opisana technika deepfake, która z dnia na dzień zyskuje na popularności. Zostaną również przedstawione przykładowe aplikacje mobilne implementujące ową technikę i oparte o wykorzystanie sztucznej inteligencji w przetwarzaniu obrazów. 
+W tym rozdziale zostanie opisana technika deepfake, która z dnia na dzień zyskuje na popularności. Zostaną również przedstawione przykładowe aplikacje mobilne implementujące ową technikę i oparte na wykorzystaniu sztucznej inteligencji w przetwarzaniu obrazów. 
 
 % %---------------------------------------------------------------------------
 
@@ -17,11 +17,11 @@ Słowo deepfake to tak naprawdę połączenie dwóch angielskich wyrazów. Nawi�
 
 Działanie algorytmu deepfake często oparte jest na wykorzystaniu autoenkoderów lub sieci GAN (ang. Generative Adversarial Network). Według wielu osób wspomniane wyżej sieci mogą być związane z ogromnym rozwojem tejże technologii. Podobizny, które zostają wygenerowane poprzez ich zastosowanie wydają się być prawie nieodróżnialne od rzeczywistych twarzy \cite{deepfake}.
 
-Stworzenie filmu określanego jako deepfake musi zostać poprzedzone przez odpowiednie procedury. Na przykładzie enkoderów pierwszym krokiem jest przepuszczenie zdjęcia źródłowego jak i docelowego przez enkoder, który uczy się podobieństw między dwoma twarzami. Następnie dane są kompresowane, wyciągane są wspólne cechy obydwu zdjęć. Kolejnym etapem jest wytrenowanie dwóch dekoderów, które zostaną użyte to odzyskania twarzy każdej z osób. Ostatnim krokiem jest podmiana twarzy między dekoderami. Dekoder ma za zadanie zrekonstruować twarz drugiej osoby na podstawie orientacji pierwszego obrazu. 
+Stworzenie filmu określanego jako deepfake musi zostać poprzedzone zastosowaniem odpowiednich procedur. W przypadku autoenkoderów pierwszym krokiem jest przepuszczenie zdjęcia źródłowego jak i docelowego przez enkoder, który uczy się podobieństw między dwiema twarzami. Następnie dane są kompresowane, wyciągane są wspólne cechy obydwu zdjęć. Kolejnym etapem jest wytrenowanie dwóch dekoderów, które zostaną użyte to odzyskania twarzy każdej z osób. Ostatnim krokiem jest podmiana twarzy między dekoderami. Dekoder ma za zadanie zrekonstruować twarz drugiej osoby na podstawie orientacji pierwszego obrazu. 
 
 Sieci GAN działają inaczej, na początku zostają trenowane poprzez kilkugodzinne analizowanie rzeczywistego filmu wideo. Dzięki temu są w stanie nauczyć się jak wygląda twarz osoby pod różnymi kątami, w różnym świetle. Następnie łączy się wytrenowaną sieć z technikami grafiki komputerowej, nakłada się kopię osoby na danego aktora. Wszystko odbywa się poprzez mapowanie odpowiednich punktów charakterystycznych twarzy.
 
-Technologia deepfake niesie ze sobą niemałe zagrożenie. Poziom zaawansowania sprawia, że czasami ciężko na pierwszy rzut oka wykryć film, na którym została zastosowana. Na dzień dzisiejszy dzięki dokładniejszej analizie takowego wideo jesteśmy w stanie wykryć czy stworzony film jest fikcją. Jednak według wielu przypuszczeń, niewykluczone, że wraz z rozwojem sztucznej inteligencji przestanie to być możliwe.
+Technologia deepfake niesie ze sobą niemałe zagrożenie. Poziom zaawansowania sprawia, że czasami ciężko na pierwszy rzut oka wykryć film, w którym została zastosowana. Na dzień dzisiejszy dzięki dokładniejszej analizie takowego wideo jesteśmy w stanie wykryć, czy stworzony film jest fikcją. Jednak według wielu przypuszczeń, niewykluczone, że wraz z rozwojem sztucznej inteligencji przestanie to być możliwe.
 
 % %---------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ Wszystko odbywa się w kilku krokach, należy zrobić zdjęcie swojej twarzy alb
 \subsection{Anyface: face animation}
 Anyface \cite{anyface} to aplikacja mająca na celu, podobnie jak poprzedniczka, zapewnienie rozrywki użytkownikowi. Jest ona dostępna w wersji mobilnej tylko na Androida.
 
-W odróżnieniu do wspomnianego wyżej programu to narzędzie posiada dużo więcej funkcji, przez co może sprawiać wrażenie bardziej atrakcyjnego dla użytkownika. Poza animacją zdjęcia na podstawie wybranej frazy istnieje możliwość dodania własnego nagrania, z którego użyciem zostanie wygenerowana animacja. Narzędzie posiada także moduł edycji i udoskonalania zdjęć, odbiorca jest w stanie dodawać filtry, efekty specjalne i inne obiekty, które nadadzą animacji unikalny charakter. 
+W odróżnieniu do wspomnianego wyżej programu to narzędzie posiada dużo więcej funkcji, przez co może sprawiać wrażenie bardziej atrakcyjne dla użytkownika. Poza animacją zdjęcia na podstawie wybranej frazy istnieje możliwość dodania własnego nagrania, z którego użyciem zostanie wygenerowana animacja. Narzędzie posiada także moduł edycji i udoskonalania zdjęć, odbiorca jest w stanie dodawać filtry, efekty specjalne i inne obiekty, które nadadzą animacji unikalny charakter. 
 
 % %---------------------------------------------------------------------------
 
