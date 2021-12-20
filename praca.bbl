@@ -86,34 +86,37 @@
            familyi={Y\bibinitperiod},
            given={Ming-Hsuan},
            giveni={M\bibinithyphendelim H\bibinitperiod}}}%
-        {{hash=cf13595c1b836ef3588f2186d2f288b2}{%
+        {{hash=64e38fa5bbe1be43f782d9473bcdea28}{%
            family={Kriegman},
            familyi={K\bibinitperiod},
-           given={David},
+           given={D.J.},
            giveni={D\bibinitperiod}}}%
-        {{hash=9b6bb9aa3e5ebab01f9edc88ec431d1a}{%
+        {{hash=71c8d683d20659714d83e851f0eac5ae}{%
            family={Ahuja},
            familyi={A\bibinitperiod},
-           given={Narendra},
+           given={N.},
            giveni={N\bibinitperiod}}}%
       }
-      \strng{namehash}{1dbadba255acb6dfcd305020215cc959}
-      \strng{fullhash}{1dbadba255acb6dfcd305020215cc959}
-      \strng{bibnamehash}{1dbadba255acb6dfcd305020215cc959}
-      \strng{authorbibnamehash}{1dbadba255acb6dfcd305020215cc959}
-      \strng{authornamehash}{1dbadba255acb6dfcd305020215cc959}
-      \strng{authorfullhash}{1dbadba255acb6dfcd305020215cc959}
+      \strng{namehash}{47e80e7b61abc5456ed6b491aa07457c}
+      \strng{fullhash}{47e80e7b61abc5456ed6b491aa07457c}
+      \strng{bibnamehash}{47e80e7b61abc5456ed6b491aa07457c}
+      \strng{authorbibnamehash}{47e80e7b61abc5456ed6b491aa07457c}
+      \strng{authornamehash}{47e80e7b61abc5456ed6b491aa07457c}
+      \strng{authorfullhash}{47e80e7b61abc5456ed6b491aa07457c}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Institute of Electrical and Electronics Engineers}
+      \field{journaltitle}{IEEE Transactions on Pattern Analysis and Machine Intelligence}
       \field{number}{1}
-      \field{title}{Detecting Faces in Images: A Survey}
+      \field{title}{Detecting faces in images: a survey}
       \field{volume}{24}
       \field{year}{2002}
-      \field{pages}{35\bibrangessep 36}
+      \field{pages}{35\bibrangedash 36}
       \range{pages}{2}
+      \verb{doi}
+      \verb 10.1109/34.982883
+      \endverb
     \endentry
     \entry{haar}{article}{}
       \name{author}{2}{}{%
