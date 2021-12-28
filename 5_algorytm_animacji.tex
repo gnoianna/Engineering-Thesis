@@ -93,7 +93,7 @@ Wybrane funkcje zdają się być wystarczające do osiągnięcia zamierzonego re
 		\subcaption{\label{detected_landmarks_avatar}}
 	\end{subfigure}
 	
-	\caption{\label{fig:detectedLandmarks}Twarz i punkty wykryte na obrazie źródłowym \protect\subref{detected_landmarks_src} oraz na awatarze \protect\subref{detected_landmarks_avatar}}
+	\caption{\label{fig:detectedLandmarks}Elementy wykryte na obrazie źródłowym \protect\subref{detected_landmarks_src} \cite{data} oraz na awatarze \protect\subref{detected_landmarks_avatar} \cite{avatars}}
 \end{figure}
 
 Efektem wizualnym użycia powyższej funkcji są obrazy przedstawione na Rys.\ref{fig:detectedLandmarks}. Na każdym ze zdjęć została zlokalizowana twarz, którą zaznaczono zielonym prostokątem oraz jej kluczowe elementy, w postaci 68 punktów oznaczonych kolorem czerwonym. W następnych etapach posłużą one jako baza, na której będą wykonywane wszelkie operacje. 
@@ -296,7 +296,7 @@ Finalnym etapem opisywanego algorytmu jest ponowna transformacja, tym razem cał
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=7cm]{zdjęcia/specific_landmarks.JPG}
-	\caption{Punkty na których podstawie następuje ostateczna transformacja} 
+	\caption{Punkty, na podstawie których następuje ostateczna transformacja} 
 	\label{fig:specificLandmarks}
 \end{figure}
 
@@ -358,7 +358,7 @@ Po wykonaniu opisanych instrukcji należy dokonać normalizacji całego obrazu, 
 		\subcaption{\label{without_face_avatar}}
 	\end{subfigure}
 	
-	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}.}
+	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}}
 \end{figure}
 
 Aby podmienienić oblicze awatara na zmodyfikowany obszar wystarczy skorzystać z podstawowej operacji przetwarzania obrazów, czyli funkcji \textit{bitwise\_and()} udostępnionej przez bibliotekę OpenCV. Umożliwia ona zastosowanie na zdjęciu źródłowym maski o wymiarach nowego obszaru twarzy, czego rezultatem jest obraz przedstawiony na Rys. \ref{without_face_avatar}.
@@ -393,7 +393,7 @@ Grafika zamieszczona poniżej przedstawia strukturę aplikacji webowej. Umieszcz
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=13cm]{zdjęcia/structure_app.png}
-	\caption{Struktura aplikacji webowej.} 
+	\caption{Struktura aplikacji webowej} 
 	\label{fig:structureApp}
 \end{figure}
 

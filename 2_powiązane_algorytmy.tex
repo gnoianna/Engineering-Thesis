@@ -173,7 +173,7 @@ Tak jak w innych przypadkach, istnieje wiele różnych propozycji rozwiązania t
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{zdjęcia/landmarks_points.JPG}
-	\caption{Wizualizacja 68 punktów charakterystycznych twarzy} 
+	\caption{Wizualizacja 68 punktów charakterystycznych twarzy \cite{landmarksPoints}}
 	\label{fig:landmarks}
 \end{figure}
 
@@ -189,19 +189,19 @@ Rezultatem powyższych działań jest model zdolny do zlokalizowania charakterys
 
 Zaletą przedstawionego algorytmu jest niezwykle szybki czas działania oraz dobra dokładność wykrywania elementów, nawet w przypadku twarzy ukazanych z profilu. Plusem jest także możliwość użycia dowolonych danych treningowych, czego efektem jest wyszkolenie własnego detektora punktów nie tylko twarzy, ale też innych niestandardowych elementów.
 
-Technika, która została omówiona w tym rozdziale znajduje swoje zastosowania w wielu dziedzinach życia. Często jest ona uzupełnieniem wykrywania twarzy, w celu upewnienia się co do tożsamości danych osób. Jest to przydatny system w analizowaniu emocji ludzi, pozwala osobom z autyzmem bądź innymi chorobami lepiej zrozumieć otaczający ich świat. W przypadku oprogramowania czytającego z ruchu warg również analizuje się zmiany lokalizacji ważnych punktów charakterystycznych.
+Technika, która została omówiona w tym rozdziale znajduje swoje zastosowania w wielu dziedzinach życia. Często jest ona uzupełnieniem wykrywania twarzy, w celu upewnienia się co do tożsamości danych osób. Jest to przydatny system w analizowaniu emocji ludzi, pozwala osobom z autyzmem bądź innymi chorobami lepiej zrozumieć otaczający ich świat. W przypadku oprogramowania czytającego z ruchu warg również analizuje się zmiany lokalizacji ważnych punktów charakterystycznych \cite{fDetection2}.
 
 % %---------------------------------------------------------------------------
 
 \section{Triangulacja Delaunaya}
 Poprzez pojęcie triangulacji, w kontekście matematycznym, można rozumieć podział figury geometrycznej na trójkąty, bądź też czworościany (określane jako sympleksy) w taki sposób, aby część wspólna dwóch sąsiadujących trójkątów (czworościanów) była ich wspólną ścianą, wierzchołkiem, bokiem, trójkątem lub zbiorem pustym \cite{triangulation}.
 
-Istnieje wiele różnych rodzajów triangulacji. W przypadku rozważanego w tej pracy algorytmu wykorzystano triangulacje zbioru punktów, do której należy między innymi triangulacja Delaunaya (lub Delone), której nazwa pochodzi od nazwiska autora tejże koncepcji Borysa Delaunaya. 
+Istnieje wiele różnych rodzajów triangulacji. W przypadku rozważanego w tej pracy algorytmu wykorzystano triangulacje zbioru punktów w przestrzeni 2D, do której należy między innymi triangulacja Delaunaya (lub Delone), której nazwa pochodzi od nazwiska autora tejże koncepcji Borysa Delaunaya. 
 
-Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrzeni $R^{n+1}$, którą definiuję się w poniższy sposób. Jako $T$ określa się podział przestrzeni $R^{n+1}$ na $(n+1)$ sympleksów, z punktami jako wierzchołki, spełniających okreśone warunki:
+Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrzeni $R^{n+1}$, którą definiuję się w poniższy sposób. Jako $T$ określa się podział przestrzeni $R^{n+1}$ na $(n+1)$ trójkątów, z punktami jako wierzchołki, spełniających okreśone warunki:
 
 \begin{enumerate}
-    \item Każde dwa sympleksy należące do zbioru $T$ posiadają wspólną ściane albo nie są ze sobą połączone w żaden sposób.
+    \item Każde dwa trójkąty należące do zbioru $T$ posiadają wspólną ściane albo nie są ze sobą połączone w żaden sposób.
     \item Każdy z ograniczonych zbiorów w przestrzeni $R^{n+1}$ ma część wspólną z ograniczoną liczbą trójkątów ze zbioru $T$.
     \item Opisując kulę na dowolonym trójkącie ze zbioru $T$ nie natkniemy się na sytuację, gdy wnętrze kuli będzie zawierało wierzchołki z pozostałych sympleksów zawartych w zbiorze $T$.
 \end{enumerate}
@@ -213,16 +213,16 @@ Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrz
 	\label{fig:delone}
 \end{figure}
 
-Wspominając o triangulacji Delone warto wspomnieć o diagramach Voronoi, które są ściśle powiązane z owym pojęciem. Diagram Voloroi dla zestawu punktów dzieli przestrzeń w taki sposób, że linie podziału znajdują się w równej odległości od punktów sąsiadujących.
+Przedstawioną powyżej koncepcję można uogólnić do przestrzeni o większych wymiarach. Wspominając o triangulacji Delone warto także wspomnieć o diagramach Voronoia, które są ściśle powiązane z owym pojęciem. Diagram, dla zestawu punktów, dzieli przestrzeń w taki sposób, że linie podziału znajdują się w równej odległości od punktów sąsiadujących.
 
-Ważną własnością trangulacji Delone jest fakt, iż wraz z diagramem Voronoi tworzy ona graf dualny. Te definicje są powiązane, więc znając trangulację Delone dla zbioru punktów możemy w łatwy sposób obliczyć diagram Voronoi. Dwa trójkąty mające wspólną krawędź w triangulacji umożliwiają odnalezienie krawędzie w diagramie Voronoi. 
+Ważną własnością trangulacji Delone jest fakt, iż wraz z diagramem Voronoia tworzy graf dualny. Te definicje są powiązane, więc znając trangulację Delone dla zbioru punktów możemy w łatwy sposób obliczyć diagram Voronoia. Dwa trójkąty mające wspólną krawędź w triangulacji umożliwiają odnalezienie krawędzi w diagramie Voronoia. 
 
-Centra okręgów wyznaczonych przez owe trójkąty po połączeniu tworzą daną krawędź. Rys. \ref{fig:voronoi}  przedstawia krawędzie triangulacji (czarne linie) oraz utworzone na podstawie triangulacji komórki Voronoi (czerwone linie).
+Centra okręgów wyznaczonych przez owe trójkąty po połączeniu tworzą daną krawędź. Rys. \ref{fig:voronoi}  przedstawia krawędzie triangulacji (czarne linie) oraz utworzone na podstawie triangulacji komórki Voronoia (czerwone linie).
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=6cm]{zdjęcia/voronoi.png}
-	\caption{Graf przedstawiający komórki Vornoi oraz krawędzie triangulacji \cite{tDelone}} 
+	\caption{Graf przedstawiający komórki Vornoia oraz krawędzie triangulacji \cite{tDelone}} 
 	\label{fig:voronoi}
 \end{figure}
 
@@ -231,10 +231,5 @@ Istotną własnością tej techniki jest fakt, że trójkąty powstałe w wyniku
 Triangulacja ma swoje zastosowania w wielu dziedzinach. Wykorzystuje się ją w informatyce, grafice komputerowej czy też geodezji. Technika umożliwia tworzenie skomplikowanych figur, wypełnianie obszarów, wyznaczanie linii przecięcia.
 
 Istnieje wiele różnych algorytmów przeznaczonych do znajdowania trangulacji Delone dla zbioru punktów. Przedstawienie ich w niniejszej pracy dyplomowej nie jest jednak kluczowe. Większość języków programowania dostarcza odpowiednie biblioteki, które posiadają funkcje implementujące takowe algorytmy. 
-
-
-% Istnieje wiele różnych algorytmów przeznaczonych do znajdowania trangulacji Delone dla zbioru punktów. Nie jest to jednak kluczowe w przypadku niniejszej pracy dymplomowej. W implementacji zostanie użyta odpowiednia biblioteka, która implementuje algorytm triangulacji Delone. 
-
-% W przypadku tworzenia algorytmu animacji awatara istotne jest, aby trójkąty tworzone ze zbioru punktów charakterystycznych były zbudowane w odpowiedni sposób. Trójkąty powstałe w wyniku triangulacji nie będą mieć dużych kątów, co zapewni przejrzystość powstałych figur. W przypadku podziału twarzy na takowe figury unikniemy chaosu, nierównomierności. Właśnie dlatego zdecydowałam się na wybór tejże techniki.
 
 
