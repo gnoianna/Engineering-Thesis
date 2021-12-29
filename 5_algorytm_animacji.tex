@@ -137,7 +137,7 @@ def generate_xy_for_indexes(points, indexes):
     return [points[single_index] for single_index in indexes]
 \end{minted}
 
-Funkcja zaimplementowana w celu rozwiązania tej części problemu generuje opisaną powyżej triangulację. Kolejną istotną kwestią jest wyodrębnienie analogicznych trójkątów z obydwu zbiorów punktów. Moduł \textit{getTriangleList()} zwraca współrzędne wszystkich trzech wierzchołków każdego z wygenerowanych trójkątów. W prosty sposób można odnaleźć ich indeksy w zbiorze punktów charakterystycznych obrazu źródłowego, a następnie zidentyfikować analogiczne elementy w zbiorze punktów wygenerowanych z obrazu awatara.
+Funkcja zaimplementowana w celu rozwiązania tej części problemu generuje opisaną powyżej triangulację. Kolejną istotną kwestią jest wyodrębnienie analogicznych trójkątów z obydwu zbiorów punktów. Moduł \textit{getTriangleList()} zwraca współrzędne wszystkich trzech wierzchołków każdego z wygenerowanych trójkątów. W prosty sposób można odnaleźć ich indeksy w~zbiorze punktów charakterystycznych obrazu źródłowego, a następnie zidentyfikować analogiczne elementy w~zbiorze punktów wygenerowanych z obrazu awatara.
 
 \begin{figure}[h]
 	\centering
@@ -262,7 +262,7 @@ Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizuali
 	\caption{\label{fig:triangles}Odpowiadające sobie figury wyodrębnione z obszaru obrazu źródłowego \protect\subref{triangle_src} i awatara \protect\subref{triangle_avatar} oraz rezultat transformacji \protect\subref{triangle_result} płaszczyzny \protect\subref{triangle_avatar} w \protect\subref{triangle_src}}
 \end{figure}
 
-Schemat opisany w tej sekcji należy powtórzyć dla każdego trójkąta zwróconego przez funkcję \textit{delaunay\_triangulation()}. W skończonej pętli następuje modyfikacja wszystkich figur i jednoczesna rekonstrukcja danych fragmentów obszaru twarzy awatara. Finalny efekt można obserwować na Rys. \ref{mask_before_avatar} przedstawionym w następnej sekcji. Trójkąty zostały dopasowane do odpowiadających im figur z obrazu źródłowego, efektem jest zmodyfikowany obszar twarzy o takich samych wymiarach jak twarz źródłowa (\ref{src_img}).
+Schemat opisany w tej sekcji należy powtórzyć dla każdego trójkąta zwróconego przez funkcję \textit{delaunay\_triangulation()}. W skończonej pętli następuje modyfikacja wszystkich figur i jednoczesna rekonstrukcja danych fragmentów obszaru twarzy awatara. Finalny efekt można obserwować na Rys. \ref{mask_before_avatar} przedstawionym w następnej sekcji. Trójkąty zostały dopasowane do odpowiadających im figur z obrazu źródłowego, efektem jest zmodyfikowany obszar twarzy o~takich samych wymiarach jak twarz źródłowa (\ref{src_img}).
 
 
 
