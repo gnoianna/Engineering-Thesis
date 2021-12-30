@@ -1,36 +1,80 @@
 \chapter{Ewaluacja i rezultaty}
 \label{cha:ewaluacjaIRezultaty}
-Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji działania algorytmu animacji awatara. Przedstawiono w nim również otrzymane rezultaty i wnioski płynące z przeprowadzonych ankiet.
+Poniższy rozdział zawiera opis testów przeprowadzonych w celu zbadania działania algorytmu animacji awatara. Przedstawiono w nim również otrzymane rezultaty i wnioski płynące z opracowanej walidacji.
+
+% %---------------------------------------------------------------------------
 
 \section{Sposób testowania}
+Przetestowanie stworzonego programu to kluczowa kwestia, dzięki której łatwiej wykryć błędy mogące pojawić się podczas użytkowania danego oprogramowania. Istotna jest również opinia osób testujących program, niejednokrotnie zwracają oni uwagę na braki, których uzupełnienie zdecydowanie usprawniłoby korzystanie z aplikacji.
+
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.35\textwidth}
 		\centering
-		\includegraphics[height=5.5cm]{zdjęcia/1.png}
+		\includegraphics[height=4cm]{zdjęcia/1.png}
 		\subcaption{\label{avatar_1}}
 	\end{subfigure}
 	\begin{subfigure}{0.35\textwidth}
 		\centering
-		\includegraphics[height=5.5cm]{zdjęcia/2.png}
+		\includegraphics[height=4cm]{zdjęcia/2.png}
 		\subcaption{\label{avatar_2}}
 	\end{subfigure}
 	\begin{subfigure}{0.35\textwidth}
 		\centering
-		\includegraphics[height=5.5cm]{zdjęcia/3.png}
+		\includegraphics[height=4cm]{zdjęcia/3.png}
 		\subcaption{\label{avatar_3}}
 	\end{subfigure}
 	\begin{subfigure}{0.35\textwidth}
 		\centering
-		\includegraphics[height=5.5cm]{zdjęcia/4.png}
+		\includegraphics[height=4cm]{zdjęcia/4.png}
 		\subcaption{\label{avatar_4}}
 	\end{subfigure}
 	
-	\caption{\label{fig:avatars}Awatary użyte do walidacji działania algorytmu}
+	\caption{\label{fig:avatars}Awatary wykorzystane do przetestowania algorytmu}
 \end{figure}
 
+W czasie tworzenia algorytmu animacji awatara zostały przeprowadzone testy manualne poszczególnych funkcji, pomogło to usprawnić działanie niektórych modułów i dopracować logikę ich działania. Ze względu na prostotę programu, stworzonego na potrzeby tej pracy inżynierkiej, wykonywanie bardziej zaawansowanych testów samego oprogramowania nie było konieczne.
 
-\begin{table}
+Ważnym elementem stało się przetestowanie algorytmu na zarejestrowanych obrazach lub gotowych zbiorach danych, co wcześniej zostało określone w założeniach projektowych (\ref{sec:zalozeniaProjektu}). Z tego powodu przeprowadzono testy użyteczności, które zostały podzielone na dwie części. W każdej z nich modyfikowano zdjęcia czterech różnych awatarów \ref{fig:avatars}, co pozwoliło w lepszy sposób sprawdzić działanie algorytmu. 
+
+Dobór zdjęć wybranych do testowania algorytmu nie był przypadkowy. W ramach niniejszej pracy jako awatar rozumie się nierealną cyfrową postać mającą formę osobową. Ważną cechą jest prostota takiego charakteru - wyraźne rysy twarzy, brak cieni. Ze względu na owe wymagania do testów wybrano podobizny postaci z popularnej gry symulacyjnej The Sims 4 \cite{avatars}, które zostały udostępnione na forum dyskusyjnym.
+
+% %---------------------------------------------------------------------------
+
+\section{Walidacja z użyciem aplikacji}
+Pierwsza część przeprowadzonych testów obejmuje wykorzystanie aplikacji webowej w celu zbadania efektywności działania algorytmu w przypadku animacji na podstawie obrazu przechwyconego z kamery. 
+
+Na potrzeby przeprowadzonego badania stworzono ankietę składającą się z czterech sekcji, gdzie każda dotyczy modyfikacji innego awatara. Głównym zadaniem ma być ocena rezultatów odwzorowania czterech podstawowych emocji \cite{emotions}, na które składają się:
+
+\begin{itemize}
+    \item szczęście,
+    \item smutek,
+    \item strach/zaskoczenie,
+    \item gniew/obrzydzenie
+\end{itemize}
+
+Każda sekcja składa się z pięciu pytań:
+\begin{itemize}
+    \item cztery z nich dotyczą testowania zakładki \textit{Real-time animation}, gdzie awatar jest animowany na podstawie obrazu przechwyconego z kamery
+    \item jedno ma na celu porówananie efektów otrzymanych za pomocą animacji opartej na analizowaniu obrazu z kamery z modyfikacją na podstawie wczytanego zdjęcia (zakładka \textit{Select image})
+\end{itemize}
+
+Treść czterech pierwszych pytań różni się one między sobą tylko emocją, którą aktualnie należy przetestować. Dla przykładu pierwsze pytanie ma postać:
+\begin{center}
+    Odwzorowanie pierwszej podstawowej emocji (szczęście).
+\end{center}
+
+W tej części zastosowano ocenianie za pomocą skali od 1 do 5, gdzie konkretnym wartościom odpowiadają następujące etykiety:
+\begin{enumerate}
+    \item Bardzo słaby
+    \item Słaby
+    \item Przeciętny
+    \item Dobry
+    \item Bardzo dobry
+
+\end{enumerate}
+
+\begin{table}[h]
 \centering
 \begin{tabular}{|c|l|c|c|c|c|c|} 
 \hline
@@ -38,7 +82,7 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
 \cline{3-7}
                                  & \multicolumn{1}{c|}{}                                 & \textbf{1} & \textbf{2} & \textbf{3}                       & \textbf{4}                         & \textbf{5}                          \\ 
 \hhline{|=======|}
-\multirow{4}{*}{pierwszy}        & szczęście                                             & ~ 0\%~~    & ~ 9\%~~    & ~ 0\%~                           & \textcolor[rgb]{0,0.588,0}{~ 45\%} & \textcolor[rgb]{0,0.588,0}{~ 45\%}  \\ 
+\multirow{4}{*}{\ref{avatar_1}}        & szczęście                                             & ~ 0\%~~    & ~ 9\%~~    & ~ 0\%~                           & \textcolor[rgb]{0,0.588,0}{~ 45\%} & \textcolor[rgb]{0,0.588,0}{~ 45\%}  \\ 
 \cline{2-7}
                                  & smutek                                                & 0\%        & 0\%        & 0\%                              & \textcolor[rgb]{0,0.588,0}{64\%}   & 36\%                                \\ 
 \cline{2-7}
@@ -46,7 +90,7 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
 \cline{2-7}
                                  & gniew/obrzydzenie                                     & 0\%        & 9\%        & 18\%                             & \textcolor[rgb]{0,0.588,0}{36\%}   & \textcolor[rgb]{0,0.588,0}{36\%}    \\ 
 \hhline{|=======|}
-\multirow{4}{*}{drugi}           & szczęście                                             & 0\%        & 9\%        & 9\%                              & \textcolor[rgb]{0,0.588,0}{45\%}   & 36\%                                \\ 
+\multirow{4}{*}{\ref{avatar_2}}           & szczęście                                             & 0\%        & 9\%        & 9\%                              & \textcolor[rgb]{0,0.588,0}{45\%}   & 36\%                                \\ 
 \cline{2-7}
                                  & smutek                                                & 0\%        & 27\%       & 9\%                              & \textcolor[rgb]{0,0.588,0}{45\%}   & 18\%                                \\ 
 \cline{2-7}
@@ -54,7 +98,7 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
 \cline{2-7}
                                  & gniew/obrzydzenie                                     & 9\%        & 18\%       & \textcolor[rgb]{0,0.588,0}{45\%} & 27\%                               & 0\%                                 \\ 
 \hhline{|=======|}
-\multirow{4}{*}{trzeci}          & szczęście                                             & 0\%        & 0\%        & 9\%                              & \textcolor[rgb]{0,0.588,0}{45\%}   & \textcolor[rgb]{0,0.588,0}{45\%}    \\ 
+\multirow{4}{*}{\ref{avatar_3}}          & szczęście                                             & 0\%        & 0\%        & 9\%                              & \textcolor[rgb]{0,0.588,0}{45\%}   & \textcolor[rgb]{0,0.588,0}{45\%}    \\ 
 \cline{2-7}
                                  & smutek                                                & 0\%        & 0\%        & 27\%                             & \textcolor[rgb]{0,0.588,0}{55\%}   & 18\%                                \\ 
 \cline{2-7}
@@ -62,7 +106,7 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
 \cline{2-7}
                                  & gniew/obrzydzenie                                     & 0\%        & 18\%       & 18\%                             & \textcolor[rgb]{0,0.588,0}{36\%}   & 27\%                                \\ 
 \hhline{|=======|}
-\multirow{4}{*}{czwarty}         & szczęście                                             & 0\%        & 0\%        & 0\%                              & 18\%                               & \textcolor[rgb]{0,0.588,0}{82\%}    \\ 
+\multirow{4}{*}{\ref{avatar_4}}         & szczęście                                             & 0\%        & 0\%        & 0\%                              & 18\%                               & \textcolor[rgb]{0,0.588,0}{82\%}    \\ 
 \cline{2-7}
                                  & smutek                                                & 0\%        & 9\%        & 0\%                              & \textcolor[rgb]{0,0.588,0}{55\%}   & 36\%                                \\ 
 \cline{2-7}
@@ -71,18 +115,105 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
                                  & gniew/obrzydzenie                                     & 0\%        & 9\%        & 9\%                              & \textcolor[rgb]{0,0.588,0}{64\%}   & 18\%                                \\
 \hline
 \end{tabular}
+\caption{Wyniki walidacji przeprowadzonej z użyciem aplikacji webowej}
+\label{tab:first_test}
 \end{table}
 
+Ostatnie, piąte pytanie dotyczy oceny rezultatu osiągniętego w zakładce \textit{Select image} dla danego awatara. Osoba ankietowana powinna wybrać jedno zdjęcie z udostępnionej bazy odwzorowujące emocje, dla której rezultat animacji wypadł najgorzej. Następnie należy ocenić osiągnięty efekt, w stosunku do tego otrzymanego w zakładce \textit{Real-time animation}. Tym razem użyto skali od 1 do 7 gdzie 1 oznacza dużo gorszy efekt, natomiast 7 zdecydowanie lepszy wynik.
+
+Przed przystąpieniem do testowania użytkownicy zostali zapoznani z krótką instrukcją, w której zwrócono uwagę na czynniki mogące mieć wpływ na działanie algorytmu:
+
+\begin{enumerate}
+    \item Ustaw twarz w pozycji frontowej, tak aby była ona dobrze widoczna w kamerze.
+    \item Odsłoń włosy oraz zdejmij okulary.
+    \item Staraj się nie wykonywać gwałtownych ruchów w momencie naciskania przycisku "Animate".
+    \item W trakcie oceny rezultatów kieruj się głównie tym, czy emocja została poprawnie odwzorowana.
+    \item Możesz wielokrotnie dokonywać animacji dla danej emocji i ocenić sumaryczne rezultaty.
+\end{enumerate}
 
 
-\section{Walidacja działania aplikacji}
+
+W ankiecie wzięło udział 11 osób w przedziale wiekowym od 19 do 60 lat. Większość z nich korzysta na co dzień z komputera, jednak tylko w podstawowych celach. W trakcie przeprowadzania ankiety nie wyniknęły żadne problemy. Aplikacja działała płynnie. Każdej osobie, bez żadnych przeszkód, udało się ukończyć zadania.
+
+Procentowe wyniki ankiety przedstawiono w powyższej tabeli~(Tab.~\ref{tab:first_test}). Zawarto w niej odpowiedzi na najbardziej kluczowe pytania (1-4), czyli te dotyczące odwzorowania danej emocji. Dominujące wartości dla każdej z nich i danego awatara oznaczono kolorem zielonym. 
+
+Analizując wyniki można dojść do następujących wniosków:
+\begin{itemize}
+    \item najlepsze oceny zanotowano dla awatara \ref{avatar_4}, odwzorowanie każdej z emocji zostalo ocenione jako \textit{dobre} lub \textit{bardzo dobre} średnio w 89\% przypadków
+    \item wyłącznie dla awatara \ref{avatar_2} przy dwóch emocjach odnotowano ocenę \textit{bardzo słaby}
+    \item największą liczbę ocen \textit{bardzo słaby} oraz \textit{słaby} da się zauważyć dla awatara \ref{avatar_2} (średnio 18\% odpowiedzi)
+\end{itemize}
+
+Analizując odpowiedzi na ostatnie pytanie, dotyczące porównania efektów osiągniętych w zakładce \textit{Select image} oraz \textit{Real-time animation}, warto zwrócić uwagę na poniższe kwestie:
+\begin{itemize}
+    \item dla awatara \ref{avatar_1} w 91\% przypadków odpowiedzi skupiają się w przedziale ocen od 4-7, co oznacza tendencję w kierunku oceny \textit{zdecydowanie lepszy}
+    \item awatar \ref{avatar_2} oceny skupiają się w obszarze 1-4, określając rezultaty jako \textit{gorsze}
+    \item dla awatara \ref{avatar_3} koncentracja odpowiedzi przypada na przedział 4-7, aż w 45\% zdecydowano że efekt modyfikacji poprzez zakładkę \textit{Select image} jest \textit{zdecydowanie lepszy}
+    \item efekty dla ostatniego awatara zostały ocenione bardzo różnorodnie, żadna z odpowiedzi nie wydaje się znacząco dominować
+\end{itemize}
+
+
+
+
+
 % No to tutaj może dla jakichś 15 osób czy coś, poprosić o testowanie i np. osobno te ze zdjęciami a osobno real-time
-% szczęście,
-% smutek,
-% strach/zaskoczenie,
-% gniew/obrzydzenie
+
 % No i ocenić to może w skali, czy rezultaty są wystarczające
+
+
+
+% %---------------------------------------------------------------------------
+
 \section{Ocena osiągniętych efektów}
+Druga część testów dotyczyła oceny rezultatów osiągniętych poprzez zastosowanie algorytmu z wykorzystaniem gotowego zbioru danych. Ich przygotowanie przebiegało w następujący sposób:
+\begin{itemize}
+    \item wykorzystano bazę zdjęć zawierającą podobizny mężczyzn oraz kobiet z różnymi wyrazami twarzy, odpowiadającymi podstawowym emocjom
+    \item dla każdej emocji, których podział został podany w powyższym rozdziale, wybrano po jednym zdjęciu
+    \item na podstawie wybranych obrazów dokonano modyfikacji każdego z awatara, finalnie otrzymano 16 obrazów
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|} 
+\hline
+                                                              & \multicolumn{4}{c|}{awatar}                                                                                                                                                                \\ 
+\hline
+emocja                                                         & pierwszy                                   & ~ drugi~~                                 & ~ trzeci~~                                          & czwarty                                     \\ 
+\hline
+szczęście                                                      & ~ 74\%~~                                   & 70\%                                      & 85\%                                                & \textcolor[rgb]{0,0.502,0}{\textbf{100\%}}  \\ 
+\hline
+smutek                                                         & 78\%                                       & \textcolor[rgb]{0,0.502,0}{\textbf{93\%}} & 85\%                                                & 85\%                                        \\ 
+\hline
+zaskoczenie/strach                                             & \textcolor[rgb]{0,0.502,0}{\textbf{93\% }} & 74\%                                      & 63\%                                                & 63\%                                        \\ 
+\hline
+gniew/obrzydzenie                                              & 78\%                                       & 41\%                                      & \textcolor[rgb]{0,0.502,0}{\textbf{96\%}}           & 67\%                                        \\ 
+\hline
+\bottomrule
+\begin{tabular}[c]{@{}c@{}}sumaryczna poprawność\end{tabular} & 81\%                                       & {\cellcolor{red}}\textcolor{white}{69\%}  & {\cellcolor[rgb]{0,0.502,0}}\textcolor{white}{82\%} & 79\%                                        \\
+\hline
+\end{tabular}
+\caption{Ocena rezultatów osiągniętych z użyciem gotowego zbioru danych}
+\label{tab:second_test}
+\end{table}
+
+Ankieta utworzona na potrzeby badania składa się z  16 pytań, każde z nich posiada cztery możliwe odpowiedzi:
+
+\begin{enumerate}
+    \item szczęście
+    \item smutek
+    \item strach/zaskoczenie
+    \item gniew/obrzydzenie
+\end{enumerate}
+
+
+
+Zadaniem osoby ankietowanej była próba dopasowania emocji, którą odzwierciedla zmodyfikowany wyraz twarzy awatara. W celu łatwiejszego uporządkowania wyników zastosowano punktację 0-1. W ankiecie wzięło udział 27 osób w różnym przedziale wiekowym. Poniżej przedstawiono najważniejsze parametry otrzymanych wyników:
+\begin{itemize}
+    \item maksymalnie można było uzyskać 16 punktów
+    \item najniższy uzyskany wynik to 9 punktów
+    \item średni wynik to 12,44/16
+    \item mediana wynosi 12 punktów
+\end{itemize}
 
 \begin{figure}[h]
 	\centering
@@ -100,31 +231,18 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu walidacji dzia�
 	\caption{\label{fig:best_results}Najtrafniej odgadnięte odwzorowania}
 \end{figure}
 
+Wyniki procentowe otrzymane po przeprowadzeniu badania zawarto w tabeli \ref{tab:second_test}. Po szczegółowej analizie, można zauważyć poniższe fakty:
+\begin{itemize}
+    \item 
+\end{itemize}
 
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|c|} 
-\hline
-                                                               & \multicolumn{4}{c|}{awatar}                                                                                                                                                                \\ 
-\hline
-emocja                                                         & pierwszy                                   & ~ drugi~~                                 & ~ trzeci~~                                          & czwarty                                     \\ 
-\hline
-szczęście                                                      & ~ 74\%~~                                   & 70\%                                      & 85\%                                                & \textcolor[rgb]{0,0.502,0}{\textbf{100\%}}  \\ 
-\hline
-smutek                                                         & 78\%                                       & \textcolor[rgb]{0,0.502,0}{\textbf{93\%}} & 85\%                                                & 85\%                                        \\ 
-\hline
-zaskoczenie/strach                                             & \textcolor[rgb]{0,0.502,0}{\textbf{93\% }} & 74\%                                      & 63\%                                                & 63\%                                        \\ 
-\hline
-gniew/obrzydzenie                                              & 78\%                                       & 41\%                                      & \textcolor[rgb]{0,0.502,0}{\textbf{96\%}}           & 67\%                                        \\ 
-\hline
-\bottomrule
-\begin{tabular}[c]{@{}c@{}}sumaryczna\\poprawność\end{tabular} & 81\%                                       & {\cellcolor{red}}\textcolor{white}{69\%}  & {\cellcolor[rgb]{0,0.502,0}}\textcolor{white}{82\%} & 79\%                                        \\
-\hline
-\end{tabular}
-\end{table}
-% Noo i tutaj sprawdzić np czy działa dla tego szalonego modelu, jeśli tak to sprawdzić jak tam efekty działania aplikacji dla obydwu, można np zestawić z dwóch modeli i kazać ocenić ludziom. Plus jakaś tabelka przedstawiająca porównanie czasu przetwarzania dla kilkunastu obrazów.
 
-% No i we wnioskach to na pewno:
-% 1. Jak te modele wypadają na swoim tle, tzn który lepszy i poprzeć wynikami z ankiety
-% 2. Przedstawić ocenę aplikacji tej strony real time vs tej z obrazami dwoma
-% 3. No i pewnie we wnioskach ze gorzej ta real time dziala, no i ze pewnie trzeba dopracowac i ze tez ma wplyw na to oswietlenie, jakies ustawianie zle twarzy bla bla
+
+
+
+
+
+
+% %---------------------------------------------------------------------------
+
+\section{Konkluzja}
