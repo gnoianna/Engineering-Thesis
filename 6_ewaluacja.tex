@@ -35,14 +35,14 @@ Uprzednie przetestowanie stworzonego programu to kluczowa kwestia, dzięki któr
 
 W czasie tworzenia algorytmu animacji awatara zostały przeprowadzone testy manualne poszczególnych funkcji, co pomogło usprawnić niektóre moduły i dopracować logikę ich działania. Ze względu na prostotę programu, stworzonego na potrzeby tej pracy inżynierkiej, wykonywanie bardziej zaawansowanych testów samego oprogramowania nie było konieczne.
 
-Ważnym elementem stało się przetestowanie efektywności działania algorytmu na zarejestrowanych obrazach lub gotowych zbiorach danych, co wcześniej zostało określone w założeniach projektowych (sekcja \ref{sec:zalozeniaProjektu}). Z tego powodu przeprowadzono testy użyteczności, które zostały podzielone na dwie części. W każdej z nich modyfikowano zdjęcia czterech różnych awatarów (Rys. \ref{fig:avatars}), co pozwoliło na dokładniejsze przetestowanie algorytmu.
+Ważnym elementem stała się weryfikacja efektywności działania algorytmu na zarejestrowanych obrazach lub gotowych zbiorach danych, co wcześniej zostało określone w założeniach projektowych (sekcja \ref{sec:zalozeniaProjektu}). Z tego powodu zrealizowano testy użyteczności, które zostały podzielone na dwie części. W każdej z nich modyfikowano zdjęcia czterech różnych awatarów (Rys. \ref{fig:avatars}), co pozwoliło na dokładniejsze przetestowanie algorytmu.
 
 Dobór zdjęć użytych do badań nie był przypadkowy. W ramach niniejszej pracy jako awatar rozumie się nierealną cyfrową postać mającą formę osobową. Ważną cechą jest prostota takiego charakteru - wyraźne rysy twarzy, brak cieni. Ze względu na owe wymagania do testów wybrano podobizny z popularnej gry symulacyjnej The Sims 4, które zostały udostępnione na forum~\cite{avatars}.
 
 % %---------------------------------------------------------------------------
 
 \section{Walidacja z użyciem aplikacji}
-Pierwsza część przeprowadzonych testów obejmuje wykorzystanie aplikacji webowej w celu zbadania efektywności działania algorytmu w przypadku animacji na podstawie obrazu przechwyconego z kamery. 
+Pierwsza część wykonanych testów obejmuje wykorzystanie aplikacji webowej w celu zbadania efektywności działania algorytmu w przypadku animacji na podstawie obrazu przechwyconego z kamery. 
 
 Na potrzeby przeprowadzonego badania stworzono ankietę składającą się z czterech sekcji, gdzie każda dotyczy modyfikacji innego awatara. Głównym zadaniem ma być ocena rezultatów odwzorowania czterech podstawowych emocji \cite{emotions}, na które składają się:
 
@@ -119,7 +119,7 @@ W tej części zastosowano ocenianie za pomocą skali od 1 do 5, gdzie konkretny
 \label{tab:first_test}
 \end{table}
 
-Ostatnie, piąte pytanie dotyczy oceny rezultatu osiągniętego w zakładce \textit{Select image} dla danego awatara. Osoba ankietowana powinna wybrać jedno zdjęcie z udostępnionej bazy odwzorowujące emocje, dla której rezultat animacji wypadł najgorzej. Następnie należy ocenić osiągnięty efekt, w stosunku do tego otrzymanego w zakładce \textit{Real-time animation}. Tym razem użyto skali od 1 do 7 gdzie 1 oznacza \textit{zdecydowanie gorszy} efekt, natomiast 7 \textit{zdecydowanie lepszy} wynik.
+Ostatnie, piąte pytanie dotyczy oceny rezultatu osiągniętego w zakładce \textit{Select image} dla danego awatara. Osoba ankietowana powinna wybrać jedno zdjęcie z udostępnionej bazy, odwzorowujące emocje, dla której animacja wypadła najgorzej. Następnie należy ocenić osiągnięty efekt, w stosunku do tego otrzymanego w zakładce \textit{Real-time animation}. Tym razem użyto skali od 1 do 7 gdzie 1 oznacza \textit{zdecydowanie gorszy} efekt, natomiast 7 \textit{zdecydowanie lepszy} wynik.
 
 Przed przystąpieniem do testowania użytkownicy zostali zapoznani z krótką instrukcją, w której zwrócono uwagę na czynniki mogące mieć wpływ na działanie algorytmu:
 
@@ -142,11 +142,12 @@ Analizując wyniki można dojść do następujących wniosków:
     \item największa liczba ocen \textit{słaby} oraz \textit{bardzo słaby} wystąpiła dla awatara \ref{avatar_2} (średnio 18\% odpowiedzi).
 \end{itemize}
 
-Podsumowując odpowiedzi na ostatnie pytanie, dotyczące porównania efektów osiągniętych w zakładce \textit{Select image} oraz \textit{Real-time animation}, można dojść do poniższych~{spostrzeżeń}:
+\newpage
+Podsumowując odpowiedzi na ostatnie pytanie, dotyczące porównania efektów osiągniętych w zakładce \textit{Select image} oraz \textit{Real-time animation}, można zauważyć, że:
 \begin{itemize}
-    \item dla awatara \ref{avatar_1} w 91\% przypadków odpowiedzi skupiają się w przedziale od 4 do 7, co oznacza tendencję w kierunku oceny \textit{zdecydowanie lepszy},
-    \item oceny awatara \ref{avatar_2} kumulują się między 1 a 4, co oznacza osiągnięcie głównie gorszych rezultatów,
-    \item dla awatara \ref{avatar_3} koncentracja odpowiedzi przypada na przedział 4-7, aż w 45\% zdecydowano że efekt modyfikacji poprzez zakładkę \textit{Select image} jest \textit{zdecydowanie lepszy},
+    \item dla awatara \ref{avatar_1}, w 91\% przypadków, odpowiedzi skupiły się w przedziale od 4 do 7, co oznacza tendencję w kierunku \textit{zdecydowanie lepszego} efektu,
+    \item oceny awatara \ref{avatar_2} kumulowały się między 1 a 4, przez co rozumie się osiągnięcie głównie gorszych rezultatów,
+    \item dla awatara \ref{avatar_3} koncentracja odpowiedzi przypadła na przedział 4-7, aż w 45\% zdecydowano że efekt modyfikacji poprzez zakładkę \textit{Select image} jest \textit{zdecydowanie lepszy},
     \item efekty dla ostatniego awatara (\ref{avatar_4}) zostały ocenione bardzo różnorodnie, żadna z odpowiedzi nie wydaje się znacząco dominować.
 \end{itemize}
 
@@ -237,15 +238,15 @@ Obrazy, których odzwierciedlane emocje przyporządkowano z najlepszą skuteczno
 % %---------------------------------------------------------------------------
 
 \section{Wnioski}
-Przeprowadzone testy pomogły sprawdzić poprawność algorytmu zaimplementowanego w niniejszej pracy dyplomowej. Według użytkowników algorytm zapewnia dobre efekty, a stworzona aplikacja jest przyjemna i intuicyjna w użyciu. Wiele osób stwierdziło, iż udział w badaniu był przyjemny i przysporzył sporo rozrywki.
+Przeprowadzone testy pomogły sprawdzić poprawność działania algorytmu zaimplementowanego w niniejszej pracy dyplomowej. Według użytkowników algorytm zapewnia dobre efekty, a stworzona aplikacja jest intuicyjna w użyciu. Wiele osób stwierdziło, iż udział w badaniu był przyjemny i przysporzył sporo rozrywki.
 
-Badania opisane w powyższym rozdziale pozwoliły na wykrycie wad oraz zdefiniowanie potencjalnych kierunków rozwoju i usprawnienia algorytmu. Kilku użytkowników zwróciło uwagę na brak uzębienia animowanych awatarów, który rozpraszał w trakcie testowania programu. Pojedyncza osoba wspomniała także o braku uwzględniania ułożenia brwi. Niewykluczone, że poprawa tego elementu zdecydowanie udoskonaliłaby odwzorowanie emocji.
+Analiza przeprowadzona w powyższym rozdziale pozwoliła na wykrycie wad oraz zdefiniowanie potencjalnych kierunków rozwoju programu. Kilku użytkowników zwróciło uwagę na brak uzębienia animowanych awatarów, który rozpraszał w trakcie testowania algorytmu. Pojedyncze osoby wspomniały także o braku uwzględniania ułożenia brwi. Niewykluczone, że poprawa tego elementu zdecydowanie udoskonaliłaby odwzorowanie emocji, które można osiągnąć z użyciem owego oprogramowania.
 
-Głównym celem było zbadanie jakości działania programu względem doboru awatara. Okazało się, że efektywność algorytmu w dużym stopniu zależy od obrazu, na którym następuje animacja. W pierwszej części testów najwyżej oceniono obraz \ref{avatar_4}, a w drugiej \ref{avatar_3}. Natomiast w obu najniżej oceniono awatar \ref{avatar_2}, na którym podczas modyfikacji pojawiało się sporo artefaktów psujących efekt animacji. Jak widać, dla różnych awatarów otrzymano odmienne wyniki. W przypadku kobiety znajdującej się na obrazie \ref{avatar_2} włosy nachodzące na twarz mogły negatywnie wpłynąć na rezultaty.
+Głównym celem ewaluacji było zbadanie jakości działania programu ze względu na dobór awatara. Okazało się, że efektywność narzędzia w dużym stopniu zależy od obrazu, na którym następuje animacja. W pierwszej części testów najwyżej oceniono obraz \ref{avatar_4}, natomiast w drugiej \ref{avatar_3}. Najniższe oceny, w obu przypadkach, pojawiły się dla awatara \ref{avatar_2}. Podczas jego modyfikacji można było zauważyć sporo artefaktów psujących efekt animacji. Jak widać, mimo wykorzystania identycznych obrazów, dla różnych awatarów otrzymano odmienne wyniki. W przypadku kobiety znajdującej się na obrazie \ref{avatar_2} włosy nachodzące na twarz mogły negatywnie wpłynąć na rezultaty.
 
-Istotną kwestią była także część, w której porównywano działanie algorytmu na gotowych obrazach z animacją \textit{real-time}. Dla awatarów ocenionych najwyżej efekty z obydwu zakładek były porównywalne, jednak dla awatara ocenionego najgorzej efektywność animacji na podstawie gotowych obrazów dawała lepsze wyniki. Wynika z tego, iż poprawnie użyta zakładka \textit{real-time} nie wpływała negatywnie na wizualicję, ale może poprawić jej efekt w przypadku animacji na niekorzystnym awatarze. Warto pamiętać, że rezultaty są mocno zależne od mimiki danej osoby, dla każdej z nich inny awatar sprawdzał się lepiej. 
+Istotną kwestią była także część, w której porównywano działanie oprogramowania na gotowych obrazach z animacją na podstawie obrazu przechwyconego z kamery. Dla awatarów ocenionych najwyżej osiągnięte efekty były zbliżone. Dla awatara ocenionego najgorzej efektywność animacji na podstawie gotowych obrazów dawała lepsze wyniki. Można z tego wnioskować, iż poprawnie wykonana animacja z użyciem kamery nie wpływa negatywnie na wizualicję, a w przypadku animacji niekorzystnego awatara może poprawić jej efekt. Nie należy jednak zapominać, że efekty są mocno zależne od mimiki danej osoby - dla każdej z nich inny awatar może sprawdzić się lepiej. 
 
-Uważam, iż przeprowadzone testy przebiegły pomyślnie. Stworzona aplikacja okazała się dobrym narzędziem walidacji. Ewaluacja na gotowym zbiorze danych pomogła potwierdzić otrzymane wyniki oraz zwrócić uwagę na dodatkowe ścieżki rozwoju.
+Uważam, iż przeprowadzone testy przebiegły pomyślnie. Stworzona aplikacja okazała się dobrym narzędziem walidacji. Ewaluacja na gotowym zbiorze danych pomogła zweryfikować otrzymane wnioski oraz zwrócić uwagę na inne ścieżki rozwoju.
 
 
 

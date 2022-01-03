@@ -1,29 +1,31 @@
 \chapter{Podsumowanie}
 \label{cha:podsumowanie}
-Głównym celem niniejszego projektu dyplomowego było opracowanie algorytmu animacji awatara. Zaimplementowana metoda miała opierać swoje działanie na identyfikacji punktów charakterystycznych twarzy, będących podstawą dalszych transformacji. W ramach walidacji owego oprogramowania należało napisać nieskomplikowaną aplikację webową.
+Głównym celem niniejszego projektu dyplomowego było opracowanie algorytmu animacji awatara. Zaimplementowana metoda miała opierać swoje działanie na identyfikacji punktów charakterystycznych twarzy, będących podstawą dalszych transformacji. W ramach walidacji oprogramowania należało napisać nieskomplikowaną aplikację webową.
 
-Stworzenie owego algorytmu okazało się czasochłonne i wymagało wielu modyfikacji oraz zmian koncepcji jednak zakończyło się sukcesem.  Utworzony program zdaje się działać poprawnie i pozwala osiągnąć całkiem dobre efekty. Oczywiste jest, że aktualna wersja programu nie jest idealna i z pewnością można ją dopracować, lecz spełnia określone na początku wymagania. Udało się także zbudować aplikację webową, która ułatwiła przedstawienie algorytmu oraz jego przetestowanie. %Możliwe ścieżki rozwoju zostaną opisane w następnym rozdziale.
+Stworzenie owego algorytmu okazało się czasochłonne i wymagało wielu modyfikacji oraz zmian koncepcji, jednak zakończyło się sukcesem.  Utworzony program zdaje się działać poprawnie i pozwala osiągnąć całkiem dobre efekty. Oczywiste jest, że aktualna wersja programu nie jest idealna i z pewnością można ją dopracować, ale spełnia określone na początku wymagania. Udało się także zbudować aplikację webową, która ułatwiła przedstawienie algorytmu oraz jego przetestowanie. 
 
-% W niniejszym rozdziale przedstawiono ogólne podsumowanie pracy oraz zweryfikowano początkowe założenia. Rozdział zawiera także opis możliwego rozwoju programu stworzonego w ramach owej pracy inżynierskiej.
+% %---------------------------------------------------------------------------
 
 \section{Weryfikacja początkowych założeń}
 W pierwszym rozdziale owej pracy (sekcja \ref{sec:zalozeniaProjektu}) wymieniono założenia, które w etapie końcowym powinien spełniać stworzony projekt. Poniżej zostanie przedstawiona ich analiza oraz weryfikacja osiągniętych efektów:
 
 \begin{itemize}
-    \item Działanie algorytmu miało zostać powiązane z analizą punktów charakterystycznych twarzy, co w stu procentach osiągnięto. Algorytm rozpoczyna działanie od ich wykrycia. Na tej podstawie odbywają się kolejne etapy, które dotyczą modyfikacji obszarów wyznaczonych przez owe punkty.
+    \item Działanie algorytmu miało zostać powiązane z analizą punktów charakterystycznych twarzy, co w stu procentach osiągnięto. Algorytm rozpoczyna działanie od ich wykrycia. Na tej podstawie odbywają się kolejne etapy, które dotyczą modyfikacji obszarów wyznaczonych przez dane punkty.
     \item Samą identyfikację punktów udało się zrealizować z wykorzystaniem biblioteki dlib, dzięki której odbywa się wykrycie twarzy oraz jej istotnych elementów. 
     \item Po stworzeniu projektu algorytm przetestowano według planu, na gotowym zbiorze danych, co umożliwiło sprawdzenie poprawności jego działania.
-    \item Zgodnie z planem, zaimplementowano prostą aplikację webową, wykorzystaną do walidacji algorytmu. Moim osobistym założeniem było utworzenie filtra animującego awatar w czasie rzeczywistym. Jednak z powodu długiego czasu działania funkcji \textit{warp()} z biblioteki scikit-image nie udało się go zrealizować. Niewykluczone, że w przyszłości postaram się wdrożyć ten element.
+    \item Zgodnie z planem, zaimplementowano prostą aplikację webową, wykorzystaną do walidacji algorytmu. Moim osobistym założeniem było utworzenie filtra animującego awatar w czasie rzeczywistym. Niestety z powodu długiego czasu działania funkcji \textit{warp()} z biblioteki scikit-image, nie udało się go zrealizować. Nie ukrywam, że bardzo zależy mi, aby w przyszłości wdrożyć ten element.
 \end{itemize}
 
-Podsumowując, wszystkie założenia postawione na początku tworzenia programu zostały zrealizowane. Dzięki cennym informacjom zdobytym podczas przeprowadzonych badań pozostaje kwestia jego optymalizacji i rozwoju.
+Podsumowując, wszystkie założenia postawione na początku tworzenia programu zostały zrealizowane. Dzięki cennym informacjom zdobytym podczas przeprowadzonych badań pozostaje kwestia jego optymalizacji i dalszego rozwoju.
+
+% %---------------------------------------------------------------------------
 
 \section{Możliwy rozwój projektu}
 Działanie algorytmu zaimplementowanego w trakcie tworzenia niniejszej pracy dyplomowej można usprawnić na wiele sposobów. Udoskonalenie niektórych etapów z pewnością poprawiłoby osiągane rezultaty. Pierwszym ważnym elementem jest próba dodania rozwiązania, które zapewni lepszy efekt wizualny w przypadku, gdy usta awatara się rozszerzają - warto zastanowić się nad kwestią pokazania uzębienia.
 
-Ponadto dotychczasowy czas działania niektórych funkcji wykorzystanych w programie zdaje się być zbyt długi. Niewykluczone, że lepszym rozwiązaniem byłoby zastąpienie ich wydajniejszymi modułami. Być może należy opracować autorskie rozwiązania. Prawdopodobnie poprawa czasu działania algorytmu możliwiłaby udoskonalenie aplikacji - stworzenie filtra animującego awatar w czasie rzeczywistym.
+Ponadto dotychczasowy czas działania niektórych funkcji wykorzystanych w programie zdaje się być zbyt długi. Niewykluczone, że lepszym rozwiązaniem byłoby zastąpienie ich wydajniejszymi modułami - być może należy takowe opracować. Prawdopodobnie poprawa czasu działania algorytmu możliwiłaby udoskonalenie aplikacji - stworzenie filtra animującego awatar w czasie rzeczywistym.
 
-Uważam również, że etap nałożenia maski warto przemyśleć i być może spróbować rozwiązać w inny sposób. W tym momencie maska dopasowywana jest poprzez wykorzystanie funkcji z biblioteki scikit-image, która transformuje obraz na podstawie punktów charakterystycznych. Rezultat wydawał się zadowalający, jednakże podczas testów dwie osoby zwróciły uwagę na brak animacji brwi, co w tym momencie nie jest możliwe, ze względu na to że owe punkty biorą udział w transformacji.
+Uważam również, że warto przemyśleć etap nałożenia maski i być może spróbować rozwiązać go w inny sposób. W tym momencie maska dopasowywana jest poprzez wykorzystanie funkcji z biblioteki scikit-image, która transformuje obraz na podstawie wybranych punktów charakterystycznych. Rezultat wydawał się zadowalający, jednakże podczas testów dwie osoby zwróciły uwagę na brak animacji brwi, co w tym momencie nie jest możliwe, ze względu na to że owe punkty biorą udział w transformacji - ich modyfikacja jest niemożliwa.
 
 Niewykluczone, że dobranie modelu z inną ilością punktów charakterystycznych również wpłynęłoby na poprawę efektów jakie zapewnia działanie algorytmu.
 
