@@ -2,7 +2,7 @@
 \label{cha:podsumowanie}
 Głównym celem niniejszego projektu dyplomowego było opracowanie algorytmu animacji awatara. Zaimplementowana metoda miała opierać swoje działanie na identyfikacji punktów charakterystycznych twarzy, będących podstawą dalszych transformacji. W ramach walidacji oprogramowania należało napisać nieskomplikowaną aplikację webową.
 
-Stworzenie owego algorytmu okazało się czasochłonne i wymagało wielu modyfikacji oraz zmian koncepcji, jednak zakończyło się sukcesem.  Utworzony program zdaje się działać poprawnie i pozwala osiągnąć całkiem dobre efekty. Oczywiste jest, że aktualna wersja programu nie jest idealna i z pewnością można ją dopracować, ale spełnia określone na początku wymagania. Udało się także zbudować aplikację webową, która ułatwiła przedstawienie algorytmu oraz jego przetestowanie. 
+Stworzenie owego algorytmu wymagało wiele zaangażowania oraz zgłębienia tematów, których znajomość pomogła rozwiązać problemy stawiane w poszczególnych etapach. Jednak zakończyło się sukcesem, co potwierdzają opinie ankietowanych osób.  Utworzony program zdaje się działać poprawnie i pozwala osiągnąć zadowalające efekty. Aktualna wersja programu spełnia określone na początku wymagania i tworzy dobrą podstawę do dalszego rozbudowywania. Udało się także zaimplementować aplikację webową, która ułatwiła przedstawienie algorytmu oraz jego przetestowanie. 
 
 % %---------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ W pierwszym rozdziale owej pracy (sekcja \ref{sec:zalozeniaProjektu}) wymieniono
     \item Działanie algorytmu miało zostać powiązane z analizą punktów charakterystycznych twarzy, co w stu procentach osiągnięto. Algorytm rozpoczyna działanie od ich wykrycia. Na tej podstawie odbywają się kolejne etapy, które dotyczą modyfikacji obszarów wyznaczonych przez dane punkty.
     \item Samą identyfikację punktów udało się zrealizować z wykorzystaniem biblioteki dlib, dzięki której odbywa się wykrycie twarzy oraz jej istotnych elementów. 
     \item Po stworzeniu projektu algorytm przetestowano według planu, na gotowym zbiorze danych, co umożliwiło sprawdzenie poprawności jego działania.
-    \item Zgodnie z planem, zaimplementowano prostą aplikację webową, wykorzystaną do walidacji algorytmu. Moim osobistym założeniem było utworzenie filtra animującego awatar w czasie rzeczywistym. Niestety z powodu długiego czasu działania funkcji \textit{warp()} z biblioteki scikit-image, nie udało się go zrealizować. Nie ukrywam, że bardzo zależy mi, aby w przyszłości wdrożyć ten element.
+    \item Zgodnie z planem, zaimplementowano prostą aplikację webową, wykorzystaną do walidacji algorytmu. %Moim osobistym założeniem było utworzenie filtra animującego awatar w czasie rzeczywistym. Niestety z powodu długiego czasu działania funkcji \textit{warp()} z biblioteki scikit-image, nie udało się go zrealizować. Nie ukrywam, że bardzo zależy mi, aby w przyszłości wdrożyć ten element.
 \end{itemize}
 
 Podsumowując, wszystkie założenia postawione na początku tworzenia programu zostały zrealizowane. Dzięki cennym informacjom zdobytym podczas przeprowadzonych badań pozostaje kwestia jego optymalizacji i dalszego rozwoju.
@@ -21,12 +21,15 @@ Podsumowując, wszystkie założenia postawione na początku tworzenia programu 
 % %---------------------------------------------------------------------------
 
 \section{Możliwy rozwój projektu}
-Działanie algorytmu zaimplementowanego w trakcie tworzenia niniejszej pracy dyplomowej można usprawnić na wiele sposobów. Udoskonalenie niektórych etapów z pewnością poprawiłoby osiągane rezultaty. Pierwszym ważnym elementem jest próba dodania rozwiązania, które zapewni lepszy efekt wizualny w przypadku, gdy usta awatara się rozszerzają - warto zastanowić się nad kwestią pokazania uzębienia.
-
-Ponadto dotychczasowy czas działania niektórych funkcji wykorzystanych w programie zdaje się być zbyt długi. Niewykluczone, że lepszym rozwiązaniem byłoby zastąpienie ich wydajniejszymi modułami - być może należy takowe opracować. Prawdopodobnie poprawa czasu działania algorytmu możliwiłaby udoskonalenie aplikacji - stworzenie filtra animującego awatar w czasie rzeczywistym.
-
-Uważam również, że warto przemyśleć etap nałożenia maski i być może spróbować rozwiązać go w inny sposób. W tym momencie maska dopasowywana jest poprzez wykorzystanie funkcji z biblioteki scikit-image, która transformuje obraz na podstawie wybranych punktów charakterystycznych. Rezultat wydawał się zadowalający, jednakże podczas testów dwie osoby zwróciły uwagę na brak animacji brwi, co w tym momencie nie jest możliwe, ze względu na to że owe punkty biorą udział w transformacji - ich modyfikacja jest niemożliwa.
-
-Niewykluczone, że dobranie modelu z inną ilością punktów charakterystycznych również wpłynęłoby na poprawę efektów jakie zapewnia działanie algorytmu.
+Działanie algorytmu zaimplementowanego w trakcie tworzenia niniejszej pracy dyplomowej można usprawnić na wiele sposobów. Udoskonalenie niektórych etapów z pewnością poprawiłoby osiągane rezultaty:
+\begin{itemize}
+    \item Pierwszym ważnym elementem jest próba dodania rozwiązania, które zapewni lepszy efekt wizualny w przypadku, gdy usta awatara się rozszerzają - warto zastanowić się nad kwestią pokazania uzębienia.
+    \item Ponadto dotychczasowy czas działania niektórych funkcji wykorzystanych w programie zdaje się być zbyt długi. Niewykluczone, że lepszym rozwiązaniem byłoby zastąpienie ich wydajniejszymi modułami - być może należy takowe opracować. Prawdopodobnie poprawa czasu działania algorytmu możliwiłaby udoskonalenie aplikacji - stworzenie filtra animującego awatar w czasie rzeczywistym.
+    \item Uważam również, że warto przemyśleć etap nałożenia maski i być może spróbować rozwiązać go w inny sposób. W tym momencie maska dopasowywana jest poprzez wykorzystanie funkcji z biblioteki scikit-image, która transformuje obraz na podstawie wybranych punktów charakterystycznych. Rezultat wydawał się zadowalający, jednakże podczas testów dwie osoby zwróciły uwagę na brak animacji brwi, co w tym momencie nie jest możliwe, ze względu na to że owe punkty biorą udział w transformacji - ich modyfikacja jest niemożliwa.
+    \item Niewykluczone, że dobranie modelu z inną ilością punktów charakterystycznych również wpłynęłoby na poprawę efektów jakie zapewnia działanie algorytmu.
+\end{itemize}
 
 Wydaje mi się, że wszystkie wymienione wyżej propozycje poprawiłyby efekty, które w tym momencie można osiągnąć używając algorytmu animacji awatara. Warto również rozwinąć aplikację stworzoną na potrzeby ewaluacji, dokładniej przetestować jej działanie i popracować nad interfejsem graficznym.
+
+
+Na potrzeby niniejszej pracy dyplomowej opracowano algorytm animacji awatara, oparty na identyfikacji punktów charakterystycznych twarzy wyznaczających linię szczęki, ust, nosa, oczu oraz brwi. Na podstawie owych elementów oraz ich przemieszczeń obliczane są przemieszczenia analogicznych punktów awatara, według których następuje transformacja jego obrazu. Algorytm przedstawiono z wykorzystaniem nieskomplikowanej aplikacji webowej, która umożliwiła przetestowanie programu. W pracy zawarto etapy projektu począwszy od przedstawienia powiązanych algorytmów i istniejących rozwiązań, poprzez etap opisu wykorzystanych technologii i implementacji, kończąc na części ewaluacyjnej i podsumowaniu.

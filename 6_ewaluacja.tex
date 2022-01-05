@@ -7,6 +7,12 @@ Poniższy rozdział zawiera opis testów przeprowadzonych w celu zbadania popraw
 \section{Sposób testowania}
 Uprzednie przetestowanie stworzonego programu to kluczowa kwestia, dzięki której łatwiej wykryć błędy mogące pojawić się podczas użytkowania danego oprogramowania. Istotna jest również opinia osób testujących program. Niejednokrotnie zwracają oni uwagę na braki, których uzupełnienie potrafi zdecydowanie usprawnić korzystanie z aplikacji.
 
+W czasie tworzenia algorytmu animacji awatara zostały przeprowadzone testy manualne poszczególnych funkcji, co pomogło usprawnić niektóre moduły i dopracować logikę ich działania. Ze względu na prostotę programu, stworzonego na potrzeby tej pracy inżynierkiej, wykonywanie bardziej zaawansowanych testów samego oprogramowania nie było konieczne.
+
+Ważnym elementem stała się weryfikacja efektywności działania algorytmu na zarejestrowanych obrazach lub gotowych zbiorach danych, co wcześniej zostało określone w założeniach projektowych (sekcja \ref{sec:zalozeniaProjektu}). Z tego powodu zrealizowano testy użyteczności, które zostały podzielone na dwie części. W każdej z nich modyfikowano zdjęcia czterech różnych awatarów (Rys. \ref{fig:avatars}), co pozwoliło na dokładniejsze przetestowanie algorytmu.
+
+Dobór zdjęć użytych do badań nie był przypadkowy. W ramach niniejszej pracy jako awatar rozumie się nierealną cyfrową postać mającą formę osobową. Ważną cechą jest prostota takiego charakteru - wyraźne rysy twarzy, brak cieni. Ze względu na owe wymagania do testów wybrano podobizny z popularnej gry symulacyjnej The Sims 4, które zostały udostępnione na forum~\cite{avatars}.
+
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.35\textwidth}
@@ -32,12 +38,6 @@ Uprzednie przetestowanie stworzonego programu to kluczowa kwestia, dzięki któr
 	
 	\caption{\label{fig:avatars}Awatary użyte do przetestowania algorytmu}
 \end{figure}
-
-W czasie tworzenia algorytmu animacji awatara zostały przeprowadzone testy manualne poszczególnych funkcji, co pomogło usprawnić niektóre moduły i dopracować logikę ich działania. Ze względu na prostotę programu, stworzonego na potrzeby tej pracy inżynierkiej, wykonywanie bardziej zaawansowanych testów samego oprogramowania nie było konieczne.
-
-Ważnym elementem stała się weryfikacja efektywności działania algorytmu na zarejestrowanych obrazach lub gotowych zbiorach danych, co wcześniej zostało określone w założeniach projektowych (sekcja \ref{sec:zalozeniaProjektu}). Z tego powodu zrealizowano testy użyteczności, które zostały podzielone na dwie części. W każdej z nich modyfikowano zdjęcia czterech różnych awatarów (Rys. \ref{fig:avatars}), co pozwoliło na dokładniejsze przetestowanie algorytmu.
-
-Dobór zdjęć użytych do badań nie był przypadkowy. W ramach niniejszej pracy jako awatar rozumie się nierealną cyfrową postać mającą formę osobową. Ważną cechą jest prostota takiego charakteru - wyraźne rysy twarzy, brak cieni. Ze względu na owe wymagania do testów wybrano podobizny z popularnej gry symulacyjnej The Sims 4, które zostały udostępnione na forum~\cite{avatars}.
 
 % %---------------------------------------------------------------------------
 
@@ -73,6 +73,20 @@ W tej części zastosowano ocenianie za pomocą skali od 1 do 5, gdzie konkretny
     \item Bardzo dobry
 
 \end{enumerate}
+
+Ostatnie, piąte pytanie dotyczy oceny rezultatu osiągniętego w zakładce \textit{Select image} dla danego awatara. Osoba ankietowana powinna wybrać jedno zdjęcie z udostępnionej bazy, odwzorowujące emocje, dla której animacja wypadła najgorzej. Następnie należy ocenić osiągnięty efekt, w stosunku do tego otrzymanego w zakładce \textit{Real-time animation}. Tym razem użyto skali od 1 do 7 gdzie 1 oznacza \textit{zdecydowanie gorszy} efekt, natomiast 7 \textit{zdecydowanie lepszy} wynik.
+
+Przed przystąpieniem do testowania użytkownicy zostali zapoznani z krótką instrukcją, w której zwrócono uwagę na czynniki mogące mieć wpływ na działanie algorytmu:
+
+\begin{enumerate}
+    \item Ustaw twarz w pozycji frontowej, tak aby była ona dobrze widoczna w kamerze.
+    \item Odsłoń włosy oraz zdejmij okulary.
+    \item Staraj się nie wykonywać gwałtownych ruchów w momencie naciskania przycisku \textit{Animate}.
+    \item W trakcie oceny rezultatów kieruj się głównie tym, czy emocja została poprawnie odwzorowana.
+    \item Możesz wielokrotnie dokonywać animacji dla danej emocji i ocenić sumaryczne rezultaty.
+\end{enumerate}
+
+W ankiecie wzięło udział 11 osób w przedziale wiekowym od 19 do 60 lat. Większość z nich korzysta na co dzień z komputera, jednak tylko w podstawowych celach. W trakcie przeprowadzania ankiety nie wyniknęły żadne problemy. Aplikacja działała płynnie, przez co każdej ankietowanej osobie udało się ukończyć zadania bez przeszkód.
 
 \begin{table}[h]
 \centering
@@ -119,20 +133,6 @@ W tej części zastosowano ocenianie za pomocą skali od 1 do 5, gdzie konkretny
 \label{tab:first_test}
 \end{table}
 
-Ostatnie, piąte pytanie dotyczy oceny rezultatu osiągniętego w zakładce \textit{Select image} dla danego awatara. Osoba ankietowana powinna wybrać jedno zdjęcie z udostępnionej bazy, odwzorowujące emocje, dla której animacja wypadła najgorzej. Następnie należy ocenić osiągnięty efekt, w stosunku do tego otrzymanego w zakładce \textit{Real-time animation}. Tym razem użyto skali od 1 do 7 gdzie 1 oznacza \textit{zdecydowanie gorszy} efekt, natomiast 7 \textit{zdecydowanie lepszy} wynik.
-
-Przed przystąpieniem do testowania użytkownicy zostali zapoznani z krótką instrukcją, w której zwrócono uwagę na czynniki mogące mieć wpływ na działanie algorytmu:
-
-\begin{enumerate}
-    \item Ustaw twarz w pozycji frontowej, tak aby była ona dobrze widoczna w kamerze.
-    \item Odsłoń włosy oraz zdejmij okulary.
-    \item Staraj się nie wykonywać gwałtownych ruchów w momencie naciskania przycisku \textit{Animate}.
-    \item W trakcie oceny rezultatów kieruj się głównie tym, czy emocja została poprawnie odwzorowana.
-    \item Możesz wielokrotnie dokonywać animacji dla danej emocji i ocenić sumaryczne rezultaty.
-\end{enumerate}
-
-W ankiecie wzięło udział 11 osób w przedziale wiekowym od 19 do 60 lat. Większość z nich korzysta na co dzień z komputera, jednak tylko w podstawowych celach. W trakcie przeprowadzania ankiety nie wyniknęły żadne problemy. Aplikacja działała płynnie, przez co każdej ankietowanej osobie udało się ukończyć zadania bez przeszkód.
-
 Procentowe wyniki ankiety przedstawiono w powyższej tabeli~(Tab.~\ref{tab:first_test}). Zawarto w niej podsumowane odpowiedzi na pytania 1-4, czyli te dotyczące odwzorowania danej emocji. Dla każdego awatara i poszczególnych emocji dominujące wartości oznaczono kolorem zielonym. 
 
 Analizując wyniki można dojść do następujących wniosków:
@@ -164,6 +164,26 @@ Przygotowanie danych przebiegało w następujący sposób:
     \item na podstawie określonych obrazów dokonano modyfikacji każdego awatara. Finalnie otrzymano 16 przekształconych podobizn.
 \end{itemize}
 
+\newpage
+Ankieta utworzona na potrzeby badania składa się z  16 pytań, każde z nich posiada cztery możliwe odpowiedzi:
+
+\begin{enumerate}
+    \item szczęście,
+    \item smutek,
+    \item strach/zaskoczenie,
+    \item gniew/obrzydzenie.
+\end{enumerate}
+
+Zadaniem osoby ankietowanej była próba dopasowania emocji, którą odzwierciedla zmodyfikowany wyraz twarzy awatara. W celu łatwiejszego uporządkowania wyników zastosowano punktację 0-1. 
+
+W ankiecie wzięło udział 27 osób w różnym przedziale wiekowym. Poniżej przedstawiono wartości najważniejszych parametrów otrzymanych wyników:
+\begin{itemize}
+    \item maksymalna liczba zdobytych punktów - 16
+    \item najniższy wynik - 9
+    \item średni wynik - 12,44/16
+    \item mediana - 12
+\end{itemize}
+
 \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|c|c|} 
@@ -187,25 +207,16 @@ gniew/obrzydzenie & 78\% & 41\% & \textcolor[rgb]{0,0.502,0}{~\textbf{96\%}} & 6
 \label{tab:second_test}
 \end{table}
 
-\newpage
-Ankieta utworzona na potrzeby badania składa się z  16 pytań, każde z nich posiada cztery możliwe odpowiedzi:
-
-\begin{enumerate}
-    \item szczęście,
-    \item smutek,
-    \item strach/zaskoczenie,
-    \item gniew/obrzydzenie.
-\end{enumerate}
-
-Zadaniem osoby ankietowanej była próba dopasowania emocji, którą odzwierciedla zmodyfikowany wyraz twarzy awatara. W celu łatwiejszego uporządkowania wyników zastosowano punktację 0-1. 
-
-W ankiecie wzięło udział 27 osób w różnym przedziale wiekowym. Poniżej przedstawiono wartości najważniejszych parametrów otrzymanych wyników:
+Wyniki procentowe otrzymane po przeprowadzeniu badania zawarto w tabeli \ref{tab:second_test}. Po szczegółowej analizie, można zauważyć, że:
 \begin{itemize}
-    \item maksymalna liczba zdobytych punktów - 16
-    \item najniższy wynik - 9
-    \item średni wynik - 12,44/16
-    \item mediana - 12
+    \item najwyżej oceniono awatar \ref{avatar_3} (82\% poprawnych odpowiedzi), a najgorzej \ref{avatar_2} (poprawność na poziomie 69\%),
+    \item w odwzorowaniu szczęścia najwyższy wynik, bo aż 100\% zanotowano dla awatara \ref{avatar_4},
+    \item smutny wyraz twarzy najtrafniej przyporządkowywano dla awatara \ref{avatar_2} (93\%),
+    \item w przypadku emocji zaskoczenia/strachu najwyższą poprawność dopasowania otrzymano dla awatara \ref{avatar_1} (93\%),
+    \item najlepszy rezultat dla gniewu/obrzydzenia osiągnięto na awatarze \ref{avatar_3} (96\%).
 \end{itemize}
+
+Obrazy, których odzwierciedlane emocje przyporządkowano z najlepszą skutecznością (kolejno 100\% oraz 96\%) przedstawiono na Rys. \ref{fig:best_results}. Według ankietowanych obraz \ref{av-4_happiness_2} bardzo dobrze oddaje szczęście, mimo pewnego defektu w postaci braku uzębienia. Natomiast Rys.~\ref{av-3_anger_2} poprawnie ukazuje gniew/obrzydzenie poprzez odpowiednie ułożenie ust oraz oczu. 
 
 \begin{figure}[h]
 	\centering
@@ -223,17 +234,6 @@ W ankiecie wzięło udział 27 osób w różnym przedziale wiekowym. Poniżej pr
 	
 	\caption{\label{fig:best_results}Najtrafniej odgadnięte odwzorowania}
 \end{figure}
-
-Wyniki procentowe otrzymane po przeprowadzeniu badania zawarto w tabeli \ref{tab:second_test}. Po szczegółowej analizie, można zauważyć, że:
-\begin{itemize}
-    \item najwyżej oceniono awatar \ref{avatar_3} (82\% poprawnych odpowiedzi), a najgorzej \ref{avatar_2} (poprawność na poziomie 69\%),
-    \item w odwzorowaniu szczęścia najwyższy wynik, bo aż 100\% zanotowano dla awatara \ref{avatar_4},
-    \item smutny wyraz twarzy najtrafniej przyporządkowywano dla awatara \ref{avatar_2} (93\%),
-    \item w przypadku emocji zaskoczenia/strachu najwyższą poprawność dopasowania otrzymano dla awatara \ref{avatar_1} (93\%),
-    \item najlepszy rezultat dla gniewu/obrzydzenia osiągnięto na awatarze \ref{avatar_3} (96\%).
-\end{itemize}
-
-Obrazy, których odzwierciedlane emocje przyporządkowano z najlepszą skutecznością (kolejno 100\% oraz 96\%) przedstawiono na Rys. \ref{fig:best_results}. Według ankietowanych obraz \ref{av-4_happiness_2} bardzo dobrze oddaje szczęście, mimo pewnego defektu w postaci braku uzębienia. Natomiast Rys.~\ref{av-3_anger_2} poprawnie ukazuje gniew/obrzydzenie poprzez odpowiednie ułożenie ust oraz oczu. 
 
 % %---------------------------------------------------------------------------
 

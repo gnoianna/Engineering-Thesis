@@ -122,26 +122,26 @@ Supervisor: & {\itshape \@supervisor}\\
 
 \centerline{\small\sffamily Krak\'{o}w, \@date}
 
-% \clearpage 
-% \thispagestyle{empty} 
+\clearpage 
+\thispagestyle{empty} 
 
-% {~~}\vspace{20mm}
+{~~}\vspace{20mm}
 
-% \clearpage \titlepage
+\clearpage \titlepage
 
-% \vspace*{15cm} \vfill
-% \begin{flushright} 
-% \begin{minipage}[!h]{10cm}
-% {\Large\itshape \@acknowledgements}
-% \end{minipage}
-% \end{flushright}
+\vspace*{15cm} \vfill
+\begin{flushright} 
+\begin{minipage}[!h]{10cm}
+{\Large\itshape \@acknowledgements}
+\end{minipage}
+\end{flushright}
 
-% \clearpage
-% \thispagestyle{empty}
-% \vspace*{15cm} \vfill
-% \clearpage
+\clearpage
+\thispagestyle{empty}
+\vspace*{15cm} \vfill
+\clearpage
 
-% \setcounter{page}{5}
+\setcounter{page}{5}
 
 }
 

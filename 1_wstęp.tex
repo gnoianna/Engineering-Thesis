@@ -5,19 +5,19 @@
 Dzisiejszy świat niezwykle szybko się rozwija. Ciężko wyobrazić sobie wykonywanie codziennych czynności bez udogodnień technicznych, które otaczają nas co dnia. Jeszcze kilkanaście lat temu codzienność przeciętnej 
 osoby wyglądała zupełnie inaczej. Okres ostatnich 30 lat przyniósł wiele zmian, bez których teraz nie wyobrażamy sobie normalnego funkcjonowania.
 
-W obecnym czasie z dnia na dzień na rynek wprowadzane są nowe urządzenia i oprogramowanie mające na celu polepszenie komfortu naszego życia. Ludziom zależy na ciągłym usprawnianiu technologii, aby zautomatyzować pewne czynności i móc zaoszczędzić swój cenny czas. Wielu naukowców poświęca się pracy w celu odkrycia przełomowych rozwiązań.
+W obecnym czasie, z dnia na dzień, na rynek wprowadzane są nowe urządzenia i oprogramowanie mające na celu polepszenie komfortu naszego życia. Ludziom zależy na ciągłym usprawnianiu technologii, aby zautomatyzować pewne czynności i móc zaoszczędzić swój cenny czas. Wielu naukowców poświęca się pracy w celu odkrycia przełomowych rozwiązań.
 
 Nie da się ukryć, że w ostatnich latach coraz więcej mówi się o ogromnym potencjale sztucznej inteligencji (ang. Artificial Intelligence), która zaczyna odgrywać znaczącą rolę w światowym rozwoju technicznym. Według źródeł wiele gałęzi przemysłu decyduje się na wprowadzanie systemów tzw. wąskiej sztucznej inteligencji. W tym momencie mamy z nimi styczność na każdym kroku \cite{ai}.   
 
 Systemy te charakteryzują się wyuczoną umiejętnością wykonywania określonego zadania. Rodzaj inteligencji, który reprezentują, najczęściej stosuje się w rozpoznawaniu mowy, rekomendowaniu produktów, czy też wykrywaniu elementów na obrazie. Ostatnie z wymienionych zastosowań jest bezpośrednio związane z tematyką poruszaną w owej pracy dyplomowej.
 
-Wykrywanie, rozpoznawanie i przetwarzanie obrazów (ang. Computer Vision) to dziedziny sztucznej inteligencji, które wykorzystują uczenie maszynowe, aby umożliwić komputerom poprawną interpretację i zrozumienie otaczająego nas świata - tak jak robią to ludzie. Poprzez wykorzystanie obrazów cyfrowych i odpowiednich modeli tworzone oprogramowania potrafią dokładnie identyfikować, klasyfikować obiekty, a następnie na podstawie otrzymanych rezultatów wykonywać zdefiniowane akcje \cite{computervision}.
+Wykrywanie, rozpoznawanie i przetwarzanie obrazów (ang. Computer Vision) to dziedziny sztucznej inteligencji, które wykorzystują uczenie maszynowe, aby umożliwić komputerom poprawną interpretację i zrozumienie otaczająego nas świata - tak jak robią to ludzie. Poprzez wykorzystanie obrazów cyfrowych i odpowiednich modeli tworzone oprogramowanie potrafi dokładnie identyfikować, klasyfikować obiekty, a następnie na podstawie otrzymanych rezultatów wykonywać zdefiniowane akcje \cite{computervision}.
 
-Jednym z wielu istniejących systemów bazujących na przetwarzaniu obrazów jest oprogramowanie rozpoznawania twarzy. Wiele osób korzysta z niego każdego dnia chociażby w celu odblokowania telefonu, komputera lub autoryzacji transakcji w banku. Narzędzie to ma też wiele innych zastosowań, jest pewnego rodzaju bazą dla bardziej rozbudowanych programów. W niniejszej pracy dyplomowej wykrywanie twarzy, będące podstawą wspomnianego wyżej algorytmu rozpoznawania twarzy, odegra znaczącą rolę. Będzie to jeden z etapów algorytmu animacji awatara.
+Jednym z wielu istniejących systemów bazujących na przetwarzaniu obrazów jest oprogramowanie rozpoznawania twarzy. Wiele osób korzysta z niego każdego dnia chociażby w celu odblokowania telefonu, komputera lub autoryzacji transakcji w banku. To narzędzie ma też szereg innych zastosowań, jest pewnego rodzaju bazą dla bardziej rozbudowanych programów. W niniejszej pracy dyplomowej wykrywanie twarzy, będące podstawą wspomnianego wyżej algorytmu rozpoznawania twarzy, odegrało znaczącą rolę. Jest to jeden z etapów algorytmu animacji awatara.
 
 Niewątpliwie szybki rozwój technologiczny, z którym aktualnie mamy do czynienia, oraz jego ukierunkowanie na jak najefektywniejsze wykorzystanie sztucznej inteligencji sprawiły, że temat pracy inżynierskiej, który zdecydowałam się realizować dotyczy właśnie tych zagadnień. W połączeniu z moim zainteresowaniem grafiką komputerową oraz przetwarzaniem obrazów powstała chęć zaimplementowania algorytmu animacji awatara.
 
-Na rynku dostępne są programy, które implementują takowe algorytmy. Powstaje coraz więcej aplikacji oferujących animacje zdjęcia na podstawie filmu wideo. Niektóre portale społecznośiowe udostępniają specjalne filtry, nakładki na zdjęcia działające na podobnej zasadzie. Jednak większość dostępnego oprogramowania nie oferuje wglądu w kod źródłowy, są to rozwiązania komerycjne, gdzie ta dostępność jest mocno ograniczona.
+Na rynku dostępne są programy, które implementują takowe algorytmy. Powstaje coraz więcej aplikacji oferujących animacje zdjęcia na podstawie filmu wideo. Niektóre portale społecznościowe udostępniają specjalne filtry, nakładki na zdjęcia działające na podobnej zasadzie. Jednak większość dostępnych programów nie oferuje wglądu w kod źródłowy, są to rozwiązania komerycjne, gdzie ta dostępność jest mocno ograniczona.
 
 Motywacją do stworzenia własnego programu jest chęć rozwoju i poszerzenia swojej wiedzy w tej tematyce oraz próba odwzorowania działania istniejących rozwiązań, które nie są dostępne w formie otwartego oprogramowania. 
 
@@ -26,15 +26,15 @@ Motywacją do stworzenia własnego programu jest chęć rozwoju i poszerzenia sw
 
 \section{Cel pracy}
 
-Celem pracy dyplomowej jest opracowanie algorytmu animacji awatara. Metoda będzie opierać się na identyfikacji punktów charakterystycznych (ang. landmarks) oznaczających położenie łuków brwiowych, powiek, oczu, nosa i warg. Na podstawie wyznaczonych punktów i ich przemieszczeń będą obliczane przemieszczenia analogicznych punktów awatara, według których jego obraz zostanie poddany lokalnym transformacjom.
+Celem pracy dyplomowej było opracowanie algorytmu animacji awatara. Metoda opiera się na identyfikacji punktów charakterystycznych (ang. landmarks) oznaczających położenie łuków brwiowych, powiek, oczu, nosa i warg. Na podstawie wyznaczonych punktów i ich przemieszczeń są obliczane przemieszczenia analogicznych punktów awatara, według których jego obraz jest poddany lokalnym transformacjom.
 
-Algorytm zostanie przedstawiony z wykorzystaniem nieskomplikowanej aplikacji webowej, która posłuży jako narzędzie walidacji.
+Algorytm został przedstawiony z wykorzystaniem nieskomplikowanej aplikacji webowej, która posłużyła jako narzędzie walidacji.
 
 % %---------------------------------------------------------------------------
 
 \section{Założenia projektu}
 \label{sec:zalozeniaProjektu}
-Projekt stworzony na potrzeby tejże pracy powinien spełniać określone założenia, zgodne z~poniższymi szczegółami:
+Założono, że projekt stworzony na potrzeby tejże pracy powinien spełniać określone wymagania, zgodne z~poniższymi punktami:
 \begin{itemize}
     \item działanie algorytmu powinno opierać się na analizie punktów charakterystycznych, na podstawie której nastąpią lokalne transformacje obrazu awatara,
     \item identyfikacja punktów charakterystycznych powinna zostać zrealizowana z użyciem biblioteki face\_recognition lub dlib,
@@ -48,7 +48,7 @@ Projekt stworzony na potrzeby tejże pracy powinien spełniać określone zało�
 \label{sec:strukturaPracy}
 Niniejsza praca została podzielona na sześć rozdziałów. W pierwszym z nich zawarte zostało wprowadzenie, cel pracy oraz krótki opis założeń projektowych.
 
-Drugi rozdział ma na celu przedstawienie pojęć istotnych dla tematu pracy. Ponadto zostaną w nim omówione istniejące algorytmy ściśle powiązane z implementowanym rozwiązaniem. 
+Drugi rozdział ma na celu przedstawienie pojęć istotnych dla tematu pracy. Ponadto są w nim omówione istniejące algorytmy ściśle powiązane z implementowanym rozwiązaniem. 
 
 W trzecim rozdziale znajduje się przegląd współczesnych zastosowań i przykłady dziedzin wykorzystujących algorytmy zbliżone do zaimplementowanego w tejże pracy. 
 
@@ -58,7 +58,7 @@ Piąty rozdział dotyczy kwestii implementacji programu. Składa się on z sześ
 
 Szósty rozdział zawiera opis części ewaluacyjnej. Przedstawiono w nim efekty testów algorytmu pod kątem użyteczności programu oraz osiąganych rezultatów.
 
-W siódmym rozdziale zawarto podsumowanie ogólne pracy, wnioski wyciągnięte podczas tworzenia projektu. Dodatkowo zamieszczono rozdział przedstawiający możliwe ścieżki rozwoju stworzonego modelu.
+W siódmym rozdziale zawarto podsumowanie ogólne pracy, wnioski wyciągnięte podczas tworzenia projektu. Dodatkowo zamieszczono sekcję przedstawiającą możliwe ścieżki rozwoju stworzonego modelu.
 
 
 

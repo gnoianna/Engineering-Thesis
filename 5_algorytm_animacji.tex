@@ -14,7 +14,7 @@ Do stworzenia algorytmu wykorzystano język programowania Python umożliwiający
 	\label{fig:algorithmStructure}
 \end{figure}
 
-Kluczową kwestią jest wcześniejsze wczytanie danych, czyli obrazu źródłowego, przez który rozumie się zdjęcie mające posłużć jako baza do przekształcenia awatara oraz jego obraz, na którym nastąpi animacja. Funkcja łącząca wszystkie działania została przedstawiona w formie poniższego kodu. Jej wynikiem jest obraz awatara ze zmienionym wyrazem twarzy osiągniętym za pomocą odpowiednich przekształceń. W dalszych sekcjach, zostaną opisane poszczególne moduły, z których korzystano.
+Kluczową kwestią jest wcześniejsze wczytanie danych, czyli obrazu źródłowego, przez który rozumie się zdjęcie mające posłużyć jako baza do przekształcenia awatara oraz jego obraz, na którym nastąpi animacja. Funkcja łącząca wszystkie działania została przedstawiona w formie poniższego kodu. Jej wynikiem jest obraz awatara ze zmienionym wyrazem twarzy osiągniętym za pomocą odpowiednich przekształceń. W dalszych sekcjach, zostaną opisane poszczególne moduły, z których korzystano.
 
 \begin{minted}
 [
@@ -47,7 +47,7 @@ def animate_avatar(avatar_img, avatar_points, src_img, src_points):
 Pierwszym krokiem jest wykrycie obszaru twarzy oraz identyfikacja jej punktów charakterystycznych. Etap ten został zrealizowany z użyciem gotowych funkcji udostępnianych przez bibliotekę dlib:
 \begin{itemize}
     \item \textit{get\_frontal\_face\_detector()} - funkcja nie przyjmuje żadnych parametrów, zwraca wytrenowany obiekt umożliwiający detekcję twarzy. Model został wyszkolony przy pomocy algorytmu działającego w oparciu o klasyfikator SVM i deskryptor HOG, opisany w podrozdziale \ref{sec:svmhog}. 
-    \item \textit{shape\_predictor()} - parametrem wejściowym jest wytrenowany model, który również został udostępniony przez bibliotekę, umożliwiający poprawną lokalizację punktów charakterystycznych. Został on wyszkolony na podstawie algorytmu przedstawionego w sekcji \ref{sec:landmarks}. Wynikiem zastosowania danej funkcji jest obiekt, który generuje owy zestaw punktów zlokalizowanych na obrazie przekazanym jako dane wejściowe.
+    \item \textit{shape\_predictor()} - parametrem wejściowym jest wytrenowany model, który również został udostępniony przez bibliotekę, umożliwiający poprawną lokalizację punktów charakterystycznych \cite{dlibModel}. Został on wyszkolony na podstawie algorytmu przedstawionego w sekcji~\ref{sec:landmarks}. Wynikiem zastosowania danej funkcji jest obiekt, który generuje owy zestaw punktów zlokalizowanych na obrazie przekazanym jako dane wejściowe.
 \end{itemize}
 
 \begin{minted}
@@ -155,7 +155,7 @@ Funkcja zaimplementowana w celu rozwiązania tej części problemu generuje opis
 	\caption{\label{fig:triangulation}Triangulacja punktów char. obrazu źródłowego \protect\subref{triangulation_src} oraz awatara \protect\subref{triangulation_avatar}}
 \end{figure}
 
-Na Rys. \ref{fig:triangulation} można zaobserwować efekt działania tego etapu programu. Na pierwszym obrazie zaznaczono trójkąty otrzymane w wyniku zastosowania triangulacji Delone, natomiast na drugim zaznaczono analogicznie wykrtyte trójkąty. Figury, które zostały otrzymane poprzez użycie funkcji z biblioteki OpenCV umożliwią klarowne wykonanie dalszych transformacji.
+Na Rys. \ref{fig:triangulation} można zaobserwować efekt działania tego etapu programu. Na pierwszym obrazie zaznaczono trójkąty otrzymane w wyniku zastosowania triangulacji Delone, natomiast na drugim zaznaczono analogicznie wykryte trójkąty. Figury, które zostały otrzymane poprzez użycie funkcji z biblioteki OpenCV umożliwią klarowne wykonanie dalszych transformacji.
 
 % %---------------------------------------------------------------------------
 
@@ -185,61 +185,7 @@ def crop_single_triangle(single_triangle, img):
     return cropped_img, triangle_img, b_rect
 \end{minted}
 
-Po pobraniu odpowiednich danych dla dwóch przetwarzanych figur, możliwe jest wywołanie kolejnej funkcji, której celem jest transformacja fragmentu obrazu awatara. Skorzystano tutaj z modułów udostępnianych przez bibliotekę OpenCV:
 
-\begin{itemize}
-    \item \textit{getAffineTransform()} - jako dane wejściowe należy podać dwa zbiory punktów, dla których obliczana jest macierz transformacji afinicznej
-    \item \textit{warpAffine()} - funkcja dokonuje przekształcenia obrazu za pomocą macierzy rotacji będącej wynikiem wcześniejszej operacji
-\end{itemize}
-
-\begin{minted}
-[
-frame=lines,
-label=Funkcja pomocnicza transformująca trójkąty,
-framesep=2mm,
-baselinestretch=1.2,
-breaklines,
-bgcolor=white,
-fontsize=\footnotesize,
-linenos
-]
-{python}
-def transform_triangle(avatar_triangle, avatar_img_cropped, src_triangle, src_img_cropped):
-    transform_matrix = cv2.getAffineTransform(np.float32(avatar_triangle), np.float32(src_triangle))
-
-    warped_triangle = cv2.warpAffine(avatar_img_cropped, transform_matrix,
-                                     (src_img_cropped.shape[1], src_img_cropped.shape[0]), None,
-                                     flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
-
-    mask = np.zeros(src_img_cropped.shape, dtype=np.uint8)
-    mask = cv2.fillConvexPoly(mask, np.int32(src_triangle), (1.0, 1.0, 1.0), 16, 0)
-    warped_triangle *= mask
-
-    return warped_triangle
-\end{minted}
-% \begin{figure}[h]
-% 	\centering
-% 	\begin{subfigure}{0.35\textwidth}
-% 		\centering
-% 		\includegraphics[height=2.5cm]{zdjęcia/triangle_src_2.png}
-% 		\subcaption{\label{triangle_src_2}}
-% 	\end{subfigure}
-% 	\begin{subfigure}{0.35\textwidth}
-% 		\centering
-% 		\includegraphics[height=2.5cm]{zdjęcia/triangle_avatar_2.png}
-% 		\subcaption{\label{triangle_avatar_2}}
-% 	\end{subfigure}
-	
-% 	\begin{subfigure}{0.35\textwidth}
-% 		\centering
-% 		\includegraphics[height=2.5cm]{zdjęcia/triangle_result_2.png}
-% 		\subcaption{\label{triangle_result_2}}
-% 	\end{subfigure}
-	
-% 	\caption{\label{fig:triangles}Rezultaty transformacji dla przekształceń trójkąta \protect\subref{triangle_avatar} w figurę \protect\subref{triangle_src} oraz \protect\subref{triangle_avatar_2} w figurę \protect\subref{triangle_src_2}.}
-% \end{figure}
-
-Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizualizowano ten krok dla wybranej iteracji. Po otrzymaniu nowej figury, należy dodać ją do obszaru twarzy, który docelowo zastąpi aktualny rejon oblicza awatara. Funkcja \textit{add\_triangle\_to\_new\_rect\_area()} odpowiada za to zadanie. W celu usunięcia ewentualnych szumów etap ten poprzedzono zastosowaniem binaryzacji progowej.
 
 \begin{figure}[h]
 	\centering
@@ -261,6 +207,41 @@ Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizuali
 
 	\caption{\label{fig:triangles}Odpowiadające sobie figury wyodrębnione z obszaru obrazu źródłowego \protect\subref{triangle_src} i awatara \protect\subref{triangle_avatar} oraz rezultat transformacji \protect\subref{triangle_result} płaszczyzny \protect\subref{triangle_avatar} w \protect\subref{triangle_src}}
 \end{figure}
+
+Po pobraniu odpowiednich danych dla dwóch przetwarzanych figur, możliwe jest wywołanie kolejnej funkcji, której celem jest transformacja fragmentu obrazu awatara. Skorzystano tutaj z modułów udostępnianych przez bibliotekę OpenCV:
+
+\begin{itemize}
+    \item \textit{getAffineTransform()} - jako dane wejściowe należy podać dwa zbiory punktów, dla których obliczana jest macierz transformacji afinicznej.
+    \item \textit{warpAffine()} - funkcja dokonuje przekształcenia obrazu za pomocą macierzy rotacji będącej wynikiem wcześniejszej operacji.
+\end{itemize}
+\begin{minted}
+[
+frame=lines,
+label=Funkcja pomocnicza transformująca trójkąty,
+framesep=2mm,
+baselinestretch=1.2,
+breaklines,
+bgcolor=white,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+def transform_triangle(avatar_triangle, avatar_img_cropped, src_triangle, src_img_cropped):
+    transform_matrix = cv2.getAffineTransform(np.float32(avatar_triangle), np.float32(src_triangle))
+    warped_triangle = cv2.warpAffine(avatar_img_cropped, transform_matrix,
+                                     (src_img_cropped.shape[1], src_img_cropped.shape[0]), None,
+                                     flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101)
+
+    mask = np.zeros(src_img_cropped.shape, dtype=np.uint8)
+    mask = cv2.fillConvexPoly(mask, np.int32(src_triangle), (1.0, 1.0, 1.0), 16, 0)
+    
+    return warped_triangle *= mask
+\end{minted}
+
+
+Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizualizowano ten krok dla wybranej iteracji. Po otrzymaniu nowej figury, należy dodać ją do obszaru twarzy, który docelowo zastąpi aktualny rejon oblicza awatara. Funkcja \textit{add\_triangle\_to\_new\_rect\_area()} odpowiada za to zadanie. W celu usunięcia ewentualnych szumów etap ten poprzedzono zastosowaniem binaryzacji progowej.
+
+
 
 Schemat opisany w tej sekcji należy powtórzyć dla każdego trójkąta zwróconego przez funkcję \textit{delaunay\_triangulation()}. W skończonej pętli następuje modyfikacja wszystkich figur i jednoczesna rekonstrukcja danych fragmentów obszaru twarzy awatara. Finalny efekt można obserwować na Rys. \ref{mask_before_avatar} przedstawionym w następnej sekcji. Trójkąty zostały dopasowane do odpowiadających im figur z obrazu źródłowego, efektem jest zmodyfikowany obszar twarzy o~takich samych wymiarach jak twarz źródłowa (\ref{src_img}).
 
@@ -301,9 +282,9 @@ Finalnym etapem opisywanego algorytmu jest ponowna transformacja, tym razem cał
 \end{figure}
 
 \begin{itemize}
-    \item \textit{PiecewiseAffineTransform()} - inicjalizacja pustego obiektu, który umożliwia transformację bazując na dwóch równoliczncych zestawach punktów. Jej działanie oparte jest na wykorzystaniu triangulacji Delone
-    \item \textit{estimate()} - funkcja wywołana na otrzymanym wcześniej obiekcie przyjmuje dwa zestawy punktów, dla których ma nastapiąć przemapowanie. W przypadku działania owego programu wybrano elementy oznaczone na Rys. \ref{fig:specificLandmarks} kolorem czerwonym. Są to punkty charakterystyczne, które z reguły, w przypadku podstawowych zmian mimiki twarzy pozostają niezmienne - linia szczęki, główny zarys nosa oraz kąciki oczu. Wybór akurat tych punktów zapewni zachowanie odpowiednich proporcji twarzy w trakcie transformacji obszaru
-    \item \textit{warp()} - funkcja dokonująca transformacji płaszczyzny przekazanej jako dane wejściowe
+    \item \textit{PiecewiseAffineTransform()} - inicjalizacja pustego obiektu, który umożliwia transformację bazując na dwóch równoliczncych zestawach punktów. Jej działanie oparte jest na wykorzystaniu triangulacji Delone.
+    \item \textit{estimate()} - funkcja wywołana na otrzymanym wcześniej obiekcie przyjmuje dwa zestawy punktów, dla których ma nastapiąć przemapowanie. W przypadku działania owego programu wybrano elementy oznaczone na Rys. \ref{fig:specificLandmarks} kolorem czerwonym. Są to punkty charakterystyczne, które z reguły, w przypadku podstawowych zmian mimiki twarzy pozostają niezmienne - linia szczęki, główny zarys nosa oraz kąciki oczu. Wybór akurat tych punktów zapewni zachowanie odpowiednich proporcji twarzy w trakcie transformacji obszaru.
+    \item \textit{warp()} - funkcja dokonująca transformacji płaszczyzny przekazanej jako dane wejściowe.
 \end{itemize}
 
 \begin{minted}
@@ -358,7 +339,7 @@ Po wykonaniu opisanych instrukcji należy dokonać normalizacji całego obrazu, 
 		\subcaption{\label{without_face_avatar}}
 	\end{subfigure}
 	
-	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}}
+	\caption{\label{fig:masks}Kolejne kroki działania etapu końcowego}
 \end{figure}
 
 Aby podmienienić oblicze awatara na zmodyfikowany obszar wystarczy skorzystać z podstawowej operacji przetwarzania obrazów, czyli funkcji \textit{bitwise\_and()} udostępnionej przez bibliotekę OpenCV. Umożliwia ona zastosowanie na zdjęciu źródłowym maski o wymiarach nowego obszaru twarzy, czego rezultatem jest obraz przedstawiony na Rys. \ref{without_face_avatar}.
@@ -376,13 +357,13 @@ Aby podmienienić oblicze awatara na zmodyfikowany obszar wystarczy skorzystać 
 		\subcaption{\label{result_avatar}}
 	\end{subfigure}
 	
-	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}}
+	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \ref{fig:masks} \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}}
 \end{figure}
 
 Po dokonaniu owej operacji wystarczy dodać do siebie obrazy \ref{mask_after_avatar} oraz \ref{without_face_avatar}, aby otrzymać finalny rezultat przedstawiony na Rys. \ref{avatar}, gdzie można obserwować zmodyfikowany wyraz twarzy awatara.
 
 % https://medium.com/featurepreneur/performing-bitwise-operations-on-images-using-opencv-6fd5c3cd72a7
-
+\newpage
 % %---------------------------------------------------------------------------
 
 \section{Aplikacja webowa}
@@ -392,7 +373,7 @@ Grafika zamieszczona poniżej przedstawia strukturę aplikacji webowej. Umieszcz
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm]{zdjęcia/structure_app.png}
+	\includegraphics[width=15cm]{zdjęcia/structure_app.png}
 	\caption{Struktura aplikacji webowej} 
 	\label{fig:structureApp}
 \end{figure}
@@ -408,10 +389,10 @@ Aplikacja webowa składa się z trzech podstron. Dla dwóch z nich na Rys. \ref{
 \begin{figure}[h]
 	\centering
 	\subfloat[Wybór dwóch zdjęć wykorzystanych do animacji]{
-	\includegraphics[height=6cm]{zdjęcia/select_images.PNG}
+	\includegraphics[height=8cm]{zdjęcia/select_images.PNG}
 	}\quad
 	\subfloat[Wykorzystanie do animacji obrazu z kamery]{
-	\includegraphics[height=6cm]{zdjęcia/animate_real_time.PNG}
+	\includegraphics[height=8cm]{zdjęcia/animate_real_time.PNG}
 	}
 	\caption{\label{fig:app}Interfejsy graficzne aplikacji webowej}
 \end{figure}
