@@ -63,7 +63,7 @@ Są to kombinacje prostokątów  o takich samych wymiarach (ciemnych i jasnych),
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=8cm]{zdjęcia/haar_features.png}
-	\caption{Przykładowe funkcje Haara \cite{haarCascade}} 
+	\caption{Przykładowe funkcje Haara \cite{haarFeautures}} 
 	\label{fig:haarFeatures}
 \end{figure}
 
@@ -102,7 +102,7 @@ Funkcje są nakładane na każde okno o zadanych wymiarach wyodrębnionych na ob
 	\label{fig:cascadeClasificator}
 \end{figure}
  
-W badaniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które podzielono na 38 etapów klasyfikacji. Liczba cech w każdym z nich nie jest proporcjonalna, wynosi ona kolejno 1, 10, 25, 25, 50 funkcji dla pięciu pierwszych etapów. W początkowych etapach eliminujemy okna, w których nie ma elementówch charakterystycznych twarzy. Oszczędza to zbędnych obliczeń i analiz.
+W badaniu przeprowadzonym przez autorów algorytmu wybrano 6000 funkcji, które podzielono na 38 etapów klasyfikacji. Liczba cech w każdym z nich nie jest proporcjonalna, wynosi ona kolejno 1, 10, 25, 25, 50 funkcji dla pięciu pierwszych etapów. W początkowych etapach eliminujemy okna, w których nie ma elementów charakterystycznych twarzy. Oszczędza to zbędnych obliczeń i analiz.
 
 Opisany w tym rozdziale algorytm jest wykorzystywany nie tylko do wykrywania twarzy na obrazach, ale także innego rodzaju obiektów, takich jak zwierzęta, tablice rejestracyjne czy całe ludzkie sylwetki. Cechuje go bardzo szybki czas działania. Jego dokładność nie jest aż tak wysoka, ze względu na podatność na fałszywe wykrycia.  Popularność algorytmu, który został opisany w tym rozdziale, zdaje się dalej trwać, pomimo odkrycia wielu konkurencyjnych rozwiązań działających na podobnej zasadzie. 
 
@@ -207,13 +207,13 @@ Triangulacja Delone \cite{tDelone} rozumiana jest jako triangulacja $T$ przestrz
 \begin{enumerate}
     \item Każde dwa trójkąty należące do zbioru $T$ posiadają wspólną ściane albo nie są ze sobą połączone w żaden sposób.
     \item Każdy z ograniczonych zbiorów w przestrzeni $R^{n+1}$ ma część wspólną z ograniczoną liczbą trójkątów ze zbioru $T$.
-    \item Opisując kulę na dowolonym trójkącie ze zbioru $T$ nie natkniemy się na sytuację, gdy wnętrze kuli będzie zawierało wierzchołki z pozostałych trójkątów zawartych w zbiorze $T$.
+    \item Opisując kulę na dowolonym trójkącie ze zbioru $T$ nie natkniemy się na sytuację, gdy wnętrze kuli będzie zawierało wierzchołki z pozostałych trójkątów zawartych w zbiorze~$T$.
 \end{enumerate}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=6cm]{zdjęcia/triangulation.png}
-	\caption{Przykładowa triangulacja Delone dla zbioru punktów \cite{tDelone}}
+	\caption{Przykładowa triangulacja Delone dla zbioru punktów \cite{tDelone2}}
 	\label{fig:delone}
 \end{figure}
 
@@ -222,7 +222,7 @@ Przedstawioną powyżej koncepcję można uogólnić do przestrzeni o większych
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=6cm]{zdjęcia/voronoi.png}
-	\caption{Graf przedstawiający komórki Vornoia i krawędzie triangulacji \cite{tDelone}} 
+	\caption{Graf przedstawiający komórki Vornoia i krawędzie triangulacji \cite{tDelone2}} 
 	\label{fig:voronoi}
 \end{figure}
 

@@ -14,7 +14,7 @@ Do stworzenia algorytmu wykorzystano język programowania Python umożliwiający
 	\label{fig:algorithmStructure}
 \end{figure}
 
-Kluczową kwestią jest wcześniejsze wczytanie danych, czyli obrazu źródłowego, przez który rozumie się zdjęcie mające posłużyć jako baza do przekształcenia awatara oraz jego obraz, na którym nastąpi animacja. Funkcja łącząca wszystkie działania została przedstawiona w formie poniższego kodu. Jej wynikiem jest obraz awatara ze zmienionym wyrazem twarzy osiągniętym za pomocą odpowiednich przekształceń. W dalszych sekcjach, zostaną opisane poszczególne moduły, z których korzystano.
+Kluczową kwestią jest wcześniejsze wczytanie danych, czyli obrazu źródłowego, przez który rozumie się zdjęcie mające posłużyć jako baza do przekształcenia awatara oraz jego obraz, na którym nastąpi animacja. Funkcja łącząca wszystkie działania została przedstawiona w formie poniższego kodu. Jej wynikiem jest obraz awatara ze zmienionym wyrazem twarzy osiągniętym za pomocą odpowiednich przekształceń. W dalszych sekcjach zostaną opisane poszczególne moduły, z których korzystano.
 
 \begin{minted}
 [
@@ -47,7 +47,7 @@ def animate_avatar(avatar_img, avatar_points, src_img, src_points):
 Pierwszym krokiem jest wykrycie obszaru twarzy oraz identyfikacja jej punktów charakterystycznych. Etap ten został zrealizowany z użyciem gotowych funkcji udostępnianych przez bibliotekę dlib:
 \begin{itemize}
     \item \textit{get\_frontal\_face\_detector()} - funkcja nie przyjmuje żadnych parametrów, zwraca wytrenowany obiekt umożliwiający detekcję twarzy. Model został wyszkolony przy pomocy algorytmu działającego w oparciu o klasyfikator SVM i deskryptor HOG, opisany w podrozdziale \ref{sec:svmhog}. 
-    \item \textit{shape\_predictor()} - parametrem wejściowym jest wytrenowany model, który również został udostępniony przez bibliotekę, umożliwiający poprawną lokalizację punktów charakterystycznych \cite{dlibModel}. Został on wyszkolony na podstawie algorytmu przedstawionego w sekcji~\ref{sec:landmarks}. Wynikiem zastosowania danej funkcji jest obiekt, który generuje owy zestaw punktów zlokalizowanych na obrazie przekazanym jako dane wejściowe.
+    \item \textit{shape\_predictor()} - parametrem wejściowym jest wytrenowany model, również udostępniony przez bibliotekę, umożliwiający poprawną lokalizację punktów charakterystycznych \cite{dlibModel}. Został on wyszkolony na podstawie algorytmu przedstawionego w sekcji~\ref{sec:landmarks}. Wynikiem zastosowania danej funkcji jest obiekt, który generuje owy zestaw punktów zlokalizowanych na obrazie przekazanym jako dane wejściowe.
 \end{itemize}
 
 \begin{minted}
@@ -243,9 +243,7 @@ Jako wynik otrzymano zmodyfikowany obraz. Na Rys. \ref{triangle_result} zwizuali
 
 
 
-Schemat opisany w tej sekcji należy powtórzyć dla każdego trójkąta zwróconego przez funkcję \textit{delaunay\_triangulation()}. W skończonej pętli następuje modyfikacja wszystkich figur i jednoczesna rekonstrukcja danych fragmentów obszaru twarzy awatara. Finalny efekt można obserwować na Rys. \ref{mask_before_avatar} przedstawionym w następnej sekcji. Trójkąty zostały dopasowane do odpowiadających im figur z obrazu źródłowego, efektem jest zmodyfikowany obszar twarzy o~takich samych wymiarach jak twarz źródłowa (\ref{src_img}).
-
-
+Schemat opisany w tej sekcji należy powtórzyć dla każdego trójkąta zwróconego przez funkcję \textit{delaunay\_triangulation()}. W skończonej pętli następuje modyfikacja wszystkich figur i jednoczesna rekonstrukcja danych fragmentów obszaru twarzy awatara. Finalny efekt można obserwować na Rys. \ref{mask_before_avatar} przedstawionym w następnej sekcji. Trójkąty zostały dopasowane do odpowiadających im figur z obrazu źródłowego, efektem jest zmodyfikowany obszar twarzy o~takich samych wymiarach jak twarz źródłowa (Rys. \ref{src_img}).
 
 \begin{minted}
 [
@@ -360,7 +358,7 @@ Aby podmienienić oblicze awatara na zmodyfikowany obszar wystarczy skorzystać 
 	\caption{\label{fig:result}Rezultat działania algorytmu animacji awatara \protect\subref{result_avatar} na zdjęciu źródłowym \ref{fig:masks} \protect\subref{src_img} oraz na przykładowym obrazie awatara \protect\subref{avatar}}
 \end{figure}
 
-Po dokonaniu owej operacji wystarczy dodać do siebie obrazy \ref{mask_after_avatar} oraz \ref{without_face_avatar}, aby otrzymać finalny rezultat przedstawiony na Rys. \ref{avatar}, gdzie można obserwować zmodyfikowany wyraz twarzy awatara.
+Po dokonaniu owej operacji wystarczy dodać do siebie obrazy \ref{mask_after_avatar} oraz \ref{without_face_avatar}, aby otrzymać finalny rezultat przedstawiony na Rys. \ref{result_avatar}, gdzie można obserwować zmodyfikowany wyraz twarzy awatara.
 
 % https://medium.com/featurepreneur/performing-bitwise-operations-on-images-using-opencv-6fd5c3cd72a7
 \newpage
@@ -369,7 +367,7 @@ Po dokonaniu owej operacji wystarczy dodać do siebie obrazy \ref{mask_after_ava
 \section{Aplikacja webowa}
 Na potrzeby przeprowadzenia ewaluacji algorytmu zaimplementowanego w tej pracy inżynierskiej, stworzono prostą aplikację webową zbudowaną na minimalistycznym szkielecie Flask. Skorzystano również z biblioteki Bootstrap, aby w prosty sposób dostosować wygląd strony do wymagań użytkownika.
 
-Grafika zamieszczona poniżej przedstawia strukturę aplikacji webowej. Umieszczono na niej funkcje, które zostały opisane we wcześniejszych sekcjach oraz pozostałe moduły zaimplementowane na potrzeby stworzenia poprawnie działającej aplikacji.
+Grafika zamieszczona poniżej (Rys. \ref{fig:structureApp}) przedstawia strukturę aplikacji webowej. Umieszczono na niej funkcje, które zostały opisane we wcześniejszych sekcjach oraz pozostałe moduły zaimplementowane na potrzeby stworzenia poprawnie działającej aplikacji.
 
 \begin{figure}[h]
 	\centering
@@ -381,17 +379,17 @@ Grafika zamieszczona poniżej przedstawia strukturę aplikacji webowej. Umieszcz
 Aplikacja webowa składa się z trzech podstron. Dla dwóch z nich na Rys. \ref{fig:app} przedstawiono wizualizację interfejsów graficznych. Funkcje, które pełnią opisano poniżej.
 
 \begin{enumerate}
-    \item Krótka instrukcja zamieszczona na stronie głównej ma na celu zapoznanie użytkownika z możliwościami działania programu.
-    \item Zakładka \textit{Select image} umożliwia osobie zainteresowanej wgranie dwóch dowolnych zdjęć, gdzie jedno odpowiada obrazowi źródłowemu, na podstawie którego nastąpi animacja drugiego obrazu. Obsłużono wszelkiego rodzaju błędy, takie jak próba wczytania złego rozszerzenia pliku bądź zdjęcia, na którym nie da się wykryć twarzy i punktów charakterystycznych.
-    \item Podstrona \textit{Real-time animation} umożliwia użytkownikowi przetestowanie działania algorytmu w czasie rzeczywistym na wybranym, z czterech możliwych, awatarze. Po przyciśnięciu przycisku \textit{Animate} następuje zastosowanie algorytmu na zdjęciu awatara dla aktualnego obrazu przechwyconego z kamery. W przypadku braku wykrycia twarzy, efekt nie zostanie osiągnięty.
+    \item Krótka instrukcja zamieszczona na stronie głównej ma na celu zapoznanie użytkownika z możliwościami działania programu (zakładka \textbf{\textit{Home}}).
+    \item Zakładka \textbf{\textit{Select image}} umożliwia osobie zainteresowanej wgranie dwóch dowolnych zdjęć, gdzie jedno odpowiada obrazowi źródłowemu, na podstawie którego nastąpi animacja drugiego obrazu. Obsłużono wszelkiego rodzaju błędy, takie jak próba wczytania złego rozszerzenia pliku bądź zdjęcia, na którym nie da się wykryć twarzy i punktów charakterystycznych.
+    \item Podstrona \textbf{\textit{Real-time animation}} umożliwia użytkownikowi przetestowanie działania algorytmu w czasie rzeczywistym na wybranym, z czterech możliwych, awatarze. Po przyciśnięciu przycisku \textit{Animate} następuje zastosowanie algorytmu na zdjęciu awatara dla aktualnego obrazu przechwyconego z kamery. W przypadku braku wykrycia twarzy, efekt nie zostanie osiągnięty.
 \end{enumerate}
 
 \begin{figure}[h]
 	\centering
-	\subfloat[Wybór dwóch zdjęć wykorzystanych do animacji]{
+	\subfloat[Zakładka \textit{Select image} - wybór dwóch zdjęć wykorzystanych do animacji]{
 	\includegraphics[height=8cm]{zdjęcia/select_images.PNG}
 	}\quad
-	\subfloat[Wykorzystanie do animacji obrazu z kamery]{
+	\subfloat[Zakładka \textit{Real-time animation} - wykorzystanie do animacji obrazu z kamery]{
 	\includegraphics[height=8cm]{zdjęcia/animate_real_time.PNG}
 	}
 	\caption{\label{fig:app}Interfejsy graficzne aplikacji webowej}
